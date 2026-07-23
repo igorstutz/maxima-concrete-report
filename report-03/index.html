@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads · Maxima Concrete · Period Report (May 1 – Jul 23, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-green-light); color: var(--g-green-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 100px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.notes-intro { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--g-yellow); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.notes-intro .ni-icon { font-size: 26px; flex-shrink: 0; line-height: 1.2; }
+.notes-intro h3 { font-family: var(--font); font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.notes-intro p { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi .delta { font-size: 13px; font-weight: 500; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; }
+.delta.up { background: var(--g-green-light); color: var(--g-green-dark); }
+.delta.down { background: var(--g-red-light); color: var(--g-red); }
+.delta.neutral { background: var(--hover); color: var(--text2); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.bad { border-left: 4px solid var(--g-red); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.pos { color: var(--g-green-dark); font-weight: 500; }
+.neg { color: var(--g-red); font-weight: 500; }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.red { background: var(--g-red-light); color: var(--g-red); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.red { background: var(--g-red-light); border-left: 4px solid var(--g-red); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+
+.approval-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--g-blue); }
+tr.approved td { background: var(--g-green-light) !important; }
+.pri { font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 6px; }
+.pri.high { background: var(--g-red-light); color: var(--g-red); }
+.pri.med { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.pri.low { background: var(--hover); color: var(--text2); }
+
+.note-col { min-width: 200px; width: 200px; }
+.note-input { width: 100%; min-width: 150px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; font-family: var(--font-body); font-size: 12.5px; color: var(--text); background: #fffdf6; resize: vertical; min-height: 38px; line-height: 1.45; display: block; transition: border-color .15s, box-shadow .15s, background .15s; }
+.note-input:focus { outline: none; border-color: var(--g-blue); background: var(--white); box-shadow: 0 0 0 3px var(--g-blue-light); }
+.note-input::placeholder { color: var(--text3); font-style: italic; }
+.note-input.filled { background: var(--g-yellow-light); border-color: var(--g-yellow); }
+.note-block { width: 100%; margin-top: 4px; min-height: 46px; }
+.section-note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.section-note label, .step-note label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; font-family: var(--font); }
+.section-note label::before, .step-note label::before { content: "🗒️ "; }
+.step-note { margin-top: 10px; max-width: 640px; }
+
+.steps { counter-reset: step; }
+.step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-light); }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--g-blue); color: white; font-family: var(--font); font-weight: 500; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.step .step-body { flex: 1; }
+.step .step-body h4 { font-family: var(--font); font-size: 14.5px; font-weight: 500; margin-bottom: 3px; }
+.step .step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count span { color: var(--g-blue); font-size: 18px; }
+.approval-bar .count .notes-count { color: var(--g-yellow-dark); }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 18px 0 10px; color: var(--text); }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } .approval-bar { flex-wrap: wrap; } .approval-bar .count { width: 100%; } }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div>
+      <div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div>
+      <div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Concrete · Period Report</span>
+  <span class="g-topbar-spacer"></span>
+  <span class="g-topbar-badge"><span class="lang-en">Report 03 · May–Jul</span><span class="lang-pt">Relatório 03 · Mai–Jul</span></span>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<div class="g-main">
+
+  <!-- BANNER -->
+  <div class="phase-banner">
+    <div class="phase-icon">🧱</div>
+    <div>
+      <h2><span class="lang-en">Full-Period Review · May 1 – July 23, 2026</span><span class="lang-pt">Análise do Período · 1 Mai – 23 Jul, 2026</span></h2>
+      <p class="lang-en">A longer window this time — about 12 weeks. Over the whole period Maxima Concrete brought <strong>255 leads at a $70.68 cost-per-lead</strong> on $18,024.06 of spend, 100% inside Ohio. The month-by-month trend: June was the peak; July (partial) has cheaper traffic but fewer recorded conversions so far. Concrete Driveways remains the one weak campaign. Below: the trend, what's working, and the recommended actions to approve or comment on.</p>
+      <p class="lang-pt">Uma janela mais longa desta vez — cerca de 12 semanas. No período todo a Maxima Concrete trouxe <strong>255 leads a um custo por lead de $70,68</strong> com $18.024,06 de investimento, 100% dentro de Ohio. A tendência mês a mês: Junho foi o pico; Julho (parcial) tem tráfego mais barato mas menos conversões registradas até agora. Concrete Driveways segue como a única campanha fraca. Abaixo: a tendência, o que funciona, e as ações recomendadas para aprovar ou comentar.</p>
+    </div>
+  </div>
+
+  <!-- NOTES INTRO -->
+  <div class="notes-intro">
+    <div class="ni-icon">🗒️</div>
+    <div>
+      <h3><span class="lang-en">Your notes — tell us what you think</span><span class="lang-pt">Suas notas — nos diga o que achou</span></h3>
+      <p class="lang-en">Next to every recommendation there is a <strong>notes field</strong>. As you read, write whether you <strong>agree</strong>, <strong>disagree</strong>, or have <strong>a different idea</strong> — anything you type is saved automatically. Tick the checkbox <strong>☑</strong> to approve an action. When you're done, click <strong>“Export feedback &amp; approved actions”</strong> at the bottom to send everything back to us in one file.</p>
+      <p class="lang-pt">Ao lado de cada recomendação existe um <strong>campo de notas</strong>. Conforme você lê, escreva se <strong>concorda</strong>, <strong>discorda</strong> ou tem <strong>outra ideia</strong> — tudo o que você digitar é salvo automaticamente. Marque a caixinha <strong>☑</strong> para aprovar uma ação. Ao terminar, clique em <strong>“Exportar feedback e ações aprovadas”</strong> no rodapé para nos enviar tudo em um único arquivo.</p>
+    </div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🎯</div>
+      <div><h3><span class="lang-en">Period Totals — May 1 to July 23, 2026</span><span class="lang-pt">Totais do Período — 1 Mai a 23 Jul, 2026</span></h3>
+      <div class="sub"><span class="lang-en">Whole account, aggregated over ~12 weeks.</span><span class="lang-pt">Conta inteira, agregado em ~12 semanas.</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="kpi-grid">
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Lead Conversions</span><span class="lang-pt">Conversões (Lead)</span></div>
+          <div class="val">255,0</div>
+          <div class="prev"><span class="lang-en">phone + form leads</span><span class="lang-pt">ligações + formulários</span></div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Cost / Lead (CPA)</span><span class="lang-pt">Custo / Lead (CPA)</span></div>
+          <div class="val">$70,68</div>
+          <div class="prev"><span class="lang-en">period average</span><span class="lang-pt">média do período</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Total Spend</span><span class="lang-pt">Investimento</span></div>
+          <div class="val">$18.024,06</div>
+          <div class="prev"><span class="lang-en">100% inside Ohio</span><span class="lang-pt">100% dentro de Ohio</span></div>
+        </div>
+        <div class="kpi good">
+          <div class="label"><span class="lang-en">Conv. Rate</span><span class="lang-pt">Taxa de Conv.</span></div>
+          <div class="val">10,18%</div>
+          <div class="prev"><span class="lang-en">leads ÷ clicks</span><span class="lang-pt">leads ÷ cliques</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></div>
+          <div class="val">$7,20</div>
+          <div class="prev"><span class="lang-en">2,505 clicks</span><span class="lang-pt">2.505 cliques</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label">CTR</div>
+          <div class="val">6,09%</div>
+          <div class="prev"><span class="lang-en">41,166 impressions</span><span class="lang-pt">41.166 impressões</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></div>
+          <div class="val">2.505</div>
+          <div class="prev"><span class="lang-en">paid search traffic</span><span class="lang-pt">tráfego de busca paga</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Impressions</span><span class="lang-pt">Impressões</span></div>
+          <div class="val">41.166</div>
+          <div class="prev"><span class="lang-en">across 5 campaigns</span><span class="lang-pt">em 5 campanhas</span></div>
+        </div>
+      </div>
+      <div class="callout green" style="margin-top:20px;">
+        <span class="lang-en"><strong>Healthy account.</strong> A 10.18% conversion rate and a $70.68 blended CPA are strong for this market. The number blends June's excellent $61 with a softer May ($73) and a partial July ($86). "Lead Conversions" = tracked phone-call leads + lead-form submits (the primary actions we optimize for).</span>
+        <span class="lang-pt"><strong>Conta saudável.</strong> Uma taxa de conversão de 10,18% e um CPA combinado de $70,68 são fortes para este mercado. O número mistura os ótimos $61 de Junho com um Maio mais fraco ($73) e um Julho parcial ($86). "Conversões (Lead)" = ligações + envios de formulário rastreados (as ações primárias que otimizamos).</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the overall numbers</span><span class="lang-pt">Suas notas sobre os números gerais</span></label>
+        <textarea class="note-input note-block" data-note="sec-metrics" data-label="Period Totals / Totais do Período"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONTHLY EVOLUTION -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🗓️</div>
+      <div><h3><span class="lang-en">Month-by-Month Evolution</span><span class="lang-pt">Evolução Mês a Mês</span></h3>
+      <div class="sub"><span class="lang-en">May (full) → June (full) → July (partial, 1–23)</span><span class="lang-pt">Maio (cheio) → Junho (cheio) → Julho (parcial, 1–23)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Metric</span><span class="lang-pt">Métrica</span></th>
+            <th class="num">May / Maio</th>
+            <th class="num">June / Junho</th>
+            <th class="num">Jul 1–23 <span class="lang-en">(partial)</span><span class="lang-pt">(parcial)</span></th>
+            <th><span class="lang-en">Trend Jun→Jul</span><span class="lang-pt">Tendência Jun→Jul</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></strong></td><td class="num">89,0</td><td class="num"><strong>109,0</strong></td><td class="num">57,0</td><td><span class="tag yellow"><span class="lang-en">Below June peak</span><span class="lang-pt">Abaixo do pico de Jun</span></span></td></tr>
+          <tr><td>CPA</td><td class="num">$72,64</td><td class="num"><strong>$61,14</strong></td><td class="num">$85,88</td><td><span class="neg">▲ higher / mais alto</span></td></tr>
+          <tr><td><span class="lang-en">Spend</span><span class="lang-pt">Investimento</span></td><td class="num">$6.464,97</td><td class="num">$6.664,05</td><td class="num">$4.895,04</td><td><span class="muted">≈ $213/day · dia</span></td></tr>
+          <tr><td><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></td><td class="num">$7,26</td><td class="num">$7,36</td><td class="num"><strong>$6,90</strong></td><td><span class="pos">▼ cheaper / mais barato</span></td></tr>
+          <tr><td><span class="lang-en">Conv. Rate</span><span class="lang-pt">Taxa de Conv.</span></td><td class="num">9,99%</td><td class="num"><strong>12,04%</strong></td><td class="num">8,04%</td><td><span class="neg">▼ lower / menor</span></td></tr>
+          <tr><td><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></td><td class="num">891</td><td class="num">905</td><td class="num">709</td><td><span class="muted">≈ 31/day · dia</span></td></tr>
+          <tr><td><span class="lang-en">Impressions</span><span class="lang-pt">Impressões</span></td><td class="num">12.830</td><td class="num">16.112</td><td class="num">12.224</td><td><span class="muted">—</span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:16px;">
+        <span class="lang-en"><strong>July, read carefully:</strong> same pattern as the Pools account — traffic actually got <strong>cheaper</strong> (CPC $6.90) at a steady ~$213/day; the dip is only in <strong>recorded conversions</strong> (rate 12.04% → 8.04%). A meaningful part of that is <strong>attribution lag</strong> — call and form leads from the last stretch of July are still being counted and will backfill, so July's real CPA is likely better than $85.88. <strong>Recommendation: watch, don't overreact</strong>; re-check at month-end.</span>
+        <span class="lang-pt"><strong>Julho, leia com atenção:</strong> mesmo padrão da conta Pools — o tráfego ficou <strong>mais barato</strong> (CPC $6,90) a um ritmo estável de ~$213/dia; a queda é só nas <strong>conversões registradas</strong> (taxa 12,04% → 8,04%). Parte relevante disso é <strong>atraso de atribuição</strong> — leads de ligação e formulário do fim de Julho ainda estão sendo contabilizados e vão preencher, então o CPA real de Julho provavelmente é melhor que $85,88. <strong>Recomendação: acompanhar, sem reagir demais</strong>; reavaliar no fim do mês.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>Note on the monthly split:</strong> this export came as a single aggregate for the whole period. May and June figures are taken from the monthly reports we already sent; July (1–23) is derived as the remainder. Totals reconcile exactly to the period ($18,024.06 / 255 leads).</span>
+        <span class="lang-pt"><strong>Nota sobre a divisão mensal:</strong> este export veio como um agregado único do período inteiro. Os números de Maio e Junho vêm dos relatórios mensais que já enviamos; Julho (1–23) é derivado como o restante. Os totais batem exatamente com o período ($18.024,06 / 255 leads).</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the monthly trend</span><span class="lang-pt">Suas notas sobre a tendência mensal</span></label>
+        <textarea class="note-input note-block" data-note="sec-trend" data-label="Monthly Evolution / Evolução Mensal"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGN -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📊</div>
+      <div><h3><span class="lang-en">Performance by Campaign</span><span class="lang-pt">Performance por Campanha</span></h3>
+      <div class="sub"><span class="lang-en">Full period · lead conversions &amp; CPA</span><span class="lang-pt">Período completo · conversões de lead &amp; CPA</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Read</span><span class="lang-pt">Leitura</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Outdoor Living &amp; Hardscape</strong></td>
+            <td class="num">$5.694,89</td><td class="num"><strong>73,50</strong></td><td class="num">$77,48</td>
+            <td><span class="tag green"><span class="lang-en">Top volume</span><span class="lang-pt">Maior volume</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Concrete Patios</strong></td>
+            <td class="num">$4.939,22</td><td class="num">65,67</td><td class="num"><strong>$75,22</strong></td>
+            <td><span class="tag green"><span class="lang-en">Strong</span><span class="lang-pt">Forte</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Concrete Driveways</strong></td>
+            <td class="num">$4.690,06</td><td class="num">48,33</td><td class="num">$97,04</td>
+            <td><span class="tag red"><span class="lang-en">Priciest CPA — priority</span><span class="lang-pt">CPA mais alto — prioridade</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Brand Protection</strong></td>
+            <td class="num">$1.785,99</td><td class="num">55,00</td><td class="num"><strong>$32,47</strong></td>
+            <td><span class="tag blue"><span class="lang-en">Brand defense (TIS)</span><span class="lang-pt">Defesa de marca (TIS)</span></span></td>
+          </tr>
+          <tr>
+            <td><strong>Competitor Targeting</strong></td>
+            <td class="num">$913,90</td><td class="num">12,50</td><td class="num">$73,11</td>
+            <td><span class="tag green"><span class="lang-en">Efficient</span><span class="lang-pt">Eficiente</span></span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Read:</strong> Outdoor Living and Patios are the twin engines (139 leads combined at ~$76 CPA) and both are <strong>budget-limited</strong> — the natural place to add spend. Brand Protection is very efficient ($32) and also budget-limited. <strong>Concrete Driveways is again the weak link</strong> ($97 CPA, highest of the account) — same flag as June, so it's now a persistent priority.</span>
+        <span class="lang-pt"><strong>Leitura:</strong> Outdoor Living e Patios são os motores gêmeos (139 leads somados a ~$76 de CPA) e ambas estão <strong>limitadas por orçamento</strong> — o lugar natural para adicionar verba. Brand Protection é muito eficiente ($32) e também limitada por orçamento. <strong>Concrete Driveways é de novo o elo fraco</strong> ($97 de CPA, o mais alto da conta) — mesmo alerta de Junho, então virou prioridade persistente.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on campaign performance</span><span class="lang-pt">Suas notas sobre a performance das campanhas</span></label>
+        <textarea class="note-input note-block" data-note="sec-campaign" data-label="Campaign Performance / Performance por Campanha"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS KEEP -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">✅</div>
+      <div><h3><span class="lang-en">Keywords — Keep / Scale (top performers)</span><span class="lang-pt">Keywords — Manter / Escalar (melhores)</span></h3>
+      <div class="sub"><span class="lang-en">Converting keywords at or below the $71 average CPA</span><span class="lang-pt">Keywords que convertem no ou abaixo do CPA médio de $71</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Keyword</span><span class="lang-pt">Keyword</span></th>
+            <th><span class="lang-en">Match</span><span class="lang-pt">Match</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>[maxima concrete]</td><td>Exact</td><td>Brand</td><td class="num">47,0</td><td class="num">$29,77</td><td><textarea class="note-input" data-note="kwk-1"></textarea></td></tr>
+          <tr><td>"concrete patio contractor"</td><td>Phrase</td><td>Patios</td><td class="num">12,5</td><td class="num"><strong>$31,62</strong></td><td><textarea class="note-input" data-note="kwk-2"></textarea></td></tr>
+          <tr><td>"columbus landscape company"</td><td>Phrase</td><td>Outdoor Living</td><td class="num">11,0</td><td class="num">$30,55</td><td><textarea class="note-input" data-note="kwk-3"></textarea></td></tr>
+          <tr><td>"outdoor living contractor"</td><td>Phrase</td><td>Outdoor Living</td><td class="num">11,0</td><td class="num">$67,32</td><td><textarea class="note-input" data-note="kwk-4"></textarea></td></tr>
+          <tr><td>"outdoor living company near me"</td><td>Phrase</td><td>Outdoor Living</td><td class="num">8,0</td><td class="num"><strong>$27,96</strong></td><td><textarea class="note-input" data-note="kwk-5"></textarea></td></tr>
+          <tr><td>"concrete patio columbus ohio"</td><td>Phrase</td><td>Patios</td><td class="num">6,0</td><td class="num">$58,42</td><td><textarea class="note-input" data-note="kwk-6"></textarea></td></tr>
+          <tr><td>[concrete patio]</td><td>Exact</td><td>Patios</td><td class="num">6,0</td><td class="num">$54,39</td><td><textarea class="note-input" data-note="kwk-7"></textarea></td></tr>
+          <tr><td>"retaining wall contractor"</td><td>Phrase</td><td>Outdoor Living</td><td class="num">6,0</td><td class="num">$35,00</td><td><textarea class="note-input" data-note="kwk-8"></textarea></td></tr>
+          <tr><td>"concrete driveway company"</td><td>Phrase</td><td>Driveways</td><td class="num">4,5</td><td class="num">$53,04</td><td><textarea class="note-input" data-note="kwk-9"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout green" style="margin-top:14px;">
+        <span class="lang-en"><strong>The backbone.</strong> Patios and Outdoor Living contractor-intent phrases carry the account at $30–70 CPA. Note "concrete driveway company" ($53) is the one Driveways phrase that works well — a template for fixing the rest of that campaign.</span>
+        <span class="lang-pt"><strong>A espinha dorsal.</strong> As frases de intenção de contratação em Patios e Outdoor Living sustentam a conta a $30–70 de CPA. Note que "concrete driveway company" ($53) é a única frase de Driveways que funciona bem — um modelo para corrigir o resto dessa campanha.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS REVIEW -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-yellow-light)">🔍</div>
+      <div><h3><span class="lang-en">Keywords — Review (converting, but high CPA)</span><span class="lang-pt">Keywords — Revisar (convertem, mas CPA alto)</span></h3>
+      <div class="sub"><span class="lang-en">Above the $71 average — mostly in Concrete Driveways &amp; hardscape edges</span><span class="lang-pt">Acima da média de $71 — concentradas em Concrete Driveways &amp; bordas do hardscape</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Keyword</span><span class="lang-pt">Keyword</span></th>
+            <th><span class="lang-en">Match</span><span class="lang-pt">Match</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"driveway concrete contractors"</td><td>Phrase</td><td>Driveways</td><td class="num">1,0</td><td class="num"><span class="neg">$245,86</span></td><td><span class="tag red"><span class="lang-en">Pause / rework</span><span class="lang-pt">Pausar / refazer</span></span></td><td><textarea class="note-input" data-note="kwr-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"driveway tear out and replace"</td><td>Phrase</td><td>Driveways</td><td class="num">1,5</td><td class="num"><span class="neg">$240,74</span></td><td><span class="tag red"><span class="lang-en">Pause / rework</span><span class="lang-pt">Pausar / refazer</span></span></td><td><textarea class="note-input" data-note="kwr-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"paver driveway"</td><td>Phrase</td><td>Outdoor (Paver&amp;Brick)</td><td class="num">1,0</td><td class="num"><span class="neg">$214,52</span></td><td><span class="tag yellow"><span class="lang-en">Review ad/LP</span><span class="lang-pt">Revisar anúncio/LP</span></span></td><td><textarea class="note-input" data-note="kwr-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"ohio landscape company"</td><td>Phrase</td><td>Outdoor (Retaining)</td><td class="num">2,0</td><td class="num"><span class="neg">$206,57</span></td><td><span class="tag yellow"><span class="lang-en">Too broad — review</span><span class="lang-pt">Ampla demais — revisar</span></span></td><td><textarea class="note-input" data-note="kwr-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"retaining wall installation"</td><td>Phrase</td><td>Outdoor (Retaining)</td><td class="num">2,0</td><td class="num">$170,00</td><td><span class="tag yellow"><span class="lang-en">Review ad/LP</span><span class="lang-pt">Revisar anúncio/LP</span></span></td><td><textarea class="note-input" data-note="kwr-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"residential driveway contractor"</td><td>Phrase</td><td>Driveways</td><td class="num">4,5</td><td class="num">$142,14</td><td><span class="tag yellow"><span class="lang-en">Review — high spend</span><span class="lang-pt">Revisar — alto gasto</span></span></td><td><textarea class="note-input" data-note="kwr-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="review"></td><td>"concrete patio companies near me"</td><td>Phrase</td><td>Patios</td><td class="num">4,0</td><td class="num">$101,58</td><td><span class="tag yellow"><span class="lang-en">Monitor</span><span class="lang-pt">Monitorar</span></span></td><td><textarea class="note-input" data-note="kwr-7"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>The pattern is clear:</strong> most of the high-CPA keywords sit in <strong>Concrete Driveways</strong> and the paver/retaining edges of Outdoor Living. Rather than blanket pausing, start by reviewing ad copy + landing page for the driveway terms (Driveways has a generic "Maxima Concrete" ad) and check what search terms each is matching.</span>
+        <span class="lang-pt"><strong>O padrão é claro:</strong> a maioria das keywords de CPA alto está em <strong>Concrete Driveways</strong> e nas bordas de paver/retaining do Outdoor Living. Em vez de pausar tudo, começar revisando anúncio + landing page dos termos de driveway (Driveways usa um anúncio genérico "Maxima Concrete") e checar quais search terms cada uma casa.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BROAD MATCH -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">🔍</div>
+      <div><h3><span class="lang-en">Broad Match Review</span><span class="lang-pt">Avaliação de Broad Match</span></h3>
+      <div class="sub"><span class="lang-en">Only 5 broad keywords — all in Competitor Targeting (competitor brand names)</span><span class="lang-pt">Apenas 5 keywords broad — todas em Competitor Targeting (nomes de concorrentes)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout green">
+        <span class="lang-en"><strong>Broad match is fine — small, controlled footprint.</strong> The only broad keywords are the competitor brand names in Competitor Targeting, and the campaign overall converts at a $73 CPA. Keep while they perform (a lead, or cost under the ~$71 average). One thing to watch: the search term <em>"royal concrete"</em> spent $147 with 0 primary leads — see the note in the review section.</span>
+        <span class="lang-pt"><strong>Broad match está OK — footprint pequeno e controlado.</strong> As únicas keywords broad são os nomes de concorrentes em Competitor Targeting, e a campanha como um todo converte a $73 de CPA. Manter enquanto performam (um lead, ou custo abaixo da média de ~$71). Um ponto de atenção: o termo <em>"royal concrete"</em> gastou $147 com 0 lead primário — ver a nota na seção de revisão.</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Broad keyword</span><span class="lang-pt">Keyword broad</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Status</span><span class="lang-pt">Status</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>pa baker construction</td><td>Competitor</td><td class="num">4,5</td><td class="num">$25,13</td><td><span class="tag green"><span class="lang-en">Keep — strong</span><span class="lang-pt">Manter — forte</span></span></td><td><textarea class="note-input" data-note="broad-1"></textarea></td></tr>
+          <tr><td>royal concrete</td><td>Competitor</td><td class="num">2,0</td><td class="num">$36,16</td><td><span class="tag yellow"><span class="lang-en">Keep — but watch search terms</span><span class="lang-pt">Manter — mas vigiar termos</span></span></td><td><textarea class="note-input" data-note="broad-2"></textarea></td></tr>
+          <tr><td>roman concrete</td><td>Competitor</td><td class="num">1,0</td><td class="num">$37,57</td><td><span class="tag green"><span class="lang-en">Keep</span><span class="lang-pt">Manter</span></span></td><td><textarea class="note-input" data-note="broad-3"></textarea></td></tr>
+          <tr><td>mcl concrete</td><td>Competitor</td><td class="num">0,0</td><td class="num">—</td><td><span class="tag blue"><span class="lang-en">Monitor (exact got 5 leads)</span><span class="lang-pt">Monitorar (exact trouxe 5)</span></span></td><td><textarea class="note-input" data-note="broad-4"></textarea></td></tr>
+          <tr><td>benchmark concrete</td><td>Competitor</td><td class="num">0,0</td><td class="num">—</td><td><span class="tag blue"><span class="lang-en">Monitor</span><span class="lang-pt">Monitorar</span></span></td><td><textarea class="note-input" data-note="broad-5"></textarea></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SEARCH TERMS ADD -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">🌱</div>
+      <div><h3><span class="lang-en">Search Term Opportunities — Add as Keywords</span><span class="lang-pt">Oportunidades de Search Terms — Adicionar como Keywords</span></h3>
+      <div class="sub"><span class="lang-en">Converting terms not yet set as explicit keywords (Phrase or Exact)</span><span class="lang-pt">Termos que converteram e ainda não são keywords explícitas (Phrase ou Exact)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term</span><span class="lang-pt">Termo de busca</span></th>
+            <th><span class="lang-en">Suggested match</span><span class="lang-pt">Match sugerido</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>concrete patio near me</td><td><span class="tag green">Exact</span></td><td>Patios</td><td class="num">2</td><td class="num">$33</td><td><textarea class="note-input" data-note="st-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>concrete patio companies</td><td><span class="tag green">Exact</span></td><td>Patios</td><td class="num">2</td><td class="num">$29</td><td><textarea class="note-input" data-note="st-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>concrete patio installers near me</td><td><span class="tag green">Exact</span></td><td>Patios</td><td class="num">2</td><td class="num"><strong>$11</strong></td><td><textarea class="note-input" data-note="st-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>driveway contractors near me</td><td><span class="tag green">Exact</span></td><td>Driveways</td><td class="num">2</td><td class="num">$36</td><td><textarea class="note-input" data-note="st-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>paver patio installers near me</td><td><span class="tag blue">Phrase</span></td><td>Outdoor Living</td><td class="num">1</td><td class="num"><strong>$9</strong></td><td><textarea class="note-input" data-note="st-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="add-keyword"></td><td>patio extension near me</td><td><span class="tag green">Exact</span></td><td>Outdoor Living</td><td class="num">1</td><td class="num">$38</td><td><textarea class="note-input" data-note="st-6"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:14px;">
+        <span class="lang-en"><strong>Reminder:</strong> "concrete patio near me" and "concrete patio companies" were recommended last cycle too and still aren't added as explicit keywords — both convert well. "concrete patio installers near me" ($11) and "paver patio installers near me" ($9) are new, very cheap wins.</span>
+        <span class="lang-pt"><strong>Lembrete:</strong> "concrete patio near me" e "concrete patio companies" já foram recomendados no ciclo passado e ainda não foram adicionados como keywords explícitas — ambos convertem bem. "concrete patio installers near me" ($11) e "paver patio installers near me" ($9) são novidades, ganhos muito baratos.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEGATIVES -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-red-light)">🚫</div>
+      <div><h3><span class="lang-en">Recommended Negative Keywords</span><span class="lang-pt">Negativos Recomendados</span></h3>
+      <div class="sub"><span class="lang-en">A deliberately short list — most no-lead spend is on core service terms (keep those)</span><span class="lang-pt">Lista propositalmente curta — a maior parte do gasto sem lead é em termos core (manter esses)</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Search term → negative</span><span class="lang-pt">Termo → negativo</span></th>
+            <th><span class="lang-en">Category</span><span class="lang-pt">Categoria</span></th>
+            <th class="num"><span class="lang-en">Cost (period)</span><span class="lang-pt">Custo (período)</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>driveway cement cost / driveway replacement cost / reasonable concrete driveway</td><td><span class="tag yellow">Price / DIY research</span></td><td class="num">$77,00</td><td><textarea class="note-input" data-note="neg-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>concrete patio lifting / patio leveling</td><td><span class="tag red"><span class="lang-en">Repair / mudjacking</span><span class="lang-pt">Reparo / mudjacking</span></span></td><td class="num">$67,00</td><td><textarea class="note-input" data-note="neg-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="negative"></td><td>slabs for backyard</td><td><span class="tag yellow">DIY slab</span></td><td class="num">$46,00</td><td><textarea class="note-input" data-note="neg-3"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow" style="margin-top:14px;">
+        <span class="lang-en"><strong>Careful — this list is short on purpose.</strong> Unlike a typical account, most of Concrete's "spent with no lead" terms are actually <strong>core services</strong> that simply didn't convert on that exact phrasing this window (e.g. "stamped concrete patio", "paver patio", "concrete patio columbus ohio"). Those are NOT negatives — negativing them would cut real demand. Only genuinely off-target intent is listed: price-only research, repair/leveling (mudjacking), and DIY slabs. Keep repair terms only if Maxima does NOT offer concrete repair/leveling.</span>
+        <span class="lang-pt"><strong>Cuidado — esta lista é curta de propósito.</strong> Diferente de uma conta típica, a maioria dos termos "gastou sem lead" da Concrete são na verdade <strong>serviços core</strong> que só não converteram nessa frase exata nesta janela (ex.: "stamped concrete patio", "paver patio", "concrete patio columbus ohio"). Esses NÃO são negativos — negativá-los cortaria demanda real. Só listamos intenção genuinamente fora do alvo: pesquisa só de preço, reparo/nivelamento (mudjacking) e lajes DIY. Manter os termos de reparo só se a Maxima NÃO oferecer reparo/nivelamento de concreto.</span>
+      </div>
+      <div class="callout red">
+        <span class="lang-en"><strong>Review, don't negative — the two biggest no-lead spends:</strong> (1) <strong>"stamped concrete patio"</strong> spent $218 across 54 clicks with 0 primary leads — but it's a <em>core service</em>, so this is an ad/landing-page problem, not a term to block. (2) <strong>"royal concrete"</strong> (competitor) spent $147 with 0 primary leads — decide whether that competitor name is worth keeping in Competitor Targeting.</span>
+        <span class="lang-pt"><strong>Revisar, não negativar — os dois maiores gastos sem lead:</strong> (1) <strong>"stamped concrete patio"</strong> gastou $218 em 54 cliques com 0 lead primário — mas é um <em>serviço core</em>, então é um problema de anúncio/landing page, não um termo para bloquear. (2) <strong>"royal concrete"</strong> (concorrente) gastou $147 com 0 lead primário — decidir se vale manter esse nome de concorrente no Competitor Targeting.</span>
+      </div>
+      <div class="callout green">
+        <span class="lang-en"><strong>Kept on purpose (do NOT negative):</strong> paver / pavers, retaining wall, stamped concrete, outdoor kitchen, fire pit / fire feature, hardscape, landscape — all active Maxima services.</span>
+        <span class="lang-pt"><strong>Mantidos de propósito (NÃO negativar):</strong> paver / pavers, retaining wall, stamped concrete, outdoor kitchen, fire pit / fire feature, hardscape, landscape — todos serviços ativos da Maxima.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD GROUPS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📢</div>
+      <div><h3><span class="lang-en">Ad Groups — Winners &amp; Watch</span><span class="lang-pt">Ad Groups — Vencedores &amp; Atenção</span></h3>
+      <div class="sub"><span class="lang-en">Full period · lead conversions &amp; CPA</span><span class="lang-pt">Período completo · conversões de lead &amp; CPA</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <h4 class="subhead"><span class="lang-en">🟢 Winning ad groups</span><span class="lang-pt">🟢 Ad groups vencedores</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Ad group</span><span class="lang-pt">Ad group</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Brand protection</td><td>Brand</td><td class="num">55,0</td><td class="num"><strong>$32,47</strong></td></tr>
+          <tr><td>Patio Core</td><td>Patios</td><td class="num">43,2</td><td class="num"><strong>$59,82</strong></td></tr>
+          <tr><td>Retaining &amp; Seating Walls</td><td>Outdoor Living</td><td class="num">26,0</td><td class="num">$62,36</td></tr>
+          <tr><td>Outdoor Living Core</td><td>Outdoor Living</td><td class="num">25,5</td><td class="num">$74,13</td></tr>
+          <tr><td>Driveway Replacement</td><td>Driveways</td><td class="num">25,0</td><td class="num">$93,36</td></tr>
+          <tr><td>Competitor Targeting</td><td>Competitor</td><td class="num">12,5</td><td class="num">$73,11</td></tr>
+        </tbody>
+      </table>
+      <h4 class="subhead"><span class="lang-en">⚠️ Watch (high CPA)</span><span class="lang-pt">⚠️ Atenção (CPA alto)</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th><span class="lang-en">Ad group</span><span class="lang-pt">Ad group</span></th>
+            <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num">CPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Paver &amp; Brick Driveways</td><td>Outdoor Living</td><td class="num">2,0</td><td class="num"><span class="neg">$138,59</span></td></tr>
+          <tr><td>Stamped Driveway</td><td>Driveways</td><td class="num">1,0</td><td class="num"><span class="neg">$135,48</span></td></tr>
+          <tr><td>Patio Estimate</td><td>Patios</td><td class="num">8,0</td><td class="num">$117,20</td></tr>
+          <tr><td>Driveway Core</td><td>Driveways</td><td class="num">20,3</td><td class="num">$103,87</td></tr>
+          <tr><td>Stamped Patio</td><td>Patios</td><td class="num">14,5</td><td class="num">$97,89</td></tr>
+          <tr><td>Paver &amp; Stone Patios / Porches</td><td>Outdoor Living</td><td class="num">18,0</td><td class="num">$96,68</td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:14px;">
+        <span class="lang-en"><strong>Driveway Core ($104)</strong> is the highest-spend high-CPA ad group and still runs a generic "Maxima Concrete" headline. Rewriting it with driveway-specific headlines (like the one "Excellent" ad in the account, Driveway Replacement) is the single clearest ad-quality fix.</span>
+        <span class="lang-pt"><strong>Driveway Core ($104)</strong> é o ad group de CPA alto com maior gasto e ainda roda um título genérico "Maxima Concrete". Reescrevê-lo com headlines específicas de driveway (como o único anúncio "Excellent" da conta, Driveway Replacement) é a correção de qualidade de anúncio mais clara.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on ad groups / ad copy</span><span class="lang-pt">Suas notas sobre ad groups / anúncios</span></label>
+        <textarea class="note-input note-block" data-note="sec-adgroups" data-label="Ad Groups / Ad Groups"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- GEO -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📍</div>
+      <div><h3><span class="lang-en">Locations — Full Period</span><span class="lang-pt">Localizações — Período Completo</span></h3>
+      <div class="sub"><span class="lang-en">100% of spend stayed inside Ohio. No location bid adjustments are currently active.</span><span class="lang-pt">100% do investimento ficou dentro de Ohio. Nenhum ajuste de lance por localização está ativo hoje.</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="callout yellow">
+        <span class="lang-en"><strong>Opportunity: no geo bid adjustments are live.</strong> Unlike the Pools account, Concrete runs with flat location bids — the market-level differences below aren't being acted on yet. The geo suggestions from last cycle don't appear to have been applied. Starting with the two clearest moves (boost Delaware, trim Dublin/Westerville) is low-risk.</span>
+        <span class="lang-pt"><strong>Oportunidade: nenhum ajuste de lance por geo está ativo.</strong> Diferente da conta Pools, a Concrete roda com lances iguais por localização — as diferenças de mercado abaixo ainda não estão sendo aproveitadas. As sugestões de geo do ciclo passado parecem não ter sido aplicadas. Começar pelos dois movimentos mais claros (impulsionar Delaware, reduzir Dublin/Westerville) é de baixo risco.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">📈 Strong markets — add a positive bid</span><span class="lang-pt">📈 Mercados fortes — adicionar lance positivo</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td><strong>Delaware County</strong></td><td class="num"><strong>70,0</strong></td><td class="num">$3.284,00</td><td class="num"><strong>$46,91</strong></td><td><span class="tag green">+15–20%</span></td><td><textarea class="note-input" data-note="geo-up-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Franklin County</td><td class="num">10,7</td><td class="num">$505,27</td><td class="num"><strong>$47,35</strong></td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Gahanna</td><td class="num">9,0</td><td class="num">$499,88</td><td class="num">$55,54</td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Powell</td><td class="num">6,5</td><td class="num">$366,90</td><td class="num">$56,45</td><td><span class="tag green">+15%</span></td><td><textarea class="note-input" data-note="geo-up-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Worthington</td><td class="num">4,0</td><td class="num">$239,23</td><td class="num">$59,81</td><td><span class="tag green">+10–15%</span></td><td><textarea class="note-input" data-note="geo-up-5"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-up"></td><td>Grove City</td><td class="num">6,7</td><td class="num">$493,64</td><td class="num">$74,01</td><td><span class="tag green">+10%</span></td><td><textarea class="note-input" data-note="geo-up-6"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-keep"></td><td><strong>Columbus (metro)</strong></td><td class="num">~98,2</td><td class="num">$7.684</td><td class="num">$78,25</td><td><span class="tag blue"><span class="lang-en">Core — keep (biggest volume)</span><span class="lang-pt">Central — manter (maior volume)</span></span></td><td><textarea class="note-input" data-note="geo-up-7"></textarea></td></tr>
+        </tbody>
+      </table>
+      <h4 class="subhead"><span class="lang-en">📉 Weak — add a negative bid (−10 to −15%)</span><span class="lang-pt">📉 Fracas — adicionar lance negativo (−10 a −15%)</span></h4>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px">✓</th>
+            <th><span class="lang-en">Location</span><span class="lang-pt">Localização</span></th>
+            <th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th>
+            <th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th>
+            <th class="num">CPA</th>
+            <th><span class="lang-en">Suggested</span><span class="lang-pt">Sugerido</span></th>
+            <th class="note-col"><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Westerville</strong></td><td class="num">5,0</td><td class="num">$596,40</td><td class="num"><span class="neg">$119,28</span></td><td><span class="tag yellow">−10–15%</span></td><td><textarea class="note-input" data-note="geo-down-1"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td><strong>Dublin</strong></td><td class="num">5,0</td><td class="num">$583,66</td><td class="num"><span class="neg">$116,73</span></td><td><span class="tag yellow">−10–15%</span></td><td><textarea class="note-input" data-note="geo-down-2"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Sunbury</td><td class="num">3,0</td><td class="num">$334,98</td><td class="num">$111,66</td><td><span class="tag yellow">−10–15%</span></td><td><textarea class="note-input" data-note="geo-down-3"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Lewis Center</td><td class="num">3,0</td><td class="num">$303,73</td><td class="num">$101,24</td><td><span class="tag yellow">−10%</span></td><td><textarea class="note-input" data-note="geo-down-4"></textarea></td></tr>
+          <tr><td><input type="checkbox" class="approval-check" data-action="bid-down"></td><td>Pickerington</td><td class="num">1,0</td><td class="num">$180,36</td><td class="num"><span class="neg">$180,36</span></td><td><span class="tag yellow">−15%</span></td><td><textarea class="note-input" data-note="geo-down-5"></textarea></td></tr>
+        </tbody>
+      </table>
+      <div class="callout green" style="margin-top:14px;">
+        <span class="lang-en"><strong>Delaware County is the star</strong> — 70 leads at a $47 CPA, the account's best big market. Columbus (metro) carries the largest volume at a fair $78 CPA — keep as the core. Westerville and Dublin run at ~1.6× the average CPA — the clearest candidates to trim.</span>
+        <span class="lang-pt"><strong>Delaware County é o destaque</strong> — 70 leads a um CPA de $47, o melhor grande mercado da conta. Columbus (metro) carrega o maior volume a um CPA justo de $78 — manter como núcleo. Westerville e Dublin rodam a ~1,6× o CPA médio — os candidatos mais claros a reduzir.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">✅</div>
+      <div><h3><span class="lang-en">Prioritized Next Steps</span><span class="lang-pt">Próximos Passos Prioritários</span></h3>
+      <div class="sub"><span class="lang-en">Ordered by impact</span><span class="lang-pt">Ordenados por impacto</span></div></div>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Fix Concrete Driveways (recurring weak spot)</span><span class="lang-pt">Corrigir Concrete Driveways (ponto fraco recorrente)</span></h4>
+          <p><span class="lang-en">Highest CPA in the account ($97) for the second cycle running. Rewrite the Driveway Core ad (generic headline), review/pause the $200+ CPA driveway phrases, and check budget vs the winning ad groups.</span><span class="lang-pt">Maior CPA da conta ($97) pelo segundo ciclo seguido. Reescrever o anúncio do Driveway Core (título genérico), revisar/pausar as frases de driveway com CPA $200+, e checar orçamento vs os ad groups vencedores.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-1" data-label="Step 1 · Fix Driveways"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri high">HIGH</span> &nbsp;<span class="lang-en">Add budget to Patios &amp; Outdoor Living (budget-limited)</span><span class="lang-pt">Adicionar orçamento a Patios &amp; Outdoor Living (limitadas)</span></h4>
+          <p><span class="lang-en">The two engines (139 leads at ~$76 CPA) are capped by budget. So is Brand Protection ($32 CPA). Raising their daily caps is the clearest growth lever.</span><span class="lang-pt">Os dois motores (139 leads a ~$76 de CPA) estão limitados por orçamento. Brand Protection também ($32 de CPA). Subir os tetos diários é a alavanca de crescimento mais clara.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-2" data-label="Step 2 · Add budget"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Start using geo bid adjustments</span><span class="lang-pt">Começar a usar ajustes de lance por geo</span></h4>
+          <p><span class="lang-en">No location bids are active. Start simple: +15–20% Delaware, +15% Franklin/Gahanna/Powell; −10–15% Westerville/Dublin/Sunbury. Keep Columbus as the core.</span><span class="lang-pt">Nenhum lance por localização está ativo. Começar simples: +15–20% Delaware, +15% Franklin/Gahanna/Powell; −10–15% Westerville/Dublin/Sunbury. Manter Columbus como núcleo.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-3" data-label="Step 3 · Geo bids"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri med">MED</span> &nbsp;<span class="lang-en">Fix the two big no-lead terms &amp; add the converters</span><span class="lang-pt">Resolver os dois termos sem lead &amp; adicionar os que convertem</span></h4>
+          <p><span class="lang-en">Review "stamped concrete patio" ($218, ad/LP issue) and decide on "royal concrete" ($147, competitor). Add [concrete patio near me], [concrete patio installers near me] ($11!), [paver patio installers near me] ($9!).</span><span class="lang-pt">Revisar "stamped concrete patio" ($218, problema de anúncio/LP) e decidir sobre "royal concrete" ($147, concorrente). Adicionar [concrete patio near me], [concrete patio installers near me] ($11!), [paver patio installers near me] ($9!).</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-4" data-label="Step 4 · Terms"></textarea></div>
+        </div></div>
+        <div class="step"><div class="step-body">
+          <h4><span class="pri low">LOW</span> &nbsp;<span class="lang-en">Add the (short) negatives &amp; watch July</span><span class="lang-pt">Adicionar os negativos (curtos) &amp; acompanhar Julho</span></h4>
+          <p><span class="lang-en">Add the price/repair/DIY negatives (~$190) — but keep all core service terms. Re-check July at month-end as conversions mature before judging the dip.</span><span class="lang-pt">Adicionar os negativos de preço/reparo/DIY (~$190) — mas manter todos os termos de serviço core. Reavaliar Julho no fim do mês conforme as conversões amadurecem antes de julgar a queda.</span></p>
+          <div class="step-note"><label><span class="lang-en">Your notes</span><span class="lang-pt">Suas notas</span></label><textarea class="note-input note-block" data-note="step-5" data-label="Step 5 · Negatives + watch July"></textarea></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lang-en"><strong>Data source:</strong> Google Ads — Campaign, Search keyword, Search terms, Ad group, Ad and Location reports for May 1 – July 23, 2026 (single aggregate export). Monthly May/June splits taken from prior monthly reports; July (1–23) derived as the remainder. "Lead Conversions" = primary tracked conversions (phone-call leads + lead-form submits). The search-terms report covers ~$9,200 of the $18,024 total (Google hides the long tail), so the negatives list reflects the visible portion.</span>
+    <span class="lang-pt"><strong>Fonte de dados:</strong> Google Ads — relatórios de Campanha, Search keyword, Search terms, Ad group, Ad e Location para 1 Mai – 23 Jul de 2026 (export agregado único). Divisões mensais de Maio/Junho vêm dos relatórios mensais anteriores; Julho (1–23) derivado como o restante. "Conversões (Lead)" = conversões primárias rastreadas (ligações + envios de formulário). O relatório de search terms cobre ~$9.200 dos $18.024 totais (o Google esconde a cauda longa), então a lista de negativos reflete a parte visível.</span>
+  </div>
+
+</div>
+
+<div class="approval-bar">
+  <span class="count"><span id="approved-count">0</span><span class="lang-en"> of </span><span class="lang-pt"> de </span><span id="total-actions">0</span><span class="lang-en"> actions approved</span><span class="lang-pt"> ações aprovadas</span> · <span class="notes-count" id="notes-count">0</span><span class="lang-en"> notes written</span><span class="lang-pt"> notas escritas</span></span>
+  <span class="spacer"></span>
+  <button onclick="selectAll()"><span class="lang-en">Select All</span><span class="lang-pt">Marcar Todas</span></button>
+  <button onclick="deselectAll()"><span class="lang-en">Deselect All</span><span class="lang-pt">Desmarcar Todas</span></button>
+  <button class="btn-export" onclick="exportApproved()">📦 <span class="lang-en">Export feedback &amp; approved actions</span><span class="lang-pt">Exportar feedback e ações aprovadas</span></button>
+</div>
+
+<script>
+const PLACEHOLDERS = {
+  en: 'Agree, disagree, or your idea…',
+  pt: 'Concordo, discordo, ou sua ideia…'
+};
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
+  localStorage.setItem('maxima-concrete-lang', lang);
+}
+
+const checkboxes = document.querySelectorAll('.approval-check');
+const notes = document.querySelectorAll('.note-input');
+const countEl = document.getElementById('approved-count');
+const totalEl = document.getElementById('total-actions');
+const notesCountEl = document.getElementById('notes-count');
+totalEl.textContent = checkboxes.length;
+
+checkboxes.forEach(cb => { cb.addEventListener('change', () => { cb.closest('tr').classList.toggle('approved', cb.checked); updateCount(); saveState(); }); });
+notes.forEach(n => { n.addEventListener('input', () => { n.classList.toggle('filled', n.value.trim().length > 0); updateCount(); saveNotes(); }); });
+
+function updateCount() {
+  countEl.textContent = document.querySelectorAll('.approval-check:checked').length;
+  notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
+}
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); saveState(); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); saveState(); }
+
+function rowLabel(tr) {
+  return Array.from(tr.querySelectorAll('td'))
+    .filter(td => !td.querySelector('.approval-check') && !td.querySelector('.note-input'))
+    .map(c => c.textContent.trim().replace(/\s+/g, ' '))
+    .filter(Boolean)
+    .join(' | ');
+}
+
+function exportApproved() {
+  const approved = [];
+  document.querySelectorAll('.approval-check:checked').forEach(cb => {
+    const tr = cb.closest('tr');
+    const noteEl = tr.querySelector('.note-input');
+    approved.push({ action: cb.dataset.action, values: rowLabel(tr), note: noteEl ? noteEl.value.trim() : '' });
+  });
+
+  const comments = [];
+  notes.forEach(n => {
+    const val = n.value.trim();
+    if (!val) return;
+    const tr = n.closest('tr');
+    const cb = tr ? tr.querySelector('.approval-check') : null;
+    if (cb && cb.checked) return;
+    let label;
+    if (tr) label = rowLabel(tr);
+    else label = n.dataset.label || n.dataset.note;
+    comments.push({ label, note: val });
+  });
+
+  if (!approved.length && !comments.length) {
+    alert('No actions approved and no notes written yet.\nNenhuma ação aprovada e nenhuma nota escrita ainda.');
+    return;
+  }
+
+  let t = 'MAXIMA CONCRETE — OWNER FEEDBACK & APPROVED ACTIONS (Report 03 — Period May 1 to Jul 23, 2026)\n';
+  t += '='.repeat(72) + '\n';
+
+  const labels = {
+    'pause': 'PAUSE KEYWORDS',
+    'review': 'REVIEW KEYWORDS (ad copy / landing page / pause)',
+    negative: 'NEGATIVE KEYWORDS',
+    'add-keyword': 'NEW KEYWORDS TO ADD',
+    'bid-up': 'POSITIVE GEO BID ADJUSTMENT',
+    'bid-down': 'NEGATIVE GEO BID ADJUSTMENT',
+    'bid-keep': 'KEEP CURRENT GEO BID (no change)'
+  };
+
+  if (approved.length) {
+    t += '\n### APPROVED ACTIONS (' + approved.length + ') ###\n';
+    const groups = {};
+    approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i); });
+    Object.keys(groups).forEach(a => {
+      t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n';
+      groups[a].forEach(i => {
+        t += '  [x] ' + i.values + '\n';
+        if (i.note) t += '        note: ' + i.note + '\n';
+      });
+    });
+  }
+
+  if (comments.length) {
+    t += '\n### OWNER NOTES / COMMENTS (' + comments.length + ') ###\n' + '-'.repeat(40) + '\n';
+    comments.forEach(c => { t += '  • ' + c.label + '\n        note: ' + c.note + '\n'; });
+  }
+
+  t += '\n' + '='.repeat(72) + '\n';
+  t += 'Summary: ' + approved.length + ' actions approved, ' + comments.length + ' additional notes.\n';
+
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_concrete_feedback_report03.txt'; a.click();
+}
+
+const SK = 'maxima-concrete-approvals-report03';
+const NK = 'maxima-concrete-notes-report03';
+function saveState() { const s = {}; checkboxes.forEach((c, i) => s[i] = c.checked); localStorage.setItem(SK, JSON.stringify(s)); }
+function loadState() { const s = localStorage.getItem(SK); if (s) { const d = JSON.parse(s); checkboxes.forEach((c, i) => { if (d[i]) { c.checked = true; c.closest('tr').classList.add('approved'); } }); } }
+function saveNotes() { const s = {}; notes.forEach(n => { if (n.value.trim()) s[n.dataset.note] = n.value; }); localStorage.setItem(NK, JSON.stringify(s)); }
+function loadNotes() { const s = localStorage.getItem(NK); if (s) { const d = JSON.parse(s); notes.forEach(n => { if (d[n.dataset.note]) { n.value = d[n.dataset.note]; n.classList.add('filled'); } }); } }
+
+setLang(localStorage.getItem('maxima-concrete-lang') || 'en');
+loadState();
+loadNotes();
+updateCount();
+</script>
+</body>
+</html>
