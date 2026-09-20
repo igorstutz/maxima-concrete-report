@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maxima Concrete Rebuild Plan</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 110px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.notes-intro { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--g-yellow); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.notes-intro .ni-icon { font-size: 26px; flex-shrink: 0; line-height: 1.2; }
+.notes-intro h3 { font-family: var(--font); font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.notes-intro p { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+.tw { overflow-x: auto; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.blue { border-left: 4px solid var(--g-blue); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+tfoot td { font-weight: 700; background: var(--hover); border-top: 2px solid var(--border); }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.tag.grey { background: var(--hover); color: var(--text2); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+.callout:last-child { margin-bottom: 0; }
+
+.approval-check { width: 18px; height: 18px; cursor: pointer; accent-color: var(--g-blue); }
+tr.approved td { background: var(--g-green-light) !important; }
+.note-col { min-width: 190px; width: 190px; }
+.note-input { width: 100%; min-width: 140px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; font-family: var(--font-body); font-size: 12.5px; color: var(--text); background: #fffdf6; resize: vertical; min-height: 38px; line-height: 1.45; display: block; transition: border-color .15s, box-shadow .15s, background .15s; }
+.note-input:focus { outline: none; border-color: var(--g-blue); background: var(--white); box-shadow: 0 0 0 3px var(--g-blue-light); }
+.note-input::placeholder { color: var(--text3); font-style: italic; }
+.note-input.filled { background: var(--g-yellow-light); border-color: var(--g-yellow); }
+.section-note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.section-note label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; font-family: var(--font); }
+.section-note label::before { content: "🗒️ "; }
+.note-block { width: 100%; margin-top: 4px; min-height: 46px; }
+
+.steps { counter-reset: step; }
+.step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-light); }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--g-blue); color: white; font-family: var(--font); font-weight: 500; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.step .step-body { flex: 1; }
+.step .step-body h4 { font-family: var(--font); font-size: 14.5px; font-weight: 500; margin-bottom: 3px; }
+.step .step-body p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.step .when { font-size: 11px; color: var(--text3); font-family: var(--font); float: right; margin-left: 12px; }
+
+.ad-preview { border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; max-width: 600px; background: var(--white); }
+.ad-preview .sp { font-size: 12px; font-weight: 700; color: var(--text); }
+.ad-preview .url { font-size: 12.5px; color: var(--text2); margin-bottom: 4px; }
+.ad-preview .ti { font-size: 18px; color: #1a0dab; line-height: 1.3; margin-bottom: 3px; }
+.ad-preview .de { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.ad-preview .sl { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-light); }
+.ad-preview .sl span { font-size: 12.5px; color: #1a0dab; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count span { color: var(--g-blue); font-size: 18px; }
+.approval-bar .count .notes-count { color: var(--g-yellow-dark); }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.grp { border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+.grp-head { background: var(--hover); padding: 11px 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; border-bottom: 1px solid var(--border-light); }
+.grp-head .nm { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.grp-head .pg { font-size: 12px; color: var(--text2); }
+.grp-head .pg code { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: 11.5px; color: var(--g-blue); }
+.grp-body { padding: 12px 14px; }
+.lbl { font-size: 10.5px; font-weight: 500; letter-spacing: .5px; text-transform: uppercase; color: var(--text3); margin: 12px 0 6px; }
+.lbl:first-child { margin-top: 0; }
+.kws { display: flex; flex-wrap: wrap; gap: 4px; }
+.kw { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 11.5px; padding: 2px 7px; border-radius: 4px; line-height: 1.55; }
+.kw.ph { background: var(--hover); color: var(--text2); border: 1px solid var(--border-light); }
+.kw.ex { background: var(--g-blue-light); color: var(--g-blue); border: 1px solid #d2e3fc; }
+.kw.br { background: var(--g-yellow-light); color: var(--g-yellow-dark); border: 1px solid #feefc3; }
+.kw.ng { background: var(--g-red-light); color: var(--g-red); border: 1px solid #fad2cf; }
+.hls { display: flex; flex-wrap: wrap; gap: 4px; }
+.hls span { font-size: 12px; padding: 3px 8px; border-radius: 4px; background: var(--white); border: 1px solid var(--border); line-height: 1.5; }
+.dsc { display: flex; flex-direction: column; gap: 4px; }
+.dsc p { font-size: 12.5px; color: var(--text2); background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 5px 9px; line-height: 1.5; }
+.mt-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12px; color: var(--text2); margin-bottom: 16px; align-items: center; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 22px 0 10px; color: var(--text); }
+h4.subhead:first-child { margin-top: 0; }
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+.foot { font-size: 12px; color: var(--text3); line-height: 1.65; padding: 4px 4px 0; }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } .approval-bar { flex-wrap: wrap; } .approval-bar .count { width: 100%; } .note-col { width: auto; min-width: 140px; } .step .when { float: none; display: block; margin: 0 0 4px; } }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div><div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div><div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Concrete — Account Rebuild</span>
+  <div class="g-topbar-spacer"></div>
+  <span class="g-topbar-badge"><span class="lang-en">Revised Sep 19 · ready to build</span><span class="lang-pt">Revisado 19/09 · pronto para montar</span></span>
+  <div class="lang-toggle"><button id="btn-en" onclick="setLang('en')">EN</button><button id="btn-pt" onclick="setLang('pt')">PT</button></div>
+</div>
+
+<div class="g-main">
+
+<div class="phase-banner">
+  <div class="phase-icon">🧱</div>
+  <div>
+    <h2><span class="lang-en">Account Rebuild — Action Plan</span><span class="lang-pt">Reestruturação da Conta — Plano de Ação</span></h2>
+    <p><span class="lang-en">Rebuilding the Google Ads account around the new website, so every ad sends people to the page for the service they searched for. 11 campaigns, 42 ad groups, 445 keywords and 42 new ads, starting at $155/day. Updated on September 19 with your notes on the first version; the changes are listed right below.</span><span class="lang-pt">Reestruturação da conta do Google Ads em cima do site novo, para que cada anúncio leve a pessoa à página do serviço que ela buscou. 11 campanhas, 42 grupos, 445 keywords e 42 anúncios novos, começando com $155/dia. Atualizado em 19 de setembro com as suas notas na primeira versão; as mudanças estão logo abaixo.</span></p>
+  </div>
+</div>
+
+<div class="notes-intro">
+  <div class="ni-icon">✍️</div>
+  <div>
+    <h3><span class="lang-en">How to use this page</span><span class="lang-pt">Como usar esta página</span></h3>
+    <p><span class="lang-en">This is the revised plan. Everything you ticked on the first version stays approved, and each of your notes is answered in the first section. If anything here still needs changing, write it in the yellow box next to it; your notes save automatically and are visible to the team. Otherwise, this is what gets built.</span><span class="lang-pt">Este é o plano revisado. Tudo o que você marcou na primeira versão continua aprovado, e cada nota sua está respondida na primeira seção. Se algo ainda precisar mudar, escreva na caixa amarela ao lado; suas notas salvam sozinhas e ficam visíveis para a equipe. Do contrário, é isto que será construído.</span></p>
+  </div>
+</div>
+
+<!-- ══ O que mudou ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">✍️</div><div>
+    <h3><span class="lang-en">1 · What changed after your review</span><span class="lang-pt">1 · O que mudou depois da sua revisão</span></h3>
+    <div class="sub"><span class="lang-en">9 notes on the first version, and what we did with each one</span><span class="lang-pt">9 notas na primeira versão, e o que fizemos com cada uma</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">Everything you ticked on the first version stays approved. The notes below changed the plan; the rest of this page is the plan exactly as it will be built.</span><span class="lang-pt">Tudo o que você marcou na primeira versão continua aprovado. As notas abaixo mudaram o plano; o resto desta página é o plano exatamente como será construído.</span></p>
+    
+  <div class="tw"><table>
+    <thead><tr><th style="width:36%"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th><th><span class="lang-en">What changed in the plan</span><span class="lang-pt">O que mudou no plano</span></th></tr></thead>
+    <tbody><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Where are the terms for curb and gutter, slabs, basement slabs, garage floors, barn floors?”</span><span class="lang-pt">“Onde estão os termos de curb &amp; gutter, slabs, basement slabs, garage floors, barn floors?”</span></td>
+      <td><span class="lang-en">They were in Wave 2. Structural Concrete now launches with Wave 1 at $12/day: Slabs, Footers &amp; Piers, Garage Floors, Basement Floors and Curbs &amp; Gutters (moved over from Commercial). Pole barn and shop floors got their own keywords under Slabs, since your slabs page names barns. The starting budget goes from $143 to $155/day.</span><span class="lang-pt">Estavam na Onda 2. Structural Concrete agora entra na Onda 1 com $12/dia: Slabs, Footers &amp; Piers, Garage Floors, Basement Floors e Curbs &amp; Gutters (vindo da Commercial). Pole barn e shop floors ganharam keywords próprias em Slabs, porque a sua página de slabs cita barns. O orçamento inicial passa de $143 para $155/dia.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Don't exclude sealing or sealer just yet. We do some of that in the summer.”</span><span class="lang-pt">“Não exclua sealing nem sealer ainda. Fazemos um pouco disso no verão.”</span></td>
+      <td><span class="lang-en">Removed from the block list. A search for sealing can now trigger your ads. 'Seal coating' moved to the asphalt list, which is the trade it belongs to.</span><span class="lang-pt">Saíram da lista de bloqueio. Uma busca por selagem agora pode acionar seus anúncios. 'Seal coating' foi para a lista de asfalto, que é o ofício a que pertence.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“We would do a slab for a screened porch.”</span><span class="lang-pt">“Faríamos a laje de uma screened porch.”</span></td>
+      <td><span class="lang-en">'Screened porch' removed from the wood decks block list.</span><span class="lang-pt">'Screened porch' saiu da lista de bloqueio de decks de madeira.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Thompson is a competitor.”</span><span class="lang-pt">“Thompson é concorrente.”</span></td>
+      <td><span class="lang-en">Moved from the suppliers list to the Competitors ad group, next to MCL. That group starts paused, as planned.</span><span class="lang-pt">Saiu da lista de fornecedores e entrou no grupo Competitors, ao lado da MCL. O grupo nasce pausado, como planejado.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“We will do some chimney, masonry work, brick work.”</span><span class="lang-pt">“Fazemos algum trabalho de chaminé, alvenaria e tijolo.”</span></td>
+      <td><span class="lang-en">'Masonry', 'chimney', 'brick repair' and 'tuckpointing' removed. That list now blocks only foundation repair and waterproofing. No masonry keywords were added, because the site has no masonry page; those searches simply stop being blocked.</span><span class="lang-pt">'Masonry', 'chimney', 'brick repair' e 'tuckpointing' saíram. Essa lista agora bloqueia só conserto de fundação e impermeabilização. Nenhuma keyword de alvenaria foi criada, porque o site não tem página de alvenaria; essas buscas apenas deixam de ser bloqueadas.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Landscaping is tough because we do this work as an extension of a larger project. How should we handle that?”</span><span class="lang-pt">“Paisagismo é difícil, porque fazemos esse trabalho como extensão de um projeto maior. Como lidar com isso?”</span></td>
+      <td><span class="lang-en">We no longer block the word 'landscaping'. A search that combines landscaping with a patio, wall or driveway still shows your ad, because it contains one of your keywords. What stays blocked is lawn care and 'landscaping company' searches, where someone is hiring a landscaper on their own. The discovery campaign keeps the full block, since its open keywords would otherwise reach pure landscaping searches.</span><span class="lang-pt">Não bloqueamos mais a palavra 'landscaping'. Uma busca que combina paisagismo com patio, muro ou driveway continua mostrando seu anúncio, porque contém uma das suas keywords. O que segue bloqueado é gramado e 'landscaping company', onde a pessoa está contratando só um paisagista. A campanha de descoberta mantém o bloqueio completo, porque as keywords abertas dela alcançariam buscas só de paisagismo.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Commercial: only if we are talking property management and maintenance companies, HOAs, after-market work. Not GCs and builders just wanting bids. Maybe custom builders.”</span><span class="lang-pt">“Comercial: só se for property management, empresas de manutenção, HOAs, pós-obra. Não GCs e builders só querendo cotação. Talvez custom builders.”</span></td>
+      <td><span class="lang-en">Rewritten, still in Wave 2. The Commercial campaign now targets commercial concrete repair and replacement, sidewalks and curbs, ADA remodels, and HOA and apartment properties, and it blocks 'bid', 'general contractor', 'subcontractor', 'new construction' and similar searches. Curbs &amp; Gutters moved to Structural. One suggestion for later: a short property-management section on your commercial page would let the ads say more.</span><span class="lang-pt">Reescrita, ainda na Onda 2. A campanha Commercial agora mira reparo e substituição de concreto comercial, calçadas e meio-fio, reformas ADA, e propriedades de HOA e condomínios, e bloqueia 'bid', 'general contractor', 'subcontractor', 'new construction' e buscas parecidas. Curbs &amp; Gutters foi para a Structural. Uma sugestão para depois: uma seção curta sobre property management na sua página comercial deixaria os anúncios dizerem mais.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“Geo by City: I would like to discuss this.”</span><span class="lang-pt">“Geo by City: gostaria de discutir isso.”</span></td>
+      <td><span class="lang-en">Kept as designed, in Wave 2. Nothing is built for it before the 30-day report, so there is time to talk it through.</span><span class="lang-pt">Mantida como desenhada, na Onda 2. Nada é montado para ela antes do relatório de 30 dias, então há tempo para conversar.</span></td>
+    </tr><tr>
+      <td style="color:var(--text2);font-style:italic"><span class="lang-en">“The overall goal should be getting so good with organic, SEO, AEO and GEO that we start chopping this budget down.”</span><span class="lang-pt">“A meta geral deve ser ficar tão bons em orgânico, SEO, AEO e GEO que passemos a cortar este orçamento.”</span></td>
+      <td><span class="lang-en">Agreed, and added to the rollout. Every 30-day report shows paid leads and cost per lead by campaign, so the budget can come down as organic takes over, with numbers behind each cut.</span><span class="lang-pt">De acordo, e incluído no cronograma. Cada relatório de 30 dias mostra leads pagos e custo por lead por campanha, para o orçamento descer conforme o orgânico assume, com número por trás de cada corte.</span></td>
+    </tr></tbody>
+  </table></div>
+    <div class="section-note">
+      <label><span class="lang-en">Anything about these changes</span><span class="lang-pt">Algo sobre estas mudanças</span></label>
+      <textarea class="note-input note-block" data-note="sec-changes" data-label="Changes after review — general note" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ O que vamos construir ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">📦</div><div>
+    <h3><span class="lang-en">2 · What we will build</span><span class="lang-pt">2 · O que vamos construir</span></h3>
+    <div class="sub"><span class="lang-en">The plan in five numbers</span><span class="lang-pt">O plano em cinco números</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="kpi-grid">
+      <div class="kpi blue"><div class="label"><span class="lang-en">Campaigns</span><span class="lang-pt">Campanhas</span></div><div class="val">11</div><div class="prev"><span class="lang-en">9 now, 2 later</span><span class="lang-pt">9 agora, 2 depois</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">Ad groups</span><span class="lang-pt">Grupos</span></div><div class="val">42</div><div class="prev"><span class="lang-en">one per service page</span><span class="lang-pt">um por página de serviço</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></div><div class="val">445</div><div class="prev"><span class="lang-en">no duplicates</span><span class="lang-pt">sem duplicatas</span></div></div>
+      <div class="kpi blue"><div class="label"><span class="lang-en">New ads</span><span class="lang-pt">Anúncios novos</span></div><div class="val">42</div><div class="prev">630 <span class="lang-en">headlines</span><span class="lang-pt">títulos</span></div></div>
+      <div class="kpi good"><div class="label"><span class="lang-en">Daily budget</span><span class="lang-pt">Orçamento diário</span></div><div class="val">$155</div><div class="prev"><span class="lang-en">to start — we raise or lower it as results come in</span><span class="lang-pt">para começar — sobe ou desce conforme o resultado</span></div></div>
+    </div>
+
+    
+    
+  </div>
+</div>
+
+<!-- ══ Campanhas ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🚀</div><div>
+    <h3><span class="lang-en">3 · Campaigns to launch now</span><span class="lang-pt">3 · Campanhas para lançar agora</span></h3>
+    <div class="sub"><span class="lang-en">9 campaigns, $155/day total</span><span class="lang-pt">9 campanhas, $155/dia no total</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="tw"><table>
+      <thead><tr>
+        <th style="width:40px;text-align:center"><span class="lang-en">OK</span><span class="lang-pt">OK</span></th>
+        <th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th>
+        <th class="num"><span class="lang-en">Budget</span><span class="lang-pt">Orçamento</span></th>
+        <th class="num"><span class="lang-en">Groups</span><span class="lang-pt">Grupos</span></th>
+        <th class="num"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></th>
+        <th><span class="lang-en">What it covers</span><span class="lang-pt">O que cobre</span></th>
+        <th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th>
+      </tr></thead>
+      <tbody><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🔐 Brand — Maxima Concrete</strong></td>
+    <td class="num"><strong>$8</strong>/day</td>
+    <td class="num">2</td>
+    <td class="num">26</td>
+    <td><span class="lang-en">Searches for the Maxima Concrete name</span><span class="lang-pt">Buscas pelo nome Maxima Concrete</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-1" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🚗 Driveways</strong></td>
+    <td class="num"><strong>$31</strong>/day</td>
+    <td class="num">5</td>
+    <td class="num">81</td>
+    <td><span class="lang-en">Concrete, paver and stamped driveways, plus approaches and aprons</span><span class="lang-pt">Driveways de concreto, paver e stamped, mais approaches e aprons</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-2" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🏡 Patios &amp; Pool Decks</strong></td>
+    <td class="num"><strong>$34</strong>/day</td>
+    <td class="num">6</td>
+    <td class="num">88</td>
+    <td><span class="lang-en">Concrete, paver and stamped patios, cost searches, and pool decks</span><span class="lang-pt">Patios de concreto, paver e stamped, buscas de preço e pool decks</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-3" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🌳 Outdoor Living</strong></td>
+    <td class="num"><strong>$22</strong>/day</td>
+    <td class="num">6</td>
+    <td class="num">60</td>
+    <td><span class="lang-en">Outdoor kitchens, fire pits, fireplaces, pergolas and lighting</span><span class="lang-pt">Outdoor kitchens, fire pits, fireplaces, pérgolas e iluminação</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-4" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🧱 Walls &amp; Hardscape</strong></td>
+    <td class="num"><strong>$15</strong>/day</td>
+    <td class="num">3</td>
+    <td class="num">31</td>
+    <td><span class="lang-en">Retaining walls, seating walls and general hardscape</span><span class="lang-pt">Retaining walls, seating walls e hardscape em geral</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-5" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🚶 Porches, Steps &amp; Walkways</strong></td>
+    <td class="num"><strong>$15</strong>/day</td>
+    <td class="num">3</td>
+    <td class="num">30</td>
+    <td><span class="lang-en">Porches, steps, sidewalks and walkways</span><span class="lang-pt">Porches, steps, sidewalks e walkways</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-6" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🔎 Generic &amp; Competitors</strong></td>
+    <td class="num"><strong>$6</strong>/day</td>
+    <td class="num">2</td>
+    <td class="num">14</td>
+    <td><span class="lang-en">Generic “concrete contractor” searches, plus competitor names (paused)</span><span class="lang-pt">Buscas genéricas de “concrete contractor” e nomes de concorrentes (pausado)</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-7" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🏗️ Structural Concrete</strong></td>
+    <td class="num"><strong>$12</strong>/day</td>
+    <td class="num">5</td>
+    <td class="num">45</td>
+    <td><span class="lang-en">Slabs, footers, garage and basement floors, pole barns, curbs &amp; gutters</span><span class="lang-pt">Slabs, footers, garage e basement floors, pole barns, curbs &amp; gutters</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-8" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="campaign"></td>
+    <td><strong>🔓 Discovery (Broad)</strong></td>
+    <td class="num"><strong>$12</strong>/day</td>
+    <td class="num">1</td>
+    <td class="num">8</td>
+    <td><span class="lang-en">Open keywords, capped at 10% of budget — finds searches the others miss</span><span class="lang-pt">Keywords abertas, com teto de 10% — acha buscas que as outras não pegam</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="campaign-9" rows="1"></textarea></td>
+  </tr></tbody>
+      <tfoot><tr><td></td><td><span class="lang-en">Total</span><span class="lang-pt">Total</span></td><td class="num">$155/day</td><td class="num">33</td><td class="num">383</td><td colspan="2"></td></tr></tfoot>
+    </table></div>
+
+    <div class="callout blue" style="margin-top:18px">
+      <strong><span class="lang-en">The budget is a starting point:</span><span class="lang-pt">O orçamento é um ponto de partida:</span></strong>
+      <span class="lang-en">we open at $155/day split across the 9 campaigns above. After the first weeks we can move budget between them, or raise and lower the total, based on what each one returns per lead.</span><span class="lang-pt">abrimos com $155/dia divididos entre as 9 campanhas acima. Depois das primeiras semanas dá para mover verba entre elas, ou subir e descer o total, conforme o que cada uma devolve por lead.</span>
+    </div>
+
+    <div class="callout green">
+      <strong><span class="lang-en">About the discovery campaign:</span><span class="lang-pt">Sobre a campanha de descoberta:</span></strong>
+      <span class="lang-en">we looked at 17 months of search data across both Maxima accounts before including it. Open keywords bring a better cost per lead than closed ones while they stay small, and a worse one once they grow past about 15% of the budget. So it goes in capped at 10%, in its own campaign, with an automatic stop if its cost per lead passes $126.38 for two cycles. Its job is to find searches we are not covering yet, not to bring volume.</span><span class="lang-pt">olhamos 17 meses de dados de busca das duas contas Maxima antes de incluí-la. Keywords abertas trazem custo por lead melhor que as fechadas enquanto são pequenas, e pior quando passam de ~15% do orçamento. Por isso entra com teto de 10%, em campanha própria, com parada automática se o custo por lead passar de $126.38 por dois ciclos. A função dela é achar buscas que ainda não cobrimos, não trazer volume.</span>
+    </div>
+
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the campaigns or the budget split</span><span class="lang-pt">Algo sobre as campanhas ou a divisão do orçamento</span></label>
+      <textarea class="note-input note-block" data-note="sec-campaigns" data-label="Campaigns & budget — general note" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Anúncios ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">📣</div><div>
+    <h3><span class="lang-en">4 · How the ads are written</span><span class="lang-pt">4 · Como os anúncios são escritos</span></h3>
+    <div class="sub"><span class="lang-en">42 ads · 630 headlines · 168 descriptions · 32 link extensions</span><span class="lang-pt">42 anúncios · 630 títulos · 168 descrições · extensões</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">One ad per group, written from your own website copy. Every claim we make is already on your site — we did not invent anything. Here is how the driveways ad will look on Google:</span><span class="lang-pt">Um anúncio por grupo, escrito a partir da copy do seu próprio site. Toda afirmação já está no site — não inventamos nada. Veja como o anúncio de driveways aparece no Google:</span></p>
+
+    <div class="ad-preview">
+      <div class="sp"><span class="lang-en">Sponsored</span><span class="lang-pt">Patrocinado</span></div>
+      <div class="url">maximaconcrete.com/driveways/concrete</div>
+      <div class="ti">Concrete Driveways, Ohio | 6.5-Bag 4500 PSI Mix | Get Your Free Estimate</div>
+      <div class="de">Poured with a 6.5-bag 4500 PSI fiber mix and 10-gauge wire mesh. Built for Ohio winters.</div>
+      <div class="sl"><span>Concrete Driveways</span><span>Paver Driveways</span><span>Driveway Approaches</span><span>Driveway Gallery</span></div>
+    </div>
+
+    <h4 class="subhead"><span class="lang-en">The claims we use, and where they come from</span><span class="lang-pt">As afirmações que usamos, e de onde vêm</span></h4>
+    <div class="tw"><table>
+      <thead><tr><th><span class="lang-en">Claim in the ads</span><span class="lang-pt">Afirmação nos anúncios</span></th><th><span class="lang-en">Where it comes from</span><span class="lang-pt">De onde vem</span></th></tr></thead>
+      <tbody>
+        <tr><td>9,000+ happy clients</td><td class="muted"><span class="lang-en">Your site, 51 pages</span><span class="lang-pt">Seu site, 51 páginas</span></td></tr>
+        <tr><td>A+ BBB rating</td><td class="muted"><span class="lang-en">Your site, 49 pages</span><span class="lang-pt">Seu site, 49 páginas</span></td></tr>
+        <tr><td>Family-owned since 2011</td><td class="muted"><span class="lang-en">Your site, 49 pages</span><span class="lang-pt">Seu site, 49 páginas</span></td></tr>
+        <tr><td>Licensed, bonded, insured &amp; city-registered</td><td class="muted"><span class="lang-en">Your site, 49 pages</span><span class="lang-pt">Seu site, 49 páginas</span></td></tr>
+        <tr><td>In-house crews, no subcontractors</td><td class="muted"><span class="lang-en">Your site, 25 pages</span><span class="lang-pt">Seu site, 25 páginas</span></td></tr>
+        <tr><td>6.5-bag 4500 PSI mix, 10-gauge wire mesh</td><td class="muted"><span class="lang-en">Your concrete specifications page</span><span class="lang-pt">Sua página de especificações</span></td></tr>
+        <tr><td>We handle all permits</td><td class="muted"><span class="lang-en">Your site, 12 pages</span><span class="lang-pt">Seu site, 12 páginas</span></td></tr>
+        <tr><td>2,000+ driveways · 2,100+ patios installed</td><td class="muted"><span class="lang-en">Your driveways and patios pages</span><span class="lang-pt">Suas páginas de driveways e patios</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="tw" style="margin-top:18px"><table>
+      <thead><tr><th style="width:40px;text-align:center"><span class="lang-en">OK</span><span class="lang-pt">OK</span></th><th><span class="lang-en">To approve</span><span class="lang-pt">Para aprovar</span></th><th><span class="lang-en">Detail</span><span class="lang-pt">Detalhe</span></th><th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th></tr></thead>
+      <tbody>
+      <tr><td style="text-align:center"><input type="checkbox" class="approval-check" data-action="ads"></td><td><strong><span class="lang-en">The ad copy and the claims above</span><span class="lang-pt">A copy dos anúncios e as afirmações acima</span></strong></td><td><span class="lang-en">42 ads, 630 headlines. If any claim should not appear in an ad, tell us which one.</span><span class="lang-pt">42 anúncios, 630 títulos. Se alguma afirmação não puder ir num anúncio, diga qual.</span></td><td class="note-col"><textarea class="note-input" data-note="ads-10" rows="1"></textarea></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══ Detalhe completo ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🔎</div><div>
+    <h3><span class="lang-en">5 · The full build, group by group</span><span class="lang-pt">5 · A construção completa, grupo a grupo</span></h3>
+    <div class="sub"><span class="lang-en">Every ad group: the page it points to, every keyword, and the ad</span><span class="lang-pt">Cada grupo: a página de destino, todas as keywords e o anúncio</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:14px"><span class="lang-en">This is everything we will build, exactly as it will go into the account. Keyword styling shows how tightly each one is matched — the tighter the match, the more control we have over which searches trigger the ad.</span><span class="lang-pt">É tudo o que vamos construir, exatamente como vai entrar na conta. O estilo de cada keyword mostra o quão fechada é a correspondência — quanto mais fechada, mais controle sobre quais buscas acionam o anúncio.</span></p>
+    
+  <div class="mt-legend">
+    <span><span class="kw ph">&quot;like this&quot;</span> &nbsp;<span class="lang-en">phrase match — searches that contain this meaning</span><span class="lang-pt">phrase — buscas que contêm esse significado</span></span>
+    <span><span class="kw ex">[like this]</span> &nbsp;<span class="lang-en">exact match — this search and very close variants</span><span class="lang-pt">exact — essa busca e variações muito próximas</span></span>
+    <span><span class="kw br">like this</span> &nbsp;<span class="lang-en">broad match — discovery campaign only</span><span class="lang-pt">broad — só na campanha de descoberta</span></span>
+  </div>
+    
+  <h4 class="subhead">🔐 Brand — Maxima Concrete <span class="tag grey">$8/day</span> <span class="tag blue">2 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Brand — Core</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (20)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;maxima concrete&quot;</span>
+        <span class="kw ex">[maxima concrete]</span><span class="kw ex">[maxima concrete columbus]</span><span class="kw ex">[maxima concrete columbus ohio]</span><span class="kw ex">[maxima concrete ohio]</span><span class="kw ex">[maxima concrete delaware]</span><span class="kw ex">[maxima concrete delaware ohio]</span><span class="kw ex">[maxima concrete company]</span><span class="kw ex">[maxima concrete contractor]</span><span class="kw ex">[maxima concrete llc]</span><span class="kw ex">[maxima concrete near me]</span><span class="kw ex">[maximaconcrete]</span><span class="kw ex">[maxima concrete com]</span><span class="kw ex">[maxima concrete patio]</span><span class="kw ex">[maxima concrete patios]</span><span class="kw ex">[maxima concrete driveway]</span><span class="kw ex">[maxima concrete driveways]</span><span class="kw ex">[maxima concrete pool deck]</span><span class="kw ex">[maxima concrete stamped]</span><span class="kw ex">[maxima concrete pavers]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Maxima Concrete — Official</span><span>Maxima Concrete, Columbus</span><span>Book Direct With Maxima</span><span>Maxima Concrete Since 2011</span><span>The Maxima Concrete Crew</span><span>Driveways, Patios &amp; More</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>Get Your Free Estimate</span><span>Licensed, Bonded, Insured</span><span>See Our Work Near You</span><span>Columbus &amp; Delaware, OH</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>The official Maxima Concrete site. Driveways, patios, pool decks and outdoor living.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/maxima-concrete/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Brand — Reputation</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/why-maxima/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (6)</div>
+      <div class="kws">
+        
+        <span class="kw ex">[maxima concrete reviews]</span><span class="kw ex">[maxima concrete google reviews]</span><span class="kw ex">[maxima concrete bbb]</span><span class="kw ex">[maxima concrete ratings]</span><span class="kw ex">[maxima concrete complaints]</span><span class="kw ex">[is maxima concrete good]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Maxima Concrete Reviews</span><span>Read Real Client Reviews</span><span>A+ BBB Since 2011</span><span>9,000+ Jobs, One Crew</span><span>Why Homeowners Pick Us</span><span>See The Work Yourself</span><span>9,000+ Happy Clients</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>Licensed, Bonded, Insured</span><span>See Our Work Near You</span><span>Get Your Free Estimate</span><span>Columbus &amp; Delaware, OH</span><span>15 Years In Central Ohio</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>See why 9,000+ Central Ohio homeowners chose Maxima. Google reviews and A+ BBB rating.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Browse our project map and find finished Maxima work on streets near you.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/maxima-concrete/reviews</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🚗 Driveways <span class="tag grey">$31/day</span> <span class="tag blue">5 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Driveways — Concrete</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/driveways/driveways-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (23)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete driveway&quot;</span><span class="kw ph">&quot;concrete driveway near me&quot;</span><span class="kw ph">&quot;concrete driveway installation&quot;</span><span class="kw ph">&quot;concrete driveway contractors near me&quot;</span><span class="kw ph">&quot;concrete driveway companies near me&quot;</span><span class="kw ph">&quot;concrete driveway company&quot;</span><span class="kw ph">&quot;concrete driveway contractor&quot;</span><span class="kw ph">&quot;driveway concrete contractors&quot;</span><span class="kw ph">&quot;residential driveway contractor&quot;</span><span class="kw ph">&quot;concrete driveway columbus ohio&quot;</span><span class="kw ph">&quot;concrete driveway delaware ohio&quot;</span><span class="kw ph">&quot;concrete driveway installers near me&quot;</span><span class="kw ph">&quot;poured concrete driveway&quot;</span><span class="kw ph">&quot;new driveway installation&quot;</span><span class="kw ph">&quot;driveway installation near me&quot;</span><span class="kw ph">&quot;driveway contractors near me&quot;</span><span class="kw ph">&quot;cement driveway contractors near me&quot;</span><span class="kw ph">&quot;concrete driveway cost&quot;</span>
+        <span class="kw ex">[concrete driveway]</span><span class="kw ex">[concrete driveway near me]</span><span class="kw ex">[concrete driveway contractors near me]</span><span class="kw ex">[concrete driveway columbus ohio]</span><span class="kw ex">[driveway contractors near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Driveways, Ohio</span><span>New Concrete Driveway</span><span>Driveway Contractors Near You</span><span>2,000+ Driveways Installed</span><span>Driveways Built To Last</span><span>Say Goodbye To Cracked Asphalt</span><span>Curb Appeal That Lasts</span><span>Concrete Driveway Experts</span><span>6.5-Bag 4500 PSI Mix</span><span>10-Gauge Wire Mesh</span><span>Built For Ohio Winters</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Poured with a 6.5-bag 4500 PSI fiber mix and 10-gauge wire mesh. Built for Ohio winters.</p><p>Over 2,000 driveways installed across Central Ohio. Free on-site estimate, no pressure.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/driveways/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Driveways — Replacement</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/driveways/driveways-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (22)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete driveway replacement&quot;</span><span class="kw ph">&quot;replace concrete driveway&quot;</span><span class="kw ph">&quot;driveway replacement near me&quot;</span><span class="kw ph">&quot;driveway tear out and replace&quot;</span><span class="kw ph">&quot;new concrete driveway&quot;</span><span class="kw ph">&quot;driveway removal and replacement&quot;</span><span class="kw ph">&quot;residential driveway contractors near me&quot;</span><span class="kw ph">&quot;driveway replacement cost&quot;</span><span class="kw ph">&quot;concrete driveway replacement near me&quot;</span><span class="kw ph">&quot;cracked driveway replacement&quot;</span><span class="kw ph">&quot;old driveway replacement&quot;</span><span class="kw ph">&quot;concrete driveway repair&quot;</span><span class="kw ph">&quot;driveway repair near me&quot;</span><span class="kw ph">&quot;concrete driveway repair near me&quot;</span><span class="kw ph">&quot;driveway apron repair&quot;</span><span class="kw ph">&quot;cracked driveway repair&quot;</span><span class="kw ph">&quot;concrete repair near me&quot;</span><span class="kw ph">&quot;concrete repair columbus ohio&quot;</span>
+        <span class="kw ex">[concrete driveway replacement]</span><span class="kw ex">[driveway replacement near me]</span><span class="kw ex">[replace concrete driveway]</span><span class="kw ex">[concrete driveway repair]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Driveway Replacement, Ohio</span><span>Replace That Cracked Slab</span><span>Tear Out And Repour</span><span>Old Driveway? We Replace It</span><span>Full Driveway Replacement</span><span>Demo, Haul &amp; Repour</span><span>Done In Days, Not Weeks</span><span>Free Replacement Quote</span><span>6.5-Bag 4500 PSI Mix</span><span>Built For Ohio Winters</span><span>In-House Crews, No Subs</span><span>We Handle Every Permit</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Cracked, sunken or crumbling? We tear out the old slab and repour it to spec. Free quote.</p><p>Demolition, haul-away, base prep, pour and cleanup — one in-house crew, one price.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/driveways/replacement</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Driveways — Stamped &amp; Decorative</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/driveways/driveways-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (11)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;stamped concrete driveway&quot;</span><span class="kw ph">&quot;stamped driveway contractor&quot;</span><span class="kw ph">&quot;stamped concrete driveway near me&quot;</span><span class="kw ph">&quot;decorative driveway concrete&quot;</span><span class="kw ph">&quot;decorative concrete driveway&quot;</span><span class="kw ph">&quot;stamped concrete driveway cost&quot;</span><span class="kw ph">&quot;colored concrete driveway&quot;</span><span class="kw ph">&quot;exposed aggregate driveway&quot;</span><span class="kw ph">&quot;stamped driveway columbus ohio&quot;</span>
+        <span class="kw ex">[stamped concrete driveway]</span><span class="kw ex">[stamped driveway contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Stamped Concrete Driveways</span><span>Decorative Driveways, Ohio</span><span>Stone &amp; Brick Patterns</span><span>Colored Concrete Driveway</span><span>Stamped Driveway Installers</span><span>Looks Like Stone, Lasts Longer</span><span>Pick Your Pattern &amp; Color</span><span>Exposed Aggregate Options</span><span>6.5-Bag 4500 PSI Mix</span><span>Built For Ohio Winters</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Stamped and colored driveways in stone, slate and brick patterns. See samples on site.</p><p>Decorative on top, 6.5-bag 4500 PSI underneath. Built to hold up to Ohio freeze-thaw.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/driveways/stamped</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Driveways — Paver, Brick &amp; Stone</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/driveways/driveways-paver/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (15)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;paver driveway&quot;</span><span class="kw ph">&quot;paver driveway installation near me&quot;</span><span class="kw ph">&quot;paver driveway contractor&quot;</span><span class="kw ph">&quot;brick driveway contractor&quot;</span><span class="kw ph">&quot;brick paver driveway&quot;</span><span class="kw ph">&quot;stone driveway installation&quot;</span><span class="kw ph">&quot;natural stone driveway&quot;</span><span class="kw ph">&quot;driveway pavers near me&quot;</span><span class="kw ph">&quot;paver driveway cost&quot;</span><span class="kw ph">&quot;cobblestone driveway&quot;</span><span class="kw ph">&quot;paver driveway columbus ohio&quot;</span><span class="kw ph">&quot;install driveway pavers&quot;</span>
+        <span class="kw ex">[paver driveway]</span><span class="kw ex">[paver driveway near me]</span><span class="kw ex">[brick driveway contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Paver Driveways, Ohio</span><span>Brick &amp; Stone Driveways</span><span>Paver Driveway Installers</span><span>Built To Carry The Load</span><span>Elegance That Lasts</span><span>Cobblestone &amp; Clay Brick</span><span>No Cracking, No Fading</span><span>Custom Paver Patterns</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>We Handle Every Permit</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Paver, brick and natural stone driveways engineered for heavy loads and Ohio weather.</p><p>Proper base depth and edge restraint — the part that decides whether pavers shift.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/driveways/pavers</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Approaches &amp; Aprons</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/approaches/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete driveway apron&quot;</span><span class="kw ph">&quot;driveway apron replacement&quot;</span><span class="kw ph">&quot;driveway apron contractor&quot;</span><span class="kw ph">&quot;concrete approach driveway&quot;</span><span class="kw ph">&quot;driveway approach concrete&quot;</span><span class="kw ph">&quot;driveway apron near me&quot;</span><span class="kw ph">&quot;concrete apron installation&quot;</span>
+        <span class="kw ex">[driveway apron]</span><span class="kw ex">[concrete driveway apron]</span><span class="kw ex">[driveway apron replacement]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Driveway Aprons &amp; Approaches</span><span>Concrete Approach Install</span><span>Apron Replacement, Ohio</span><span>Street To Driveway, Done Right</span><span>City-Spec Approaches</span><span>We Pull The Permits</span><span>Inspection Coordinated</span><span>Approach Contractors Near You</span><span>We Handle Every Permit</span><span>6.5-Bag 4500 PSI Mix</span><span>In-House Crews, No Subs</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>Columbus &amp; Delaware, OH</span><span>Licensed, Bonded, Insured</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>The approach ties your driveway to the street, and the city inspects it. We handle both.</p><p>Permits pulled, inspection coordinated, poured to city spec. No back-and-forth for you.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/driveways/approaches</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🏡 Patios &amp; Pool Decks <span class="tag grey">$34/day</span> <span class="tag blue">6 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Patios — Concrete</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/patios/patios-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (20)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete patio&quot;</span><span class="kw ph">&quot;concrete patio near me&quot;</span><span class="kw ph">&quot;concrete patio installation&quot;</span><span class="kw ph">&quot;concrete patio contractor&quot;</span><span class="kw ph">&quot;concrete patio contractors near me&quot;</span><span class="kw ph">&quot;concrete patio companies near me&quot;</span><span class="kw ph">&quot;concrete patio installers near me&quot;</span><span class="kw ph">&quot;concrete patio builders near me&quot;</span><span class="kw ph">&quot;concrete patio columbus ohio&quot;</span><span class="kw ph">&quot;concrete patio delaware ohio&quot;</span><span class="kw ph">&quot;poured concrete patio&quot;</span><span class="kw ph">&quot;backyard concrete patio&quot;</span><span class="kw ph">&quot;patio concrete contractors&quot;</span><span class="kw ph">&quot;concrete patio installation near me&quot;</span><span class="kw ph">&quot;new concrete patio&quot;</span>
+        <span class="kw ex">[concrete patio]</span><span class="kw ex">[concrete patio near me]</span><span class="kw ex">[concrete patio contractors near me]</span><span class="kw ex">[concrete patio columbus ohio]</span><span class="kw ex">[concrete patio installation near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Patios, Columbus</span><span>New Concrete Patio</span><span>Patio Contractors Near You</span><span>2,100+ Patios Installed</span><span>Your Backyard, Rebuilt</span><span>Where Style Meets Outdoors</span><span>Patios Built For Ohio</span><span>Concrete Patio Experts</span><span>6.5-Bag 4500 PSI Mix</span><span>10-Gauge Wire Mesh</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Custom concrete patios poured with a 6.5-bag fiber mix and wire mesh. Built to last.</p><p>Over 2,100 patios installed across Central Ohio. Free on-site estimate, no pressure.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/patios/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Patios — Paver, Brick &amp; Stone</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/patios/patios-paver/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (16)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;paver patio&quot;</span><span class="kw ph">&quot;paver patio near me&quot;</span><span class="kw ph">&quot;paver patio installers near me&quot;</span><span class="kw ph">&quot;paver patio contractor&quot;</span><span class="kw ph">&quot;paver patio builders&quot;</span><span class="kw ph">&quot;paver patio columbus ohio&quot;</span><span class="kw ph">&quot;brick patio contractor&quot;</span><span class="kw ph">&quot;brick patio companies&quot;</span><span class="kw ph">&quot;stone patio installation&quot;</span><span class="kw ph">&quot;flagstone patio installation&quot;</span><span class="kw ph">&quot;natural stone patio&quot;</span><span class="kw ph">&quot;paver patio cost&quot;</span><span class="kw ph">&quot;backyard paver patio&quot;</span>
+        <span class="kw ex">[paver patio]</span><span class="kw ex">[paver patio near me]</span><span class="kw ex">[paver patio installers near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Paver Patios, Columbus OH</span><span>Brick &amp; Stone Patios</span><span>Paver Patio Installers</span><span>Built To Last And Impress</span><span>Custom Paver Patterns</span><span>Flagstone &amp; Natural Stone</span><span>Pavers That Don't Shift</span><span>Design Meets Durability</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Paver, brick and natural stone patios, fully customized. Free design consultation.</p><p>Compacted base, proper edge restraint and joint sand — that's why ours stay level.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/patios/pavers</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Patios — Replacement</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/patios/patios-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (12)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete patio resurfacing near me&quot;</span><span class="kw ph">&quot;patio resurfacing near me&quot;</span><span class="kw ph">&quot;concrete patio repair&quot;</span><span class="kw ph">&quot;replace concrete patio&quot;</span><span class="kw ph">&quot;old patio replacement&quot;</span><span class="kw ph">&quot;cracked patio replacement&quot;</span><span class="kw ph">&quot;patio tear out and replace&quot;</span><span class="kw ph">&quot;resurface concrete patio&quot;</span><span class="kw ph">&quot;stamped concrete repair near me&quot;</span>
+        <span class="kw ex">[concrete patio resurfacing near me]</span><span class="kw ex">[concrete patio repair]</span><span class="kw ex">[replace concrete patio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Cracked Patio? Replace It</span><span>Concrete Patio Replacement</span><span>Tear Out And Repour</span><span>Old Patio, New Backyard</span><span>Worth More Than A Patch</span><span>Replace, Don’t Resurface</span><span>Free Replacement Quote</span><span>Patio Replacement, Ohio</span><span>6.5-Bag 4500 PSI Mix</span><span>Built For Ohio Winters</span><span>In-House Crews, No Subs</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>9,000+ Happy Clients</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Cracked, sunken or stained? We tear out the old patio and pour a new one to spec.</p><p>A resurface hides the problem for a season. A new slab fixes it for decades. Free quote.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/patios/replacement</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Patios — Stamped &amp; Decorative</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/patios/patios-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (16)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;stamped concrete patio&quot;</span><span class="kw ph">&quot;stamped patio contractor&quot;</span><span class="kw ph">&quot;stamped concrete patio near me&quot;</span><span class="kw ph">&quot;stamped concrete patio cost&quot;</span><span class="kw ph">&quot;stamped concrete patio columbus ohio&quot;</span><span class="kw ph">&quot;stamped concrete patio delaware&quot;</span><span class="kw ph">&quot;stamped concrete contractors near me&quot;</span><span class="kw ph">&quot;stamped concrete near me&quot;</span><span class="kw ph">&quot;stamped concrete columbus ohio&quot;</span><span class="kw ph">&quot;decorative concrete patio&quot;</span><span class="kw ph">&quot;colored concrete patio&quot;</span><span class="kw ph">&quot;stamped concrete patio designs&quot;</span><span class="kw ph">&quot;stamped concrete patio ideas&quot;</span>
+        <span class="kw ex">[stamped concrete patio]</span><span class="kw ex">[stamped concrete contractors near me]</span><span class="kw ex">[stamped concrete near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Stamped Concrete Patios</span><span>Decorative Patios, Ohio</span><span>Stamped Patio Installers</span><span>Stone Look, Concrete Price</span><span>Pick Your Pattern &amp; Color</span><span>Colored Concrete Patios</span><span>Slate, Ashlar &amp; Wood Plank</span><span>See Patterns In Person</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Stamped and colored patios in slate, ashlar, brick and wood-plank patterns. See samples.</p><p>Decorative surface over a 6.5-bag 4500 PSI base. Sealed and built for Ohio freeze-thaw.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/patios/stamped</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Patios — Cost &amp; Quotes</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/patios/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (12)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete patio cost&quot;</span><span class="kw ph">&quot;concrete patio estimate&quot;</span><span class="kw ph">&quot;concrete patio quote&quot;</span><span class="kw ph">&quot;patio installation estimate&quot;</span><span class="kw ph">&quot;patio quotes near me&quot;</span><span class="kw ph">&quot;cost of concrete patio&quot;</span><span class="kw ph">&quot;concrete patio cost per square foot&quot;</span><span class="kw ph">&quot;patio cost estimator&quot;</span><span class="kw ph">&quot;how much is a concrete patio&quot;</span>
+        <span class="kw ex">[concrete patio cost]</span><span class="kw ex">[concrete patio estimate]</span><span class="kw ex">[concrete patio quote]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Patio Cost, Ohio</span><span>Free Written Patio Quote</span><span>Know The Price In Days</span><span>Patio Estimate, No Pressure</span><span>We Price Concrete And Paver</span><span>On-Site Measure, Real Number</span><span>No Sales Pitch, Just A Price</span><span>Patio Quotes Near You</span><span>Written Price This Week</span><span>Financing Available</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Free Estimate, No Pressure</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Free on-site measure and a written price — concrete and paver options, side by side.</p><p>No pressure, no sales pitch. We measure, we price it, you decide on your own time.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/patios/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pool Decks &amp; Surrounds</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/pool-decks-surrounds/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (12)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete pool deck&quot;</span><span class="kw ph">&quot;pool deck concrete&quot;</span><span class="kw ph">&quot;pool deck contractor&quot;</span><span class="kw ph">&quot;pool deck installation&quot;</span><span class="kw ph">&quot;pool patio contractor&quot;</span><span class="kw ph">&quot;concrete around pool&quot;</span><span class="kw ph">&quot;pool surround concrete&quot;</span><span class="kw ph">&quot;paver pool deck&quot;</span><span class="kw ph">&quot;stamped concrete pool deck&quot;</span><span class="kw ph">&quot;pool deck builders near me&quot;</span>
+        <span class="kw ex">[concrete pool deck]</span><span class="kw ex">[pool deck contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Pool Decks, Ohio</span><span>Pool Deck Contractors</span><span>Pool Surrounds &amp; Coping</span><span>Stays Cool Underfoot</span><span>Slip-Resistant Finishes</span><span>Replace That Old Pool Patio</span><span>Paver &amp; Stamped Pool Decks</span><span>Built Around Your Pool</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Slip-resistant, weather-tough pool decks in decorative concrete and pavers. Free consult.</p><p>Finishes chosen to stay cooler underfoot and safer when wet. Built for Ohio seasons.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/pool-decks/free-estimate</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🌳 Outdoor Living <span class="tag grey">$22/day</span> <span class="tag blue">6 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Outdoor Living Spaces</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/outdoor-living/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (13)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;outdoor living contractor&quot;</span><span class="kw ph">&quot;outdoor living company near me&quot;</span><span class="kw ph">&quot;custom outdoor living spaces&quot;</span><span class="kw ph">&quot;outdoor living columbus ohio&quot;</span><span class="kw ph">&quot;outdoor living delaware ohio&quot;</span><span class="kw ph">&quot;backyard living contractor&quot;</span><span class="kw ph">&quot;backyard design and build&quot;</span><span class="kw ph">&quot;outdoor living space builder&quot;</span><span class="kw ph">&quot;backyard remodel contractor&quot;</span><span class="kw ph">&quot;outdoor living spaces near me&quot;</span>
+        <span class="kw ex">[outdoor living contractor]</span><span class="kw ex">[custom outdoor living spaces]</span><span class="kw ex">[outdoor living columbus ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Outdoor Living, Central Ohio</span><span>Custom Backyard Builds</span><span>Outdoor Living Contractors</span><span>Design And Build, One Crew</span><span>Your Backyard Retreat</span><span>Kitchens, Fire &amp; Shade</span><span>Built Around Your Lifestyle</span><span>One Contractor, Whole Yard</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Outdoor kitchens, fire features, pergolas, lighting and patios, built by one crew.</p><p>One in-house crew for the whole backyard. No subcontractor hand-offs, no finger-pointing.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Outdoor Kitchens &amp; Bars</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/outdoor-kitchens/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (11)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;outdoor kitchen contractor&quot;</span><span class="kw ph">&quot;outdoor kitchen builders near me&quot;</span><span class="kw ph">&quot;outdoor kitchen columbus ohio&quot;</span><span class="kw ph">&quot;custom outdoor kitchen&quot;</span><span class="kw ph">&quot;outdoor bar installation&quot;</span><span class="kw ph">&quot;outdoor kitchen installation&quot;</span><span class="kw ph">&quot;built in grill island&quot;</span><span class="kw ph">&quot;outdoor kitchen and bar contractor&quot;</span><span class="kw ph">&quot;outdoor kitchen cost&quot;</span>
+        <span class="kw ex">[outdoor kitchen contractor]</span><span class="kw ex">[outdoor kitchen columbus ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Outdoor Kitchens, Columbus</span><span>Custom Outdoor Bars</span><span>Outdoor Kitchen Builders</span><span>Cook And Entertain Outside</span><span>Built-In Grill Islands</span><span>Stone, Paver &amp; Concrete Bars</span><span>Designed Around Your Grill</span><span>Kitchen, Bar &amp; Counter</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Custom outdoor kitchens and bars in stone, paver and concrete. Built for year-round use.</p><p>Grill islands, counters, storage and seating — designed around how you actually cook.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/kitchens</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Fire Pits</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/fire-pits/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;fire pit contractor&quot;</span><span class="kw ph">&quot;paver fire pit&quot;</span><span class="kw ph">&quot;custom fire pit builder&quot;</span><span class="kw ph">&quot;built in fire pit&quot;</span><span class="kw ph">&quot;outdoor fire pit installation&quot;</span><span class="kw ph">&quot;stone fire pit installation&quot;</span><span class="kw ph">&quot;gas fire pit installation&quot;</span><span class="kw ph">&quot;fire pit builders near me&quot;</span>
+        <span class="kw ex">[fire pit contractor]</span><span class="kw ex">[paver fire pit]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Custom Fire Pits, Ohio</span><span>Paver &amp; Stone Fire Pits</span><span>Fire Pit Builders Near You</span><span>Built To Gather Around</span><span>Wood-Burning Or Gas</span><span>Add One To Your Patio</span><span>Fire Pit &amp; Seating Wall</span><span>Timeless Warmth, Built In</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Custom paver and stone fire pits, wood-burning or gas. Added to a new or existing patio.</p><p>Pair it with a seating wall and the whole backyard becomes the place everyone gathers.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/fire-pits</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Fireplaces</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/fireplaces/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (9)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;outdoor fireplace contractor&quot;</span><span class="kw ph">&quot;outdoor fireplace builder&quot;</span><span class="kw ph">&quot;custom outdoor fireplace&quot;</span><span class="kw ph">&quot;outdoor fireplace installation&quot;</span><span class="kw ph">&quot;stone outdoor fireplace&quot;</span><span class="kw ph">&quot;paver fireplace&quot;</span><span class="kw ph">&quot;outdoor fireplace near me&quot;</span>
+        <span class="kw ex">[outdoor fireplace contractor]</span><span class="kw ex">[outdoor fireplace installation]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Outdoor Fireplaces, Ohio</span><span>Custom Fireplace Builders</span><span>Stone Outdoor Fireplaces</span><span>The Heart Of The Backyard</span><span>Gas Or Wood-Burning</span><span>Add To Your Existing Patio</span><span>Built For Ohio Evenings</span><span>Chimney, Hearth &amp; Mantel</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Licensed, Bonded, Insured</span><span>Financing Available</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Custom outdoor fireplaces in stone and paver, gas or wood. Sized and styled to your patio.</p><p>Built to code and built to last — full hearth, firebox and chimney by our own crew.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/fireplaces</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Pergolas, Shelters &amp; Shade</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/shelters/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (9)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;pergola builder near me&quot;</span><span class="kw ph">&quot;pergola contractor&quot;</span><span class="kw ph">&quot;custom pergola installation&quot;</span><span class="kw ph">&quot;patio cover contractor&quot;</span><span class="kw ph">&quot;backyard shade structure&quot;</span><span class="kw ph">&quot;pavilion builder near me&quot;</span><span class="kw ph">&quot;outdoor shelter contractor&quot;</span>
+        <span class="kw ex">[pergola contractor]</span><span class="kw ex">[pergola builder near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Pergolas &amp; Shade, Ohio</span><span>Custom Pergola Builders</span><span>Pavilions &amp; Patio Covers</span><span>Shade For Every Season</span><span>Add Shade To Your Patio</span><span>Built For Ohio Weather</span><span>Pergola, Pavilion Or Shelter</span><span>Comfort In Every Season</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>We Handle Every Permit</span><span>Financing Available</span><span>Licensed, Bonded, Insured</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Pergolas, pavilions and patio covers engineered to hold Ohio snow load. Free consultation.</p><p>Added to a new patio or an existing one. Permits and structural detail handled by us.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/pergolas</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Outdoor Lighting</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/outdoor-lighting/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (8)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;outdoor lighting contractor&quot;</span><span class="kw ph">&quot;landscape lighting installation&quot;</span><span class="kw ph">&quot;outdoor lighting installation near me&quot;</span><span class="kw ph">&quot;patio lighting installation&quot;</span><span class="kw ph">&quot;path lighting installation&quot;</span><span class="kw ph">&quot;outdoor lighting columbus ohio&quot;</span>
+        <span class="kw ex">[outdoor lighting contractor]</span><span class="kw ex">[landscape lighting installation]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Outdoor Lighting, Columbus</span><span>Landscape Lighting Install</span><span>Path, Step &amp; Up Lighting</span><span>Light Up Your Backyard</span><span>Safer Steps After Dark</span><span>Energy-Efficient LED</span><span>Add To Patio Or Walkway</span><span>Extend Your Evenings</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Licensed, Bonded, Insured</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Path lights, step lights, up lights and spotlights — designed for safety and for looks.</p><p>Energy-efficient LED, added to a new project or an existing patio and walkway.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/outdoor-living/lighting</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🧱 Walls &amp; Hardscape <span class="tag grey">$15/day</span> <span class="tag blue">3 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Retaining Walls</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/retaining-walls/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (14)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;retaining wall contractor&quot;</span><span class="kw ph">&quot;retaining wall installation&quot;</span><span class="kw ph">&quot;retaining wall near me&quot;</span><span class="kw ph">&quot;retaining wall builders near me&quot;</span><span class="kw ph">&quot;block retaining wall&quot;</span><span class="kw ph">&quot;retaining wall companies near me&quot;</span><span class="kw ph">&quot;retaining wall columbus ohio&quot;</span><span class="kw ph">&quot;contractor to build retaining wall&quot;</span><span class="kw ph">&quot;retaining wall construction contractors&quot;</span><span class="kw ph">&quot;boulder retaining wall&quot;</span><span class="kw ph">&quot;stone retaining wall installation&quot;</span>
+        <span class="kw ex">[retaining wall contractor]</span><span class="kw ex">[retaining wall installation]</span><span class="kw ex">[retaining wall near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Retaining Walls, Columbus</span><span>Retaining Wall Contractors</span><span>Block, Boulder &amp; Stone Walls</span><span>Engineered With Drainage</span><span>Hold That Slope For Good</span><span>Walls Built To Spec</span><span>Add Steps Or Seating</span><span>Retaining Wall Installers</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>We Handle Every Permit</span><span>Licensed, Bonded, Insured</span><span>Built For Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Retaining walls with proper base, drainage and geogrid. That is what decides if it holds.</p><p>Block, boulder and natural stone. Steps and seating integrated into the same wall.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/retaining-walls/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Seating Walls</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/seating-walls/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (6)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;seating wall contractor&quot;</span><span class="kw ph">&quot;seating wall installation&quot;</span><span class="kw ph">&quot;paver seating wall&quot;</span><span class="kw ph">&quot;patio seating wall&quot;</span><span class="kw ph">&quot;built in seating wall&quot;</span>
+        <span class="kw ex">[seating wall contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Seating Walls, Central Ohio</span><span>Paver Seating Walls</span><span>Built-In Patio Seating</span><span>Structure, Comfort &amp; Design</span><span>Add To Your Existing Patio</span><span>Seating Wall &amp; Fire Pit</span><span>Permanent Backyard Seating</span><span>Seating Wall Contractors</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Built-in seating walls in paver and stone, reinforced and capped. Free design consult.</p><p>Pairs with a fire pit or patio border — permanent seating that never gets put away.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/seating-walls/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Paver &amp; Hardscape (general)</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/finishes/paver/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (11)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;hardscape contractor&quot;</span><span class="kw ph">&quot;hardscape companies near me&quot;</span><span class="kw ph">&quot;hardscaping contractor near me&quot;</span><span class="kw ph">&quot;paver contractor near me&quot;</span><span class="kw ph">&quot;paver companies near me&quot;</span><span class="kw ph">&quot;paver installers near me&quot;</span><span class="kw ph">&quot;brick paver contractor&quot;</span><span class="kw ph">&quot;hardscape columbus ohio&quot;</span><span class="kw ph">&quot;paver walkway installation&quot;</span>
+        <span class="kw ex">[hardscape contractor]</span><span class="kw ex">[paver companies near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Hardscape Contractors, Ohio</span><span>Paver, Brick &amp; Stone</span><span>Paver Installers Near You</span><span>Patios, Walks &amp; Driveways</span><span>Natural Stone &amp; Clay Brick</span><span>Hardscaping Done Right</span><span>Base Prep You Can't See</span><span>Pavers That Stay Level</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Paver, brick and natural stone for patios, walkways, driveways and walls. Free estimate.</p><p>Compacted base, edge restraint and polymeric sand — that's why our hardscape stays level.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/pavers/hardscape</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🚶 Porches, Steps &amp; Walkways <span class="tag grey">$15/day</span> <span class="tag blue">3 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Porches</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/porches/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete porch contractor&quot;</span><span class="kw ph">&quot;front porch contractors near me&quot;</span><span class="kw ph">&quot;porch builder near me&quot;</span><span class="kw ph">&quot;concrete front porch&quot;</span><span class="kw ph">&quot;porch replacement contractor&quot;</span><span class="kw ph">&quot;brick porch contractor&quot;</span><span class="kw ph">&quot;paver porch&quot;</span><span class="kw ph">&quot;concrete porch installation&quot;</span>
+        <span class="kw ex">[front porch contractors near me]</span><span class="kw ex">[concrete porch contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Porches, Ohio</span><span>Front Porch Contractors</span><span>Porch Builders Near You</span><span>The Welcome To Your Home</span><span>Replace That Failing Porch</span><span>Concrete, Paver Or Brick</span><span>Porch, Steps &amp; Railing</span><span>Curb Appeal Starts Here</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>We Handle Every Permit</span><span>Built For Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete, paver and brick porches built to last — poured to spec and finished to match.</p><p>Porch, steps and landing done together so the whole entry lines up. Free estimate.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/porches/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Steps</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/steps/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete steps contractor&quot;</span><span class="kw ph">&quot;concrete steps near me&quot;</span><span class="kw ph">&quot;concrete steps installation&quot;</span><span class="kw ph">&quot;front steps contractor&quot;</span><span class="kw ph">&quot;concrete stairs contractor&quot;</span><span class="kw ph">&quot;brick steps contractor&quot;</span><span class="kw ph">&quot;porch steps replacement&quot;</span><span class="kw ph">&quot;concrete step builders near me&quot;</span>
+        <span class="kw ex">[concrete steps near me]</span><span class="kw ex">[concrete steps contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Steps, Columbus</span><span>Step &amp; Stair Contractors</span><span>Replace Crumbling Steps</span><span>Safe, Slip-Resistant Steps</span><span>Poured In Place, Not Precast</span><span>Steps Built To Code</span><span>Brick, Stone Or Concrete</span><span>Front Steps Done Right</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Poured-in-place concrete, brick and stone steps. Even risers, safe treads, built to code.</p><p>Crumbling or settling steps torn out and rebuilt on a proper footing. Free estimate.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/concrete-steps/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Sidewalks &amp; Walkways</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/sidewalks/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete sidewalk contractor&quot;</span><span class="kw ph">&quot;concrete walkway companies near me&quot;</span><span class="kw ph">&quot;sidewalk installation near me&quot;</span><span class="kw ph">&quot;concrete walkway installation&quot;</span><span class="kw ph">&quot;walkway contractor near me&quot;</span><span class="kw ph">&quot;concrete sidewalk near me&quot;</span><span class="kw ph">&quot;paver walkway contractor&quot;</span><span class="kw ph">&quot;concrete path installation&quot;</span>
+        <span class="kw ex">[concrete sidewalk contractor]</span><span class="kw ex">[concrete walkway companies near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Sidewalks &amp; Walkways, Ohio</span><span>Concrete Walkway Install</span><span>Sidewalk Contractors Near You</span><span>Paths That Lead You Home</span><span>Match Your Driveway Finish</span><span>Safe When Wet</span><span>Concrete Or Paver Walkways</span><span>City Sidewalk Repairs Done</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>We Handle Every Permit</span><span>Built For Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete and paver walkways finished to match your driveway or patio. Free estimate.</p><p>Broom finish for traction, proper base for Ohio freeze-thaw. Permits handled by us.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/sidewalks/walkways</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🔎 Generic &amp; Competitors <span class="tag grey">$6/day</span> <span class="tag blue">2 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Concrete Contractor — General</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete contractors near me&quot;</span><span class="kw ph">&quot;concrete companies near me&quot;</span><span class="kw ph">&quot;residential concrete contractors near me&quot;</span><span class="kw ph">&quot;best concrete contractors near me&quot;</span><span class="kw ph">&quot;local concrete contractors&quot;</span><span class="kw ph">&quot;concrete contractor columbus ohio&quot;</span><span class="kw ph">&quot;concrete company columbus ohio&quot;</span><span class="kw ph">&quot;concrete contractors delaware ohio&quot;</span>
+        <span class="kw ex">[concrete contractors near me]</span><span class="kw ex">[concrete companies near me]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Contractors, Ohio</span><span>Concrete Company Near You</span><span>Residential Concrete Experts</span><span>Driveways, Patios &amp; Walks</span><span>One Crew, Any Concrete Job</span><span>9,000+ Jobs Since 2011</span><span>Free On-Site Estimate</span><span>Central Ohio's Concrete Crew</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>A+ BBB Rated Contractor</span><span>Licensed, Bonded, Insured</span><span>We Handle Every Permit</span><span>6.5-Bag 4500 PSI Mix</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Driveways, patios, walkways, steps, walls and outdoor living. One in-house crew for all.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/concrete/central-ohio</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Competitors</span> <span class="tag yellow"><span class="lang-en">built paused</span><span class="lang-pt">criado pausado</span></span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/why-maxima/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        
+        <span class="kw ex">[mcl concrete]</span><span class="kw ex">[mcl concrete llc]</span><span class="kw ex">[thompson concrete]</span><span class="kw ex">[thompson concrete columbus]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Compare Before You Sign</span><span>Get A Second Estimate</span><span>9,000+ Jobs Since 2011</span><span>In-House Crews, No Subs</span><span>A+ BBB Rated Contractor</span><span>See Our Work Near You</span><span>Free Second Opinion</span><span>Ask For Our Concrete Specs</span><span>Family-Owned Since 2011</span><span>6.5-Bag 4500 PSI Mix</span><span>10-Gauge Wire Mesh</span><span>Licensed, Bonded, Insured</span><span>We Handle Every Permit</span><span>Get Your Free Estimate</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Getting quotes? Compare specs, not just price. Ask what mix and reinforcement you get.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/concrete/compare</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🏗️ Structural Concrete <span class="tag grey">$12/day</span> <span class="tag blue">5 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Slabs</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/slabs/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (17)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete slab contractor&quot;</span><span class="kw ph">&quot;concrete slab installation&quot;</span><span class="kw ph">&quot;concrete slab near me&quot;</span><span class="kw ph">&quot;shed slab contractor&quot;</span><span class="kw ph">&quot;garage slab installation&quot;</span><span class="kw ph">&quot;concrete pad installation&quot;</span><span class="kw ph">&quot;concrete slab cost&quot;</span><span class="kw ph">&quot;pole barn concrete floor&quot;</span><span class="kw ph">&quot;pole barn slab&quot;</span><span class="kw ph">&quot;pole barn concrete contractor&quot;</span><span class="kw ph">&quot;barn floor concrete&quot;</span><span class="kw ph">&quot;concrete floor for pole barn&quot;</span><span class="kw ph">&quot;shop floor concrete&quot;</span>
+        <span class="kw ex">[concrete slab contractor]</span><span class="kw ex">[concrete slab near me]</span><span class="kw ex">[pole barn concrete floor]</span><span class="kw ex">[pole barn slab]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Slabs, Central Ohio</span><span>Slab Contractors Near You</span><span>Shed &amp; Garage Slabs</span><span>Level, Square And To Spec</span><span>Pole Barn &amp; Shop Floors</span><span>The Base For Everything</span><span>Poured And Finished Right</span><span>Concrete Pads &amp; Slabs</span><span>6.5-Bag 4500 PSI Mix</span><span>10-Gauge Wire Mesh</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>We Handle Every Permit</span><span>Built For Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete slabs for sheds, garages, pole barns, hot tubs and equipment. Level and to spec.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/concrete-slabs/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Footers &amp; Piers</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/footers/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (7)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete footer contractor&quot;</span><span class="kw ph">&quot;concrete footings contractor&quot;</span><span class="kw ph">&quot;concrete pier installation&quot;</span><span class="kw ph">&quot;footer installation near me&quot;</span><span class="kw ph">&quot;concrete footings near me&quot;</span>
+        <span class="kw ex">[concrete footer contractor]</span><span class="kw ex">[concrete footings contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Footers &amp; Piers</span><span>Footing Contractors, Ohio</span><span>Structural Support Done Right</span><span>Below Frost Line, To Code</span><span>Permits And Inspection</span><span>Strength From The Ground Up</span><span>Footers For Any Structure</span><span>Engineered Load Support</span><span>6.5-Bag 4500 PSI Mix</span><span>We Handle Every Permit</span><span>Licensed, Bonded, Insured</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>Built For Ohio Winters</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Code-compliant footers and piers, dug below frost line. Permits and inspections handled.</p><p>Built to your engineer's plan or ours. The part nobody sees that holds everything up.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/footers/structural</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Garage Floors</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/garage-floors/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (7)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete garage floor&quot;</span><span class="kw ph">&quot;garage floor contractor&quot;</span><span class="kw ph">&quot;garage floor installation&quot;</span><span class="kw ph">&quot;new garage floor concrete&quot;</span><span class="kw ph">&quot;garage floor replacement&quot;</span>
+        <span class="kw ex">[concrete garage floor]</span><span class="kw ex">[garage floor contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Garage Floors</span><span>Garage Floor Contractors</span><span>New Garage Slab, Ohio</span><span>Built For Cars And Cold</span><span>Replace That Cracked Floor</span><span>Barn &amp; Shop Floors Too</span><span>Smooth, Sealed &amp; Level</span><span>Garage Floors That Last</span><span>6.5-Bag 4500 PSI Mix</span><span>10-Gauge Wire Mesh</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>Built For Ohio Winters</span><span>We Handle Every Permit</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>New and replacement garage floors poured to hold vehicles, tools and Ohio winters.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/garage-floors/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Basement Floors</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/basement-floors/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (6)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;basement concrete floor&quot;</span><span class="kw ph">&quot;basement floor contractor&quot;</span><span class="kw ph">&quot;basement floor installation&quot;</span><span class="kw ph">&quot;concrete basement floor near me&quot;</span>
+        <span class="kw ex">[basement floor contractor]</span><span class="kw ex">[basement concrete floor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete Basement Floors</span><span>Basement Floor Contractors</span><span>New Basement Slab, Ohio</span><span>Moisture-Resistant &amp; Level</span><span>Smooth, Sealed Or Colored</span><span>Finish-Ready Surface</span><span>Replace An Old Basement Slab</span><span>Built For Living Space</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>We Handle Every Permit</span><span>Licensed, Bonded, Insured</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Moisture-resistant basement floors, poured level and finish-ready. Sealed or colored.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/basement-floors/free-estimate</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Curbs &amp; Gutters</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/curbs-gutters/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (8)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete curb contractor&quot;</span><span class="kw ph">&quot;curb and gutter contractor&quot;</span><span class="kw ph">&quot;concrete curbing installation&quot;</span><span class="kw ph">&quot;curb replacement contractor&quot;</span><span class="kw ph">&quot;residential curb replacement&quot;</span><span class="kw ph">&quot;driveway curb cut contractor&quot;</span>
+        <span class="kw ex">[curb and gutter contractor]</span><span class="kw ex">[concrete curb contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Curbs &amp; Gutters, Ohio</span><span>Curb And Gutter Install</span><span>Code-Compliant Curbing</span><span>Stormwater Managed Right</span><span>Permits Pulled By Us</span><span>Curb Replacement, Columbus</span><span>Precision Grade And Slope</span><span>Curb Contractors Near You</span><span>We Handle Every Permit</span><span>Licensed, Bonded, Insured</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>Serving Central Ohio</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Code-compliant curbs and gutters that manage stormwater and pass inspection. Permits too.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/curbs-gutters/free-estimate</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">🔓 Discovery (Broad) <span class="tag grey">$12/day</span> <span class="tag blue">1 ad group</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Broad — Discovery</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (8)</div>
+      <div class="kws">
+        
+        
+        <span class="kw br">concrete contractor</span><span class="kw br">concrete patio</span><span class="kw br">concrete driveway</span><span class="kw br">hardscape contractor</span><span class="kw br">outdoor living contractor</span><span class="kw br">retaining wall contractor</span><span class="kw br">paver installation</span><span class="kw br">backyard renovation contractor</span>
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete &amp; Hardscape, Ohio</span><span>Driveways, Patios &amp; Walls</span><span>One Crew, Any Outdoor Job</span><span>Concrete Contractors Near You</span><span>Serving All Of Central Ohio</span><span>Local Crew, Not A Franchise</span><span>Tell Us What You Need</span><span>9,000+ Jobs Since 2011</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>A+ BBB Rated Contractor</span><span>Licensed, Bonded, Insured</span><span>We Handle Every Permit</span><span>Get Your Free Estimate</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Driveways, patios, pool decks, walls, steps and outdoor living. One in-house crew for all.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/concrete/free-estimate</span></div>
+    </div>
+  </div>
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the keywords, the ad wording or the pages</span><span class="lang-pt">Algo sobre as keywords, o texto dos anúncios ou as páginas</span></label>
+      <textarea class="note-input note-block" data-note="sec-detail" data-label="Full build — general note" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Negativos ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🚫</div><div>
+    <h3><span class="lang-en">6 · Searches we will stop paying for</span><span class="lang-pt">6 · Buscas que vamos parar de pagar</span></h3>
+    <div class="sub"><span class="lang-en">109 terms in 9 lists</span><span class="lang-pt">109 termos em 9 listas</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">These are searches for work Maxima does not take on: asphalt paving, slab jacking, epoxy coatings, lawn care, job applications. Blocking a term means your ad never shows for any search containing it. After your review, sealing, screened porches, masonry and the word 'landscaping' came off these lists.</span><span class="lang-pt">São buscas por trabalhos que a Maxima não executa: pavimentação em asfalto, nivelamento de laje, revestimento epóxi, gramado, candidaturas a vaga. Bloquear um termo significa que seu anúncio nunca aparece para nenhuma busca que o contenha. Depois da sua revisão, selagem, screened porch, alvenaria e a palavra 'landscaping' saíram destas listas.</span></p>
+    
+    
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Landscaping &amp; lawn care</span><span class="lang-pt">Paisagismo e jardinagem</span></span>
+        <span class="pg">16 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$438.78 spent, cost per lead $87.76</span><span class="lang-pt">$438.78 gastos, custo por lead $87.76</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">landscapers</span><span class="kw ng">landscaper</span><span class="kw ng">landscaping company</span><span class="kw ng">landscaping companies</span><span class="kw ng">landscape company</span><span class="kw ng">landscape companies</span><span class="kw ng">lawn</span><span class="kw ng">lawn care</span><span class="kw ng">mulch</span><span class="kw ng">sod</span><span class="kw ng">tree service</span><span class="kw ng">irrigation</span><span class="kw ng">sprinkler</span><span class="kw ng">yard grading</span><span class="kw ng">topsoil</span><span class="kw ng">garden</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Landscaping &amp; lawn care</strong> (16 terms)</span><span class="lang-pt">Bloquear <strong>Paisagismo e jardinagem</strong> (16 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-11" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Slab jacking &amp; leveling</span><span class="lang-pt">Nivelamento de laje</span></span>
+        <span class="pg">8 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$122.92 spent, zero leads — a different trade</span><span class="lang-pt">$122.92 gastos, zero leads — outro ofício</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">leveling</span><span class="kw ng">level concrete</span><span class="kw ng">mudjacking</span><span class="kw ng">mud jacking</span><span class="kw ng">slab jacking</span><span class="kw ng">concrete lifting</span><span class="kw ng">concrete raising</span><span class="kw ng">polishing</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Slab jacking &amp; leveling</strong> (8 terms)</span><span class="lang-pt">Bloquear <strong>Nivelamento de laje</strong> (8 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-12" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Asphalt &amp; gravel</span><span class="lang-pt">Asfalto e cascalho</span></span>
+        <span class="pg">11 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$280.96 spent, cost per lead $93.65</span><span class="lang-pt">$280.96 gastos, custo por lead $93.65</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">asphalt</span><span class="kw ng">blacktop</span><span class="kw ng">black top</span><span class="kw ng">tar and chip</span><span class="kw ng">chip seal</span><span class="kw ng">gravel</span><span class="kw ng">millings</span><span class="kw ng">paving company</span><span class="kw ng">paving companies</span><span class="kw ng">sealcoating</span><span class="kw ng">seal coating</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Asphalt &amp; gravel</strong> (11 terms)</span><span class="lang-pt">Bloquear <strong>Asfalto e cascalho</strong> (11 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-13" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Wood decks</span><span class="lang-pt">Deck de madeira</span></span>
+        <span class="pg">9 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$73.50 spent, 5 clicks</span><span class="lang-pt">$73.50 gastos, 5 cliques</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">deck builder</span><span class="kw ng">deck builders</span><span class="kw ng">wood deck</span><span class="kw ng">composite deck</span><span class="kw ng">trex</span><span class="kw ng">archadeck</span><span class="kw ng">deck contractor</span><span class="kw ng">deck company</span><span class="kw ng">deck staining</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Wood decks</strong> (9 terms)</span><span class="lang-pt">Bloquear <strong>Deck de madeira</strong> (9 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-14" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Ready-mix suppliers</span><span class="lang-pt">Fornecedores de ready-mix</span></span>
+        <span class="pg">12 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">Concrete plants, not competitors</span><span class="lang-pt">Usinas de concreto, não concorrentes</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">ready mix</span><span class="kw ng">ready-mix</span><span class="kw ng">concrete supply</span><span class="kw ng">concrete plant</span><span class="kw ng">cubic yard</span><span class="kw ng">concrete delivery</span><span class="kw ng">concrete truck</span><span class="kw ng">quikrete</span><span class="kw ng">sakrete</span><span class="kw ng">bagged concrete</span><span class="kw ng">ernst concrete</span><span class="kw ng">concrete prices per yard</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Ready-mix suppliers</strong> (12 terms)</span><span class="lang-pt">Bloquear <strong>Fornecedores de ready-mix</strong> (12 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-15" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Epoxy &amp; floor coatings</span><span class="lang-pt">Epóxi e revestimentos</span></span>
+        <span class="pg">7 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$40.47 spent, zero leads</span><span class="lang-pt">$40.47 gastos, zero leads</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">epoxy</span><span class="kw ng">polyaspartic</span><span class="kw ng">floor coating</span><span class="kw ng">garage floor coating</span><span class="kw ng">paint garage floor</span><span class="kw ng">concrete paint</span><span class="kw ng">concrete stain kit</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Epoxy &amp; floor coatings</strong> (7 terms)</span><span class="lang-pt">Bloquear <strong>Epóxi e revestimentos</strong> (7 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-16" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">DIY, price shopping &amp; research</span><span class="lang-pt">DIY, preço baixo e pesquisa</span></span>
+        <span class="pg">20 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">$96.70 spent, zero leads</span><span class="lang-pt">$96.70 gastos, zero leads</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">diy</span><span class="kw ng">do it yourself</span><span class="kw ng">how to</span><span class="kw ng">how much does it cost to</span><span class="kw ng">cheap</span><span class="kw ng">free</span><span class="kw ng">home depot</span><span class="kw ng">lowes</span><span class="kw ng">menards</span><span class="kw ng">walmart</span><span class="kw ng">amazon</span><span class="kw ng">calculator</span><span class="kw ng">reddit</span><span class="kw ng">forum</span><span class="kw ng">youtube</span><span class="kw ng">pictures</span><span class="kw ng">images</span><span class="kw ng">wikipedia</span><span class="kw ng">vs</span><span class="kw ng">pros and cons</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>DIY, price shopping &amp; research</strong> (20 terms)</span><span class="lang-pt">Bloquear <strong>DIY, preço baixo e pesquisa</strong> (20 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-17" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Jobs &amp; suppliers</span><span class="lang-pt">Emprego e fornecedores</span></span>
+        <span class="pg">21 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">Career searches shouldn’t cost ad money</span><span class="lang-pt">Buscas de emprego não devem gastar mídia</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">job</span><span class="kw ng">jobs</span><span class="kw ng">hiring</span><span class="kw ng">career</span><span class="kw ng">careers</span><span class="kw ng">salary</span><span class="kw ng">employment</span><span class="kw ng">apply</span><span class="kw ng">resume</span><span class="kw ng">wage</span><span class="kw ng">per hour</span><span class="kw ng">supplier</span><span class="kw ng">wholesale</span><span class="kw ng">franchise</span><span class="kw ng">for sale</span><span class="kw ng">rental</span><span class="kw ng">rent</span><span class="kw ng">equipment</span><span class="kw ng">mixer</span><span class="kw ng">excavator</span><span class="kw ng">bobcat</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Jobs &amp; suppliers</strong> (21 terms)</span><span class="lang-pt">Bloquear <strong>Emprego e fornecedores</strong> (21 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-18" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    <div class="grp">
+      <div class="grp-head">
+        <span class="nm"><span class="lang-en">Foundation repair &amp; waterproofing</span><span class="lang-pt">Reparo de fundação e impermeabilização</span></span>
+        <span class="pg">5 <span class="lang-en">terms</span><span class="lang-pt">termos</span> · <span class="lang-en">A different trade, zero leads so far</span><span class="lang-pt">Outro ofício, zero leads até aqui</span></span>
+      </div>
+      <div class="grp-body">
+        <div class="kws"><span class="kw ng">foundation repair</span><span class="kw ng">waterproofing</span><span class="kw ng">basement waterproofing</span><span class="kw ng">stucco</span><span class="kw ng">block wall house</span></div>
+        <table style="margin-top:14px"><tbody><tr>
+          <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="negative"></td>
+          <td style="font-size:12.5px;color:var(--text2)"><span class="lang-en">Block <strong>Foundation repair &amp; waterproofing</strong> (5 terms)</span><span class="lang-pt">Bloquear <strong>Reparo de fundação e impermeabilização</strong> (5 termos)</span></td>
+          <td class="note-col"><textarea class="note-input" data-note="negative-19" rows="1"></textarea></td>
+        </tr></tbody></table>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- ══ Onda 2 ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">🗓️</div><div>
+    <h3><span class="lang-en">7 · Later, not now</span><span class="lang-pt">7 · Depois, não agora</span></h3>
+    <div class="sub"><span class="lang-en">2 campaigns, +$17/day, after 30–45 days</span><span class="lang-pt">2 campanhas, +$17/dia, após 30–45 dias</span></div>
+  </div></div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:var(--text2);line-height:1.55;margin-bottom:16px"><span class="lang-en">Two campaigns wait for the 30-day report: Commercial, rewritten for property managers, HOAs and after-market work, and Geo by City. Both cover pages with very little search demand so far (the commercial theme drew 57 impressions in six cycles), so they go in once the main structure is stable and we know what we saved.</span><span class="lang-pt">Duas campanhas esperam o relatório de 30 dias: Commercial, reescrita para property managers, HOAs e pós-obra, e Geo by City. As duas cobrem páginas com pouquíssima demanda de busca até aqui (o tema comercial teve 57 impressões em seis ciclos), então entram quando a estrutura principal estiver estável e soubermos o que economizamos.</span></p>
+    <div class="tw"><table>
+      <thead><tr>
+        <th style="width:40px;text-align:center"><span class="lang-en">OK</span><span class="lang-pt">OK</span></th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Budget</span><span class="lang-pt">Orçamento</span></th><th class="num"><span class="lang-en">Groups</span><span class="lang-pt">Grupos</span></th><th class="num"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span></th><th><span class="lang-en">What it covers</span><span class="lang-pt">O que cobre</span></th><th class="note-col"><span class="lang-en">Your note</span><span class="lang-pt">Sua nota</span></th>
+      </tr></thead>
+      <tbody><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="wave2"></td>
+    <td><strong>🏢 Commercial</strong></td>
+    <td class="num"><strong>$8</strong>/day</td>
+    <td class="num">3</td>
+    <td class="num">37</td>
+    <td><span class="lang-en">Commercial concrete repair and replacement for HOAs, apartments and property managers; commercial pools; sports courts</span><span class="lang-pt">Reparo e substituição de concreto comercial para HOAs, condomínios e property managers; piscinas comerciais; sports courts</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="wave2-20" rows="1"></textarea></td>
+  </tr><tr>
+    <td style="text-align:center"><input type="checkbox" class="approval-check" data-action="wave2"></td>
+    <td><strong>📍 Geo by City</strong></td>
+    <td class="num"><strong>$9</strong>/day</td>
+    <td class="num">6</td>
+    <td class="num">25</td>
+    <td><span class="lang-en">One ad group per city, using the 47 city pages on the new site</span><span class="lang-pt">Um grupo por cidade, usando as 47 páginas de cidade do site novo</span></td>
+    <td class="note-col"><textarea class="note-input" data-note="wave2-21" rows="1"></textarea></td>
+  </tr></tbody>
+    </table></div>
+
+    <h4 class="subhead"><span class="lang-en">What Wave 2 would contain</span><span class="lang-pt">O que a Onda 2 conteria</span></h4>
+    
+  <div class="mt-legend">
+    <span><span class="kw ph">&quot;like this&quot;</span> &nbsp;<span class="lang-en">phrase match — searches that contain this meaning</span><span class="lang-pt">phrase — buscas que contêm esse significado</span></span>
+    <span><span class="kw ex">[like this]</span> &nbsp;<span class="lang-en">exact match — this search and very close variants</span><span class="lang-pt">exact — essa busca e variações muito próximas</span></span>
+    <span><span class="kw br">like this</span> &nbsp;<span class="lang-en">broad match — discovery campaign only</span><span class="lang-pt">broad — só na campanha de descoberta</span></span>
+  </div>
+    
+  <h4 class="subhead">🏢 Commercial <span class="tag grey">$8/day</span> <span class="tag blue">3 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Commercial Concrete</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/commercial-concrete/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (18)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;commercial concrete repair&quot;</span><span class="kw ph">&quot;commercial concrete replacement&quot;</span><span class="kw ph">&quot;commercial concrete contractor&quot;</span><span class="kw ph">&quot;commercial concrete companies near me&quot;</span><span class="kw ph">&quot;commercial sidewalk replacement&quot;</span><span class="kw ph">&quot;commercial sidewalk repair&quot;</span><span class="kw ph">&quot;parking lot concrete repair&quot;</span><span class="kw ph">&quot;property management concrete contractor&quot;</span><span class="kw ph">&quot;hoa concrete contractor&quot;</span><span class="kw ph">&quot;apartment complex concrete contractor&quot;</span><span class="kw ph">&quot;ada ramp contractor&quot;</span><span class="kw ph">&quot;concrete trip hazard repair&quot;</span><span class="kw ph">&quot;dumpster pad installation&quot;</span><span class="kw ph">&quot;commercial concrete maintenance&quot;</span>
+        <span class="kw ex">[commercial concrete repair]</span><span class="kw ex">[commercial concrete contractor]</span><span class="kw ex">[hoa concrete contractor]</span><span class="kw ex">[property management concrete contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Commercial Concrete, Ohio</span><span>Commercial Concrete Repair</span><span>Sidewalk &amp; Curb Replacement</span><span>ADA-Compliant Remodels</span><span>Parking Lots &amp; Pole Bases</span><span>Apartment &amp; HOA Properties</span><span>Dumpster Pads &amp; Aprons</span><span>Hundreds Of Ohio Projects</span><span>Licensed, Bonded, Insured</span><span>We Handle Every Permit</span><span>In-House Crews, No Subs</span><span>Family-Owned Since 2011</span><span>Get Your Free Estimate</span><span>6.5-Bag 4500 PSI Mix</span><span>Serving Central Ohio</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete repair and replacement for apartment, HOA and commercial properties across Ohio.</p><p>Sidewalks, curbs, dumpster pads, parking lots, ADA remodels. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/commercial/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Commercial Pools</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/commercial-pools/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (10)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;commercial pool builder&quot;</span><span class="kw ph">&quot;commercial pool contractor near me&quot;</span><span class="kw ph">&quot;hoa pool contractor&quot;</span><span class="kw ph">&quot;community pool construction&quot;</span><span class="kw ph">&quot;apartment pool contractor&quot;</span><span class="kw ph">&quot;community pool renovation&quot;</span><span class="kw ph">&quot;hoa pool renovation&quot;</span>
+        <span class="kw ex">[commercial pool builder]</span><span class="kw ex">[commercial pool contractor]</span><span class="kw ex">[hoa pool contractor]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Commercial Pool Builders</span><span>Commercial Pool Contractor</span><span>Turnkey Pool Construction</span><span>Hotel &amp; HOA Pools</span><span>Apartment Community Pools</span><span>Full Project Management</span><span>Shell, Deck &amp; Surrounds</span><span>Commercial Pools, Ohio</span><span>Licensed, Bonded, Insured</span><span>We Handle Every Permit</span><span>In-House Crews, No Subs</span><span>Family-Owned Since 2011</span><span>Get Your Free Estimate</span><span>Serving Central Ohio</span><span>A+ BBB Rated Contractor</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Turnkey commercial pool construction — shell, deck and surrounds, managed start to finish.</p><p>Built to Ohio code and safety standards. Licensed, bonded and fully insured.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/commercial/pools</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Sports Courts</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/services/sports-courts/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (9)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;sport court contractor&quot;</span><span class="kw ph">&quot;backyard basketball court installation&quot;</span><span class="kw ph">&quot;pickleball court installation&quot;</span><span class="kw ph">&quot;concrete sport court&quot;</span><span class="kw ph">&quot;tennis court construction near me&quot;</span><span class="kw ph">&quot;community pickleball court construction&quot;</span><span class="kw ph">&quot;hoa pickleball court&quot;</span>
+        <span class="kw ex">[sport court contractor]</span><span class="kw ex">[pickleball court installation]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Sports Courts, Central Ohio</span><span>Backyard Basketball Courts</span><span>Pickleball Court Install</span><span>Play, Compete At Home</span><span>Painted And Lined For Play</span><span>Concrete Court Builders</span><span>Tennis &amp; Multi-Sport Courts</span><span>Built For Real Play</span><span>6.5-Bag 4500 PSI Mix</span><span>Get Your Free Estimate</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>Built For Ohio Winters</span><span>Financing Available</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Basketball, pickleball, tennis and multi-sport courts, painted and lined for play.</p><p>6.5-bag 4500 PSI fiber-reinforced mix and 10-gauge wire mesh. Built for Ohio freeze-thaw.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>Financing available. Book a free on-site estimate and get a written price this week.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/sports-courts/free-estimate</span></div>
+    </div>
+  </div>
+  <h4 class="subhead">📍 Geo by City <span class="tag grey">$9/day</span> <span class="tag blue">6 ad groups</span></h4>
+  
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Columbus</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/columbus/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (5)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete companies columbus ohio&quot;</span><span class="kw ph">&quot;patio contractor columbus ohio&quot;</span><span class="kw ph">&quot;driveway contractor columbus ohio&quot;</span><span class="kw ph">&quot;concrete work columbus ohio&quot;</span>
+        <span class="kw ex">[concrete companies columbus ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Columbus, OH</span><span>Columbus Concrete Company</span><span>Columbus Driveways &amp; Patios</span><span>Serving Columbus Since 2011</span><span>Find Our Columbus Work</span><span>Registered In Columbus</span><span>Local Crew, Not A Franchise</span><span>Columbus Concrete Experts</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls throughout Columbus. Free on-site estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/columbus-ohio/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Delaware</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/delaware/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete companies delaware ohio&quot;</span><span class="kw ph">&quot;patio contractor delaware ohio&quot;</span><span class="kw ph">&quot;driveway contractor delaware ohio&quot;</span>
+        <span class="kw ex">[concrete companies delaware ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Delaware, OH</span><span>Delaware Concrete Company</span><span>Delaware Driveways &amp; Patios</span><span>Serving Delaware County</span><span>Find Our Delaware Work</span><span>Registered In Delaware</span><span>Local Crew, Not A Franchise</span><span>Delaware Concrete Experts</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls throughout Delaware County. Free estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/delaware-ohio/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Dublin</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/dublin/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete companies dublin ohio&quot;</span><span class="kw ph">&quot;concrete patio dublin ohio&quot;</span><span class="kw ph">&quot;concrete driveway dublin ohio&quot;</span>
+        <span class="kw ex">[concrete companies dublin ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Dublin, OH</span><span>Dublin Concrete Company</span><span>Dublin Driveways &amp; Patios</span><span>Serving Dublin Since 2011</span><span>Find Our Dublin Work</span><span>Registered In Dublin</span><span>Local Crew, Not A Franchise</span><span>Dublin Concrete Experts</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls throughout Dublin. Free on-site estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/dublin-ohio/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Lewis Center</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/lewis-center/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete contractor lewis center ohio&quot;</span><span class="kw ph">&quot;concrete patio lewis center&quot;</span><span class="kw ph">&quot;concrete driveway lewis center&quot;</span>
+        <span class="kw ex">[concrete contractor lewis center ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Lewis Center</span><span>Lewis Center Concrete</span><span>Driveways &amp; Patios Near You</span><span>Serving Lewis Center, OH</span><span>Find Our Work Nearby</span><span>Local Crew, Not A Franchise</span><span>Lewis Center Contractors</span><span>Concrete Done Right Here</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls in Lewis Center. Free on-site estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/lewis-center/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Westerville</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/westerville/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete companies westerville ohio&quot;</span><span class="kw ph">&quot;concrete patio westerville&quot;</span><span class="kw ph">&quot;concrete driveway westerville&quot;</span>
+        <span class="kw ex">[concrete companies westerville ohio]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Westerville, OH</span><span>Westerville Concrete Co.</span><span>Westerville Driveways</span><span>Serving Westerville, Ohio</span><span>Find Our Westerville Work</span><span>Registered In Westerville</span><span>Local Crew, Not A Franchise</span><span>Westerville Contractors</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls in Westerville. Free on-site estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/westerville/concrete</span></div>
+    </div>
+  </div>
+  <div class="grp">
+    <div class="grp-head">
+      <span class="nm">Geo — Upper Arlington</span>
+      <span class="pg"><span class="lang-en">sends people to</span><span class="lang-pt">leva a pessoa para</span> <code>/areas-we-serve/upper-arlington/</code></span>
+    </div>
+    <div class="grp-body">
+      <div class="lbl"><span class="lang-en">Keywords</span><span class="lang-pt">Keywords</span> (4)</div>
+      <div class="kws">
+        <span class="kw ph">&quot;concrete companies upper arlington&quot;</span><span class="kw ph">&quot;concrete patio upper arlington&quot;</span><span class="kw ph">&quot;concrete driveway upper arlington&quot;</span>
+        <span class="kw ex">[concrete companies upper arlington]</span>
+        
+      </div>
+      
+      <div class="lbl"><span class="lang-en">Ad headlines — Google shows 3 of these at a time</span><span class="lang-pt">Títulos do anúncio — o Google mostra 3 por vez</span></div>
+      <div class="hls"><span>Concrete In Upper Arlington</span><span>Upper Arlington Concrete</span><span>UA Driveways &amp; Patios</span><span>Serving Upper Arlington</span><span>Find Our Work In UA</span><span>Registered In Your City</span><span>Local Crew, Not A Franchise</span><span>Upper Arlington Experts</span><span>Family-Owned Since 2011</span><span>In-House Crews, No Subs</span><span>9,000+ Happy Clients</span><span>A+ BBB Rated Contractor</span><span>Get Your Free Estimate</span><span>We Handle Every Permit</span><span>See Our Work Near You</span></div>
+      <div class="lbl"><span class="lang-en">Ad descriptions</span><span class="lang-pt">Descrições do anúncio</span></div>
+      <div class="dsc"><p>Concrete driveways, patios, walkways and walls in Upper Arlington. Free on-site estimate.</p><p>9,000+ happy clients across Central Ohio and an A+ BBB rating. Free estimate, no pressure.</p><p>Family-owned since 2011. In-house crews, no subcontractors. Licensed, bonded, insured.</p><p>We handle design, demolition, permits, pouring and cleanup. One crew, start to finish.</p></div>
+      <div class="lbl"><span class="lang-en">Link shown in the ad</span><span class="lang-pt">Link exibido no anúncio</span></div>
+      <div class="kws"><span class="kw ph">maximaconcrete.com/upper-arlington/concrete</span></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ══ Cronograma ══ -->
+<div class="section">
+  <div class="section-head"><div class="ico">✅</div><div>
+    <h3><span class="lang-en">8 · How we roll it out</span><span class="lang-pt">8 · Como vamos executar</span></h3>
+    <div class="sub"><span class="lang-en">Nothing switches over in a single day</span><span class="lang-pt">Nada troca de uma vez só</span></div>
+  </div></div>
+  <div class="section-body">
+    <div class="steps">
+    <div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 1</span><span class="lang-pt">Dia 1</span></span><h4><span class="lang-en">Point every ad at its service page</span><span class="lang-pt">Apontar cada anúncio para a sua página de serviço</span></h4><p><span class="lang-en">Each ad group gets the link for the service it advertises, so the visitor lands on the page they searched for.</span><span class="lang-pt">Cada grupo recebe o link do serviço que anuncia, para o visitante cair na página que buscou.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 1</span><span class="lang-pt">Dia 1</span></span><h4><span class="lang-en">Add the negative keyword lists to the current campaigns</span><span class="lang-pt">Aplicar as listas de negativos nas campanhas atuais</span></h4><p><span class="lang-en">Applied before the switch, so the new structure starts with clean traffic.</span><span class="lang-pt">Aplicadas antes da migração, para a estrutura nova começar com tráfego limpo.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 2</span><span class="lang-pt">Dia 2</span></span><h4><span class="lang-en">Build the new campaigns, paused</span><span class="lang-pt">Montar as campanhas novas, pausadas</span></h4><p><span class="lang-en">Everything is imported, reviewed and checked before a single ad goes live.</span><span class="lang-pt">Tudo importado, revisado e conferido antes de qualquer anúncio ir ao ar.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Days 3–10</span><span class="lang-pt">Dias 3–10</span></span><h4><span class="lang-en">Switch over in three waves, not all at once</span><span class="lang-pt">Migrar em três levas, não de uma vez</span></h4><p><span class="lang-en">Brand and Driveways first. Patios three days later. Then the rest, including the new Structural Concrete campaign. The old campaign is paused only once the new one is spending.</span><span class="lang-pt">Brand e Driveways primeiro. Patios três dias depois. Depois o resto, incluindo a nova Structural Concrete. A campanha antiga só é pausada quando a nova já está gastando.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 3</span><span class="lang-pt">Dia 3</span></span><h4><span class="lang-en">Merge the duplicate Columbus target</span><span class="lang-pt">Unificar o alvo duplicado de Columbus</span></h4><p><span class="lang-en">Consolidate the two Columbus location targets into one, so the campaigns bid once for the city.</span><span class="lang-pt">Consolidar os dois alvos de localização de Columbus em um, para as campanhas darem um lance só pela cidade.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 10</span><span class="lang-pt">Dia 10</span></span><h4><span class="lang-en">Turn on the discovery campaign last</span><span class="lang-pt">Ligar a campanha de descoberta por último</span></h4><p><span class="lang-en">It needs the other campaigns’ keywords in place first, and a weekly search term review on the calendar.</span><span class="lang-pt">Ela precisa das keywords das outras no lugar, e da revisão semanal de termos na agenda.</span></p></div></div><div class="step"><div class="step-body"><span class="when"><span class="lang-en">Day 30–45</span><span class="lang-pt">Dia 30–45</span></span><h4><span class="lang-en">Report back and decide on Wave 2</span><span class="lang-pt">Reportar e decidir a Onda 2</span></h4><p><span class="lang-en">Thirty days of the new structure, measured against today’s $84.25 non-brand cost per lead.</span><span class="lang-pt">Trinta dias de estrutura nova, medidos contra os $84.25 de custo por lead não-brand de hoje.</span></p></div></div>
+    </div>
+    <div class="callout blue" style="margin-top:18px">
+      <strong><span class="lang-en">What we will measure:</span><span class="lang-pt">O que vamos medir:</span></strong>
+      <span class="lang-en">cost per lead outside of brand searches. Today it is $84.25, against $30.63 on brand searches. Thirty days after the switch we report back against that number, and that is what decides Wave 2.</span><span class="lang-pt">custo por lead fora das buscas de marca. Hoje é $84.25, contra $30.63 nas buscas de marca. Trinta dias após a migração reportamos contra esse número, e é ele que decide a Onda 2.</span>
+    </div>
+    <div class="callout green">
+      <strong><span class="lang-en">The longer-term goal, in your words:</span><span class="lang-pt">A meta de longo prazo, nas suas palavras:</span></strong>
+      <span class="lang-en">get organic search (SEO, AEO, GEO) strong enough that this budget starts coming down. Each 30-day report shows paid leads, cost per lead and spend by campaign, so every cut is made with numbers behind it, campaign by campaign, starting with whatever organic already covers.</span><span class="lang-pt">deixar a busca orgânica (SEO, AEO, GEO) forte o bastante para este orçamento começar a descer. Cada relatório de 30 dias mostra leads pagos, custo por lead e gasto por campanha, para cada corte ser feito com número por trás, campanha a campanha, começando pelo que o orgânico já cobre.</span>
+    </div>
+    <div class="section-note">
+      <label><span class="lang-en">Anything about the timing or the rollout</span><span class="lang-pt">Algo sobre o cronograma ou a execução</span></label>
+      <textarea class="note-input note-block" data-note="sec-rollout" data-label="Rollout — general note" rows="2"></textarea>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  <p><span class="lang-en">Leads means phone calls and form submissions only. Figures come from the Google Ads reports for March–August 2026 and from the pages of maximaconcrete.com. Prepared by Igor Stutz, September 10, 2026. Revised September 19, 2026, after your review of the first version.</span><span class="lang-pt">Leads são apenas ligações e envios de formulário. Números vindos dos relatórios do Google Ads de março a agosto de 2026 e das páginas de maximaconcrete.com. Preparado por Igor Stutz, 10 de setembro de 2026. Revisado em 19 de setembro de 2026, depois da sua revisão da primeira versão.</span></p>
+</div>
+
+</div>
+
+<div class="approval-bar">
+  <div class="count"><span id="approved-count">0</span> / <span id="total-actions">0</span> <span class="lang-en">approved</span><span class="lang-pt">aprovados</span> · <span class="notes-count" id="notes-count">0</span> <span class="lang-en">notes</span><span class="lang-pt">notas</span></div>
+  <div class="spacer"></div>
+  <button onclick="selectAll()"><span class="lang-en">Approve all</span><span class="lang-pt">Aprovar todas</span></button>
+  <button onclick="deselectAll()"><span class="lang-en">Clear all</span><span class="lang-pt">Limpar todas</span></button>
+  <button class="btn-export" onclick="exportApproved()"><span class="lang-en">Download my answers</span><span class="lang-pt">Baixar minhas respostas</span></button>
+</div>
+
+<script>
+const PLACEHOLDERS = { en: 'Agree, disagree, or your idea…', pt: 'Concordo, discordo, ou sua ideia…' };
+
+const API_URL   = 'https://script.google.com/macros/s/AKfycbyRmxBUAAXn5Qnlf1fk2kDoPJwo9Zf0XW9FvR8E0ccVy0fExvZGzSU-i3CW-xIE99W6/exec';
+const REPORT_ID = 'concrete08';
+const REMOTE    = /^https:\/\//.test(API_URL);
+const LANG_KEY  = 'maxima-lang';
+const CACHE_KEY = 'maxima-cache-concrete08';
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+}
+
+const checkboxes = document.querySelectorAll('.approval-check');
+const notes = document.querySelectorAll('.note-input');
+const countEl = document.getElementById('approved-count');
+const totalEl = document.getElementById('total-actions');
+const notesCountEl = document.getElementById('notes-count');
+totalEl.textContent = checkboxes.length;
+
+checkboxes.forEach((cb, i) => { const tr = cb.closest('tr'); const n = tr && tr.querySelector('.note-input'); cb._key = n ? ('chk_' + n.dataset.note) : ('chk_' + i); });
+
+const syncEl = document.createElement('span');
+syncEl.id = 'sync-status';
+syncEl.style.cssText = 'font-size:12px; margin-left:10px; white-space:nowrap; font-weight:500;';
+if (countEl && countEl.parentNode) countEl.parentNode.insertBefore(syncEl, countEl.nextSibling);
+function setSync(text, color) { syncEl.textContent = text; syncEl.style.color = color || 'var(--text3)'; }
+setSync(REMOTE ? '☁ shared' : '', REMOTE ? 'var(--g-green-dark)' : 'var(--text3)');
+
+checkboxes.forEach(cb => cb.addEventListener('change', () => {
+  cb.closest('tr').classList.toggle('approved', cb.checked);
+  updateCount();
+  remoteSave('approval', cb._key, cb.checked ? '1' : '0');
+}));
+const noteTimers = {};
+notes.forEach(n => n.addEventListener('input', () => {
+  n.classList.toggle('filled', n.value.trim().length > 0);
+  updateCount();
+  clearTimeout(noteTimers[n.dataset.note]);
+  noteTimers[n.dataset.note] = setTimeout(() => remoteSave('note', n.dataset.note, n.value), 700);
+}));
+
+function updateCount() {
+  countEl.textContent = document.querySelectorAll('.approval-check:checked').length;
+  notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
+}
+function selectAll() { checkboxes.forEach(cb => { cb.checked = true; cb.closest('tr').classList.add('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '1' }))); }
+function deselectAll() { checkboxes.forEach(cb => { cb.checked = false; cb.closest('tr').classList.remove('approved'); }); updateCount(); remoteBatch('approval', Array.from(checkboxes).map(cb => ({ key: cb._key, value: '0' }))); }
+
+function rowLabel(tr) {
+  return Array.from(tr.querySelectorAll('td'))
+    .filter(td => !td.querySelector('.approval-check') && !td.querySelector('.note-input'))
+    .map(c => c.textContent.trim().replace(/\s+/g, ' '))
+    .filter(Boolean).join(' | ');
+}
+
+function exportApproved() {
+  const approved = [];
+  document.querySelectorAll('.approval-check:checked').forEach(cb => {
+    const tr = cb.closest('tr');
+    const noteEl = tr.querySelector('.note-input');
+    approved.push({ action: cb.dataset.action, values: rowLabel(tr), note: noteEl ? noteEl.value.trim() : '' });
+  });
+  const comments = [];
+  notes.forEach(n => {
+    const val = n.value.trim(); if (!val) return;
+    const tr = n.closest('tr');
+    const cb = tr ? tr.querySelector('.approval-check') : null;
+    if (cb && cb.checked) return;
+    comments.push({ label: tr ? rowLabel(tr) : (n.dataset.label || n.dataset.note), note: val });
+  });
+  if (!approved.length && !comments.length) {
+    alert('No actions approved and no notes written yet.\nNenhuma ação aprovada e nenhuma nota escrita ainda.');
+    return;
+  }
+  let t = 'MAXIMA CONCRETE — ACCOUNT REBUILD: APPROVED ACTIONS & NOTES (September 2026)\n';
+  t += '='.repeat(72) + '\n';
+  const labels = {
+    campaign: 'CAMPAIGNS APPROVED TO LAUNCH NOW',
+    wave2: 'WAVE 2 CAMPAIGNS (LATER)',
+    negative: 'NEGATIVE KEYWORD LISTS',
+    geo: 'GEOGRAPHY CHANGES',
+    ads: 'AD COPY',
+    decision: 'DECISION — REPAIR & RESURFACING WORK'
+  };
+  if (approved.length) {
+    t += '\n### APPROVED (' + approved.length + ') ###\n';
+    const groups = {};
+    approved.forEach(i => { (groups[i.action] = groups[i.action] || []).push(i); });
+    Object.keys(groups).forEach(a => {
+      t += '\n' + (labels[a] || a) + '\n' + '-'.repeat(40) + '\n';
+      groups[a].forEach(i => { t += '  [x] ' + i.values + '\n'; if (i.note) t += '        note: ' + i.note + '\n'; });
+    });
+  }
+  if (comments.length) {
+    t += '\n### NOTES & COMMENTS (' + comments.length + ') ###\n' + '-'.repeat(40) + '\n';
+    comments.forEach(c => { t += '  • ' + c.label + '\n        note: ' + c.note + '\n'; });
+  }
+  t += '\n' + '='.repeat(72) + '\n';
+  t += 'Summary: ' + approved.length + ' items approved, ' + comments.length + ' additional notes.\n';
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_concrete_rebuild_approval.txt'; a.click();
+}
+
+function cacheGet() { try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}'); } catch (e) { return {}; } }
+function cachePut(kind, key, value) { try { const c = cacheGet(); const b = kind === 'note' ? 'notes' : 'approvals'; c[b] = c[b] || {}; c[b][key] = value; localStorage.setItem(CACHE_KEY, JSON.stringify(c)); } catch (e) {} }
+function applyState(d) {
+  if (!d) return;
+  if (d.notes) notes.forEach(n => { const v = d.notes[n.dataset.note]; if (v != null) { n.value = v; n.classList.toggle('filled', String(v).trim().length > 0); } });
+  if (d.approvals) checkboxes.forEach(cb => { const v = d.approvals[cb._key]; if (v != null) { const on = (v === '1' || v === 1 || v === true); cb.checked = on; cb.closest('tr').classList.toggle('approved', on); } });
+  updateCount();
+}
+async function loadAll() {
+  applyState(cacheGet());
+  if (!REMOTE) return;
+  try {
+    setSync('☁ syncing…');
+    const r = await fetch(API_URL + '?report=' + encodeURIComponent(REPORT_ID), { method: 'GET' });
+    const d = await r.json();
+    applyState(d);
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify(d)); } catch (e) {}
+    setSync('☁ shared', 'var(--g-green-dark)');
+  } catch (e) { setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'); }
+}
+function remoteSave(kind, key, value) {
+  cachePut(kind, key, value);
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, kind: kind, key: key, value: value }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+function remoteBatch(kind, entries) {
+  entries.forEach(e => cachePut(kind, e.key, e.value));
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, items: entries.map(e => ({ kind: kind, key: e.key, value: e.value })) }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadAll(); });
+
+let saved = 'en';
+try { saved = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) {}
+setLang(saved);
+loadAll();
+</script>
+
+</body>
+</html>
