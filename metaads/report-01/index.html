@@ -146,6 +146,14 @@ figure img,figure video{width:100%;height:100%;object-fit:cover;display:block}
 figure .frame.v{aspect-ratio:2/3}
 figcaption{font-size:12.5px;color:var(--ink-2);line-height:1.4}
 figcaption b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+figcaption{display:flex;flex-direction:column;gap:2px}
+figcaption .ad{font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+figcaption .stats{font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+figcaption .best-pill{margin-left:4px;vertical-align:1px}
+figure.win .frame{border:2px solid var(--accent)}
+.gallery{grid-template-columns:repeat(5,1fr)}
+@media (max-width:960px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.gallery{grid-template-columns:repeat(2,1fr)}}
 .creative-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media (max-width:760px){.creative-notes{grid-template-columns:1fr}}
 .creative-notes div{border-top:1px solid var(--line);padding-top:10px;font-size:13.5px;color:var(--ink-2)}
@@ -161,6 +169,7 @@ tbody td{border-bottom:1px solid var(--line-soft)}
 tbody tr.group td{background:var(--bg);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-block:7px}
 tbody tr.best td{font-weight:600}
 .best-pill{margin-left:8px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:2px 6px;border-radius:3px;font-weight:500}
+td .cr{display:block;font-size:11.5px;font-weight:400;color:var(--ink-3);margin-top:1px}
 tfoot td{font-weight:600;border-top:2px solid var(--ink)}
 
 /* findings + steps */
@@ -221,10 +230,10 @@ footer p{max-width:none}
       <p class="pt">Engajamentos, visitantes do site e quem assistiu ao vídeo viram públicos de remarketing para a próxima fase.</p>
     </div>
     <div class="goal">
-      <span class="big">6</span>
+      <span class="big">5</span>
       <h3><span class="en">Creatives tested</span><span class="pt">Criativos testados</span></h3>
-      <p class="en">Five static designs and one video, ranked by cost per website visit.</p>
-      <p class="pt">Cinco artes estáticas e um vídeo, comparados pelo custo por visita ao site.</p>
+      <p class="en">Four static designs and one video, compared by cost per website visit.</p>
+      <p class="pt">Quatro artes estáticas e um vídeo, comparados pelo custo por visita ao site.</p>
     </div>
   </div>
 </div>
@@ -321,22 +330,21 @@ footer p{max-width:none}
 <section>
   <div class="sec-head">
     <span class="eyebrow"><span class="en">Creatives</span><span class="pt">Criativos</span></span>
-    <h2><span class="en">What people saw</span><span class="pt">O que as pessoas viram</span></h2>
-    <p class="en">Five static designs and one 52-second vertical video ran across the three campaigns.</p>
-    <p class="pt">Cinco artes estáticas e um vídeo vertical de 52 segundos rodaram nas três campanhas.</p>
+    <h2><span class="en">What people saw, and how each one did</span><span class="pt">O que as pessoas viram, e como cada um foi</span></h2>
+    <p class="en">The July traffic campaign ran a 52-second vertical video. The September campaign tested four static designs side by side, one per ad.</p>
+    <p class="pt">A campanha de tráfego de julho rodou um vídeo vertical de 52 segundos. A de setembro testou quatro artes estáticas lado a lado, uma por anúncio.</p>
   </div>
   <div class="gallery">
-    <figure><div class="frame"><img src="assets/creative-1.jpg" alt="Outdoor Living Done Right creative: patio with fire pit and outdoor kitchen" loading="lazy" width="800" height="1200"></div><figcaption><b>Outdoor Living</b><span class="en">Fire features, kitchens, pavilions</span><span class="pt">Lareiras, cozinhas, pergolados</span></figcaption></figure>
-    <figure><div class="frame"><img src="assets/creative-2.jpg" alt="Concrete Done Right creative: new driveway being finished" loading="lazy" width="800" height="1200"></div><figcaption><b>Concrete Done Right</b><span class="en">Driveways, patios, foundations</span><span class="pt">Garagens, pátios, fundações</span></figcaption></figure>
-    <figure><div class="frame"><img src="assets/creative-3.jpg" alt="Built to Last creative with pool deck and crew photos, dark layout" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · A</b><span class="en">Full service list, crew photos</span><span class="pt">Lista de serviços, fotos da equipe</span></figcaption></figure>
-    <figure><div class="frame"><img src="assets/creative-4.jpg" alt="Built to Last creative with pool deck and crew photos, split layout" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · B</b><span class="en">Same message, lighter layout</span><span class="pt">Mesma mensagem, layout mais claro</span></figcaption></figure>
-    <figure><div class="frame"><img src="assets/creative-5.jpg" alt="Built to Last creative with a finished residential driveway" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · C</b><span class="en">Finished driveway, clean house shot</span><span class="pt">Garagem pronta, foto da casa</span></figcaption></figure>
-    <figure><div class="frame v"><video src="assets/video.mp4" poster="assets/video-poster.jpg" controls muted playsinline preload="none"></video></div><figcaption><b>Welcome to Maxima Concrete</b><span class="en">Video · 0:52 · 9:16</span><span class="pt">Vídeo · 0:52 · 9:16</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-1.jpg" alt="Outdoor Living Done Right creative: patio with fire pit and outdoor kitchen" loading="lazy" width="800" height="1200"></div><figcaption><b>Outdoor Living Done Right</b><span class="ad">New Traffic Ad</span><span class="stats">88 <span class="en">visits</span><span class="pt">visitas</span> · <span class="en">$0.40/visit</span><span class="pt">US$ 0,40/visita</span> · CTR 1.84%</span></figcaption></figure>
+    <figure class="win"><div class="frame"><img src="assets/creative-2.jpg" alt="Concrete Done Right creative: new driveway being finished" loading="lazy" width="800" height="1200"></div><figcaption><b>Concrete Done Right <span class="best-pill"><span class="en">Top</span><span class="pt">Melhor</span></span></b><span class="ad">New Traffic Ad - 2</span><span class="stats">118 <span class="en">visits</span><span class="pt">visitas</span> · <span class="en">$0.32/visit</span><span class="pt">US$ 0,32/visita</span> · CTR 2.27%</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-3.jpg" alt="Built to Last creative with pool deck, service list and crew photos" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · <span class="en">Pool deck</span><span class="pt">Piscina</span></b><span class="ad">New Traffic Ad - 3</span><span class="stats">26 <span class="en">visits</span><span class="pt">visitas</span> · <span class="en">$0.46/visit</span><span class="pt">US$ 0,46/visita</span> · CTR 1.54%</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-4.jpg" alt="Built to Last creative with a finished residential driveway" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · <span class="en">Driveway</span><span class="pt">Garagem</span></b><span class="ad">New Traffic Ad - 4</span><span class="stats">25 <span class="en">visits</span><span class="pt">visitas</span> · <span class="en">$0.37/visit</span><span class="pt">US$ 0,37/visita</span> · CTR 1.67%</span></figcaption></figure>
+    <figure><div class="frame v"><video src="assets/video.mp4" poster="assets/video-poster.jpg" controls muted playsinline preload="none"></video></div><figcaption><b>Welcome to Maxima Concrete · <span class="en">video</span><span class="pt">vídeo</span></b><span class="ad">Tailored web traffic 7/21</span><span class="stats">59 <span class="en">visits</span><span class="pt">visitas</span> · <span class="en">$0.33/visit</span><span class="pt">US$ 0,33/visita</span> · CTR 2.80%</span></figcaption></figure>
   </div>
   <div class="creative-notes">
-    <div><b><span class="en">Consistent offer</span><span class="pt">Oferta consistente</span></b><span class="en">Every creative carries “Free Estimates” and “Financing Available”, plus the phone number and website.</span><span class="pt">Todos os criativos trazem “Free Estimates” e “Financing Available”, além do telefone e do site.</span></div>
-    <div><b><span class="en">Two angles</span><span class="pt">Dois ângulos</span></b><span class="en">Core concrete work (driveways, foundations) and outdoor living (pools, pavers, kitchens).</span><span class="pt">Concreto (garagens, fundações) e áreas externas (piscinas, pisos, cozinhas).</span></div>
-    <div><b><span class="en">Local signal</span><span class="pt">Sinal local</span></b><span class="en">“Central Ohio” appears in two designs. Naming the area helps homeowners see the ad is for them.</span><span class="pt">“Central Ohio” aparece em duas artes. Citar a região ajuda o morador a perceber que o anúncio é para ele.</span></div>
+    <div><b><span class="en">The simplest message won</span><span class="pt">A mensagem mais simples venceu</span></b><span class="en">“Concrete Done Right” focuses on one job, a driveway being finished, and a short list of four services. It had the best CTR and the cheapest visit of the September test.</span><span class="pt">“Concrete Done Right” foca em um único serviço, uma garagem sendo finalizada, e uma lista curta de quatro serviços. Teve o melhor CTR e a visita mais barata do teste de setembro.</span></div>
+    <div><b><span class="en">Busier layouts cost more</span><span class="pt">Artes mais carregadas custaram mais</span></b><span class="en">The pool-deck design packs a photo strip, five services and two taglines. It had the lowest CTR (1.54%) and the most expensive visit ($0.46).</span><span class="pt">A arte da piscina reúne faixa de fotos, cinco serviços e dois slogans. Teve o menor CTR (1,54%) e a visita mais cara (US$ 0,46).</span></div>
+    <div><b><span class="en">The video drew the most clicks</span><span class="pt">O vídeo atraiu mais cliques</span></b><span class="en">The video’s 2.80% CTR is the highest of all ads. Its campaign optimized for clicks rather than visits, so the video is worth re-testing in a landing page view campaign.</span><span class="pt">O CTR de 2,80% do vídeo é o maior entre todos os anúncios. A campanha dele otimizava para clique, não para visita, então vale testar o vídeo de novo numa campanha de visitas à página.</span></div>
   </div>
 </section>
 
@@ -361,12 +369,12 @@ footer p{max-width:none}
       </tr></thead>
       <tbody>
         <tr class="group"><td colspan="10"><span class="en">Traffic · September (Sep 1 – 25)</span><span class="pt">Tráfego · Setembro (1 – 25 set)</span></td></tr>
-        <tr><td>New Traffic Ad</td><td>$35.14</td><td>4,775</td><td>3,851</td><td>1.24</td><td>$7.36</td><td>88</td><td>1.84%</td><td>88</td><td>$0.40</td></tr>
-        <tr class="best"><td>New Traffic Ad - 2<span class="best-pill"><span class="en">Top</span><span class="pt">Melhor</span></span></td><td>$38.04</td><td>5,458</td><td>3,958</td><td>1.38</td><td>$6.97</td><td>124</td><td>2.27%</td><td>118</td><td>$0.32</td></tr>
-        <tr><td>New Traffic Ad - 3</td><td>$11.94</td><td>1,688</td><td>1,267</td><td>1.33</td><td>$7.07</td><td>26</td><td>1.54%</td><td>26</td><td>$0.46</td></tr>
-        <tr><td>New Traffic Ad - 4</td><td>$9.36</td><td>1,378</td><td>1,122</td><td>1.23</td><td>$6.79</td><td>23</td><td>1.67%</td><td>25</td><td>$0.37</td></tr>
+        <tr><td>New Traffic Ad<span class="cr">Outdoor Living Done Right</span></td><td>$35.14</td><td>4,775</td><td>3,851</td><td>1.24</td><td>$7.36</td><td>88</td><td>1.84%</td><td>88</td><td>$0.40</td></tr>
+        <tr class="best"><td>New Traffic Ad - 2<span class="best-pill"><span class="en">Top</span><span class="pt">Melhor</span></span><span class="cr">Concrete Done Right</span></td><td>$38.04</td><td>5,458</td><td>3,958</td><td>1.38</td><td>$6.97</td><td>124</td><td>2.27%</td><td>118</td><td>$0.32</td></tr>
+        <tr><td>New Traffic Ad - 3<span class="cr">Built to Last · <span class="en">Pool deck</span><span class="pt">Piscina</span></span></td><td>$11.94</td><td>1,688</td><td>1,267</td><td>1.33</td><td>$7.07</td><td>26</td><td>1.54%</td><td>26</td><td>$0.46</td></tr>
+        <tr><td>New Traffic Ad - 4<span class="cr">Built to Last · <span class="en">Driveway</span><span class="pt">Garagem</span></span></td><td>$9.36</td><td>1,378</td><td>1,122</td><td>1.23</td><td>$6.79</td><td>23</td><td>1.67%</td><td>25</td><td>$0.37</td></tr>
         <tr class="group"><td colspan="10"><span class="en">Traffic · July</span><span class="pt">Tráfego · Julho</span></td></tr>
-        <tr><td>Tailored web traffic 7/21</td><td>$19.21</td><td>3,287</td><td>2,650</td><td>1.24</td><td>$5.84</td><td>92</td><td>2.80%</td><td>59</td><td>$0.33</td></tr>
+        <tr><td>Tailored web traffic 7/21<span class="cr">Welcome to Maxima Concrete · <span class="en">video</span><span class="pt">vídeo</span></span></td><td>$19.21</td><td>3,287</td><td>2,650</td><td>1.24</td><td>$5.84</td><td>92</td><td>2.80%</td><td>59</td><td>$0.33</td></tr>
         <tr class="group"><td colspan="10">Leads</td></tr>
         <tr><td>New Leads Ad</td><td>$71.44</td><td>1,945</td><td>929</td><td>2.09</td><td>$36.73</td><td>27</td><td>1.39%</td><td>14</td><td>$5.10</td></tr>
       </tbody>
@@ -388,9 +396,9 @@ footer p{max-width:none}
       <p class="pt">As campanhas de tráfego levaram 316 pessoas ao site a US$ 0,36 por visita. A de setembro, otimizada para visita à página, quase não desperdiçou cliques.</p>
     </div>
     <div class="finding">
-      <h3><span class="en">“New Traffic Ad - 2” is the early winner</span><span class="pt">“New Traffic Ad - 2” saiu na frente</span></h3>
-      <p class="en">It had the highest CTR (2.27%), the most visits (118) and the lowest cost per visit in September ($0.32).</p>
-      <p class="pt">Teve o maior CTR (2,27%), o maior volume (118 visitas) e o menor custo por visita de setembro (US$ 0,32).</p>
+      <h3><span class="en">“Concrete Done Right” is the early winner</span><span class="pt">“Concrete Done Right” saiu na frente</span></h3>
+      <p class="en">Running as “New Traffic Ad - 2”, it had the highest CTR (2.27%), the most visits (118) and the lowest cost per visit in September ($0.32).</p>
+      <p class="pt">Rodando como “New Traffic Ad - 2”, teve o maior CTR (2,27%), o maior volume (118 visitas) e o menor custo por visita de setembro (US$ 0,32).</p>
     </div>
     <div class="finding">
       <h3><span class="en">Lead tracking is confirmed</span><span class="pt">Rastreamento de leads confirmado</span></h3>
@@ -413,8 +421,8 @@ footer p{max-width:none}
   <div class="steps">
     <div class="step"><div>
       <h3><span class="en">Keep traffic running, led by the winning ad</span><span class="pt">Manter o tráfego, puxado pelo anúncio vencedor</span></h3>
-      <p class="en">All ads are paused right now. Restart the landing page view campaign so the pixel and audiences keep growing, with budget weighted toward “New Traffic Ad - 2” and new variations of it.</p>
-      <p class="pt">Hoje todos os anúncios estão pausados. Retomar a campanha de visitas à página para o pixel e os públicos continuarem crescendo, com mais verba no “New Traffic Ad - 2” e em novas variações dele.</p>
+      <p class="en">All ads are paused right now. Restart the landing page view campaign so the pixel and audiences keep growing, with budget weighted toward “Concrete Done Right” and new variations of it.</p>
+      <p class="pt">Hoje todos os anúncios estão pausados. Retomar a campanha de visitas à página para o pixel e os públicos continuarem crescendo, com mais verba no “Concrete Done Right” e em novas variações dele.</p>
     </div></div>
     <div class="step"><div>
       <h3><span class="en">Retarget warm audiences for leads</span><span class="pt">Fazer remarketing para gerar leads</span></h3>
