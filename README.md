@@ -15,6 +15,7 @@
 
 - **`index.html`** — latest report: **Report 02 · June 2026 (Monthly, May→June comparison)**
 - **`report-01-jun8.html`** — Report 01 (First report, weekly May 25–31 vs Jun 1–7)
+- **`metaads/report-01/`** — Meta Ads Report 01 (Aug 1 – Sep 25, 2026 · 45-day warm-up)
 
 ## 🚀 Viewing
 

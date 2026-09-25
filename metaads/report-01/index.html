@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Meta Ads · Maxima Concrete · Report 01 (Aug 1 – Sep 25, 2026)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#eceeed;
+  --paper:#f8f9f8;
+  --ink:#1b2023;
+  --ink-2:#4b5357;
+  --ink-3:#737c80;
+  --line:#d3d8d8;
+  --line-soft:#e2e6e5;
+  --navy:#10284a;
+  --navy-ink:#f3f6fa;
+  --brand-orange:#e8932a;
+  --accent:#2a6fc4;
+  --accent-soft:#dbe7f7;
+  --muted-bar:#aab3b6;
+  --warn:#a14d0c;
+  --warn-soft:#f6e3d3;
+  --good:#1f7a4d;
+  --good-soft:#d8efe2;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#141719;--paper:#1c2022;--ink:#eef1f1;--ink-2:#b9c1c3;--ink-3:#8b9396;
+    --line:#343a3c;--line-soft:#2a2f31;--navy:#0d213d;--navy-ink:#eef3fa;--brand-orange:#f0a040;
+    --accent:#4a8ee6;--accent-soft:#1d3552;
+    --muted-bar:#5d676a;--warn:#e68a4a;--warn-soft:#3c2a1e;--good:#4cc184;--good-soft:#1c3629;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141719;--paper:#1c2022;--ink:#eef1f1;--ink-2:#b9c1c3;--ink-3:#8b9396;
+  --line:#343a3c;--line-soft:#2a2f31;--navy:#0d213d;--navy-ink:#eef3fa;--brand-orange:#f0a040;
+  --accent:#4a8ee6;--accent-soft:#1d3552;
+  --muted-bar:#5d676a;--warn:#e68a4a;--warn-soft:#3c2a1e;--good:#4cc184;--good-soft:#1c3629;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding:0 16px;padding-block:32px 64px}
+[data-lang="en"] .pt{display:none!important}
+[data-lang="pt"] .en{display:none!important}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:48px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(34px,6vw,56px);font-weight:800;font-stretch:88%;letter-spacing:-.01em}
+h2{font-size:26px;font-weight:700;font-stretch:92%}
+h3{font-size:17px;font-weight:650}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.sub{font-size:13px;color:var(--ink-3)}
+
+/* header */
+header{display:flex;flex-direction:column;gap:14px;border-bottom:2px solid var(--ink);padding-bottom:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lang{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;font-family:var(--mono);font-size:12px}
+.lang button{border:0;background:var(--paper);color:var(--ink-2);padding:6px 12px;cursor:pointer;font:inherit;letter-spacing:.06em}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+.meta b{color:var(--ink);font-weight:500}
+.lede{font-size:17px;color:var(--ink-2)}
+
+/* phase band */
+.phase{background:var(--navy);color:var(--navy-ink);border-radius:4px;padding:26px 28px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr);gap:28px}
+@media (max-width:820px){.phase{grid-template-columns:1fr;padding:22px 20px}}
+.phase .eyebrow{color:var(--brand-orange)}
+.phase h2{color:var(--navy-ink);margin-top:8px}
+.phase .intro p{opacity:.85;margin-top:10px;font-size:14.5px}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+@media (max-width:640px){.goals{grid-template-columns:1fr}}
+.goal{padding:4px 18px;border-left:1px solid rgba(255,255,255,.18);display:flex;flex-direction:column;gap:6px}
+@media (max-width:640px){.goal{padding:14px 0 14px 16px}}
+.goal h3{color:var(--navy-ink);font-size:16px}
+.goal p{font-size:13.5px;opacity:.82}
+.goal .big{font-family:var(--display);font-size:30px;font-weight:700;font-stretch:90%;color:var(--brand-orange);line-height:1;font-variant-numeric:tabular-nums}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.kpi{padding:18px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);display:flex;flex-direction:column;gap:6px}
+.kpi .v{font-family:var(--display);font-size:34px;font-weight:700;font-stretch:90%;font-variant-numeric:tabular-nums;line-height:1}
+.kpi .s{font-size:13px;color:var(--ink-3)}
+@media (max-width:720px){.kpis{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:420px){.kpi{padding:14px}.kpi .v{font-size:26px}}
+
+section{display:flex;flex-direction:column;gap:18px}
+.sec-head{display:flex;flex-direction:column;gap:6px}
+.sec-head p{color:var(--ink-2)}
+
+/* campaign cards */
+.camps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:860px){.camps{grid-template-columns:1fr}}
+.camp{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.camp-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.neutral{background:var(--line-soft);color:var(--ink-2)}
+.camp .obj{font-size:13px;color:var(--ink-3)}
+.camp dl{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin:0;font-size:14px}
+.camp dt{color:var(--ink-2)}
+.camp dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+.camp .hl{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.camp .hl span{font-size:13px;color:var(--ink-2)}
+.camp .hl strong{font-family:var(--display);font-size:26px;font-weight:700;font-stretch:90%;font-variant-numeric:tabular-nums}
+.camp .note{font-size:13px;color:var(--ink-2)}
+
+/* charts */
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:860px){.charts{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;flex-direction:column;gap:14px;position:relative}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:150px 1fr 64px;align-items:center;gap:10px;font-size:13px;border-radius:3px;padding:2px 0;cursor:default}
+.bar-row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.bar-row .lbl{color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .track{height:18px}
+.bar-row .fill{height:100%;border-radius:0 4px 4px 0;background:var(--muted-bar);min-width:2px}
+.bar-row.best .fill{background:var(--accent)}
+.bar-row.best .lbl{color:var(--ink);font-weight:600}
+.bar-row .val{text-align:right;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.bar-row:hover .fill{filter:brightness(.92)}
+.axis{display:grid;grid-template-columns:150px 1fr 64px;gap:10px;font-family:var(--mono);font-size:11px;color:var(--ink-3)}
+.axis .ticks{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:4px}
+@media (max-width:420px){.bar-row,.axis{grid-template-columns:104px 1fr 56px}}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--paper);font-size:12px;line-height:1.45;padding:8px 10px;border-radius:4px;max-width:240px;z-index:5}
+
+/* creatives */
+.gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media (max-width:960px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.gallery{grid-template-columns:repeat(2,1fr)}}
+figure{margin:0;display:flex;flex-direction:column;gap:8px}
+figure .frame{aspect-ratio:2/3;max-width:100%;border-radius:4px;overflow:hidden;background:var(--line-soft);border:1px solid var(--line)}
+figure img,figure video{width:100%;height:100%;object-fit:cover;display:block}
+figure .frame.v{aspect-ratio:2/3}
+figcaption{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+figcaption b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+.creative-notes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:760px){.creative-notes{grid-template-columns:1fr}}
+.creative-notes div{border-top:1px solid var(--line);padding-top:10px;font-size:13.5px;color:var(--ink-2)}
+.creative-notes b{color:var(--ink);display:block;font-weight:600;margin-bottom:2px}
+
+/* table */
+.table-wrap{overflow-x:auto;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:840px;font-size:13.5px}
+th,td{padding:10px 14px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:500;border-bottom:1px solid var(--line)}
+tbody td{border-bottom:1px solid var(--line-soft)}
+tbody tr.group td{background:var(--bg);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);padding-block:7px}
+tbody tr.best td{font-weight:600}
+.best-pill{margin-left:8px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);padding:2px 6px;border-radius:3px;font-weight:500}
+tfoot td{font-weight:600;border-top:2px solid var(--ink)}
+
+/* findings + steps */
+.findings{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px}
+@media (max-width:760px){.findings{grid-template-columns:1fr}}
+.finding{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:14px}
+.finding p{color:var(--ink-2)}
+.steps{display:flex;flex-direction:column;counter-reset:s;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line-soft)}
+.step:last-child{border-bottom:0}
+.step::before{counter-increment:s;content:counter(s);font-family:var(--display);font-weight:700;font-size:22px;color:var(--accent);line-height:1.2}
+.step p{color:var(--ink-2);margin-top:2px}
+footer{font-size:12.5px;color:var(--ink-3);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+footer p{max-width:none}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="top">
+    <span class="eyebrow"><span class="en">Meta Ads · Report 01</span><span class="pt">Meta Ads · Relatório 01</span></span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-en" data-set="en" aria-pressed="true">EN</button>
+      <button type="button" id="btn-pt" data-set="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+  <h1>Maxima Concrete</h1>
+  <div class="meta">
+    <span><span class="en">Period</span><span class="pt">Período</span> <b><span class="en">Aug 1 – Sep 25, 2026</span><span class="pt">1 ago – 25 set 2026</span></b></span>
+    <span><span class="en">Active</span><span class="pt">Veiculação</span> <b><span class="en">~45 days</span><span class="pt">~45 dias</span></b></span>
+    <span><span class="en">Currency</span><span class="pt">Moeda</span> <b>USD</b></span>
+    <span><span class="en">Campaigns</span><span class="pt">Campanhas</span> <b>3</b> · <span class="en">Ads</span><span class="pt">Anúncios</span> <b>6</b></span>
+  </div>
+  <p class="lede en">Maxima Concrete’s first 45 days on Meta ran on a deliberately small budget of about $4 a day. This was a warm-up phase: get the pixel recording real events, start building audiences, and learn which creatives people respond to. With $185 spent, the ads brought 330 visits to the website.</p>
+  <p class="lede pt">Os primeiros 45 dias da Maxima Concrete na Meta rodaram com um orçamento propositalmente baixo, cerca de US$ 4 por dia. Foi uma fase de aquecimento: fazer o pixel registrar eventos reais, começar a formar públicos e descobrir a quais criativos as pessoas respondem. Com US$ 185 investidos, os anúncios levaram 330 visitas ao site.</p>
+</header>
+
+<div class="phase">
+  <div class="intro">
+    <span class="eyebrow"><span class="en">Phase 1 · Warm-up</span><span class="pt">Fase 1 · Aquecimento</span></span>
+    <h2><span class="en">What this phase was for</span><span class="pt">Para que serviu esta fase</span></h2>
+    <p class="en">Meta’s delivery system learns from data. A new account with an empty pixel has nothing to learn from, so we started small and paid for signal before paying for leads.</p>
+    <p class="pt">O sistema de entrega da Meta aprende com dados. Uma conta nova, com pixel vazio, não tem de onde aprender. Por isso começamos pequeno e investimos em sinal antes de investir em leads.</p>
+  </div>
+  <div class="goals">
+    <div class="goal">
+      <span class="big">330</span>
+      <h3><span class="en">Pixel events</span><span class="pt">Eventos no pixel</span></h3>
+      <p class="en">Landing page views recorded on the website, plus the first Lead event, which confirms lead tracking works.</p>
+      <p class="pt">Visitas à página registradas no site, além do primeiro evento de Lead, que confirma que o rastreamento de leads funciona.</p>
+    </div>
+    <div class="goal">
+      <span class="big">808</span>
+      <h3><span class="en">Audience seeds</span><span class="pt">Base de públicos</span></h3>
+      <p class="en">Post engagements, website visitors and video viewers become retargeting audiences for the next phase.</p>
+      <p class="pt">Engajamentos, visitantes do site e quem assistiu ao vídeo viram públicos de remarketing para a próxima fase.</p>
+    </div>
+    <div class="goal">
+      <span class="big">6</span>
+      <h3><span class="en">Creatives tested</span><span class="pt">Criativos testados</span></h3>
+      <p class="en">Five static designs and one video, ranked by cost per website visit.</p>
+      <p class="pt">Cinco artes estáticas e um vídeo, comparados pelo custo por visita ao site.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Period summary</span><span class="pt">Resumo do período</span></span>
+    <h2><span class="en">Combined results</span><span class="pt">Números consolidados</span></h2>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><span class="eyebrow"><span class="en">Amount spent</span><span class="pt">Investimento</span></span><span class="v">$185.13</span><span class="s"><span class="en">About $4.10 a day over 45 days</span><span class="pt">Cerca de US$ 4,10 por dia em 45 dias</span></span></div>
+    <div class="kpi"><span class="eyebrow"><span class="en">Impressions</span><span class="pt">Impressões</span></span><span class="v">18,531</span><span class="s"><span class="en">Average CPM $9.99</span><span class="pt">CPM médio de US$ 9,99</span></span></div>
+    <div class="kpi"><span class="eyebrow"><span class="en">Link clicks</span><span class="pt">Cliques no link</span></span><span class="v">380</span><span class="s"><span class="en">Average CTR 2.05%</span><span class="pt">CTR médio de 2,05%</span></span></div>
+    <div class="kpi"><span class="eyebrow"><span class="en">Website visits</span><span class="pt">Visitas ao site</span></span><span class="v">330</span><span class="s"><span class="en">$0.36 each on traffic campaigns</span><span class="pt">US$ 0,36 cada nas campanhas de tráfego</span></span></div>
+    <div class="kpi"><span class="eyebrow"><span class="en">Post engagements</span><span class="pt">Engajamentos</span></span><span class="v">808</span><span class="s"><span class="en">Reactions, clicks and interactions</span><span class="pt">Reações, cliques e interações</span></span></div>
+    <div class="kpi"><span class="eyebrow"><span class="en">Leads (pixel)</span><span class="pt">Leads (pixel)</span></span><span class="v">1</span><span class="s"><span class="en">First lead event recorded</span><span class="pt">Primeiro evento de lead registrado</span></span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">By campaign</span><span class="pt">Por campanha</span></span>
+    <h2><span class="en">What each campaign delivered</span><span class="pt">O que cada campanha entregou</span></h2>
+    <p class="en">Each campaign had a different objective, so the headline result differs from one to the next.</p>
+    <p class="pt">Cada campanha tinha um objetivo diferente, por isso o resultado principal muda de uma para outra.</p>
+  </div>
+  <div class="camps">
+    <article class="camp">
+      <div class="camp-top"><h3><span class="en">Traffic · September</span><span class="pt">Tráfego · Setembro</span></h3><span class="tag good"><span class="en">Best value</span><span class="pt">Mais eficiente</span></span></div>
+      <span class="obj"><span class="en">Goal: landing page views · 4 ads · $4/day</span><span class="pt">Objetivo: visitas à página · 4 anúncios · US$ 4/dia</span></span>
+      <dl>
+        <dt><span class="en">Spent</span><span class="pt">Investimento</span></dt><dd>$94.48</dd>
+        <dt><span class="en">Impressions</span><span class="pt">Impressões</span></dt><dd>13,299</dd>
+        <dt><span class="en">Link clicks</span><span class="pt">Cliques no link</span></dt><dd>261</dd>
+        <dt>CPM</dt><dd>$7.10</dd>
+        <dt><span class="en">Instagram profile visits</span><span class="pt">Visitas ao perfil do Instagram</span></dt><dd>30</dd>
+      </dl>
+      <div class="hl"><span><span class="en">257 website visits</span><span class="pt">257 visitas ao site</span></span><strong>$0.37</strong></div>
+      <p class="note en">Almost every click reached the website (98%).</p>
+      <p class="note pt">Quase todo clique chegou ao site (98%).</p>
+    </article>
+    <article class="camp">
+      <div class="camp-top"><h3><span class="en">Traffic · July</span><span class="pt">Tráfego · Julho</span></h3><span class="tag neutral"><span class="en">Cheapest click</span><span class="pt">Clique mais barato</span></span></div>
+      <span class="obj"><span class="en">Goal: link clicks · 1 ad · $8/day</span><span class="pt">Objetivo: cliques no link · 1 anúncio · US$ 8/dia</span></span>
+      <dl>
+        <dt><span class="en">Spent</span><span class="pt">Investimento</span></dt><dd>$19.21</dd>
+        <dt><span class="en">Impressions</span><span class="pt">Impressões</span></dt><dd>3,287</dd>
+        <dt><span class="en">Link clicks</span><span class="pt">Cliques no link</span></dt><dd>92</dd>
+        <dt>CPM</dt><dd>$5.84</dd>
+        <dt><span class="en">Cost per click</span><span class="pt">Custo por clique</span></dt><dd>$0.21</dd>
+      </dl>
+      <div class="hl"><span><span class="en">59 website visits</span><span class="pt">59 visitas ao site</span></span><strong>$0.33</strong></div>
+      <p class="note en">Clicks were cheap, but only 64% of them reached the website.</p>
+      <p class="note pt">O clique saiu barato, mas só 64% dos cliques chegaram ao site.</p>
+    </article>
+    <article class="camp">
+      <div class="camp-top"><h3>Leads</h3><span class="tag warn"><span class="en">Learning</span><span class="pt">Aprendizado</span></span></div>
+      <span class="obj"><span class="en">Goal: website lead (pixel) · 1 ad</span><span class="pt">Objetivo: lead no site (pixel) · 1 anúncio</span></span>
+      <dl>
+        <dt><span class="en">Spent</span><span class="pt">Investimento</span></dt><dd>$71.44</dd>
+        <dt><span class="en">Impressions</span><span class="pt">Impressões</span></dt><dd>1,945</dd>
+        <dt><span class="en">Link clicks</span><span class="pt">Cliques no link</span></dt><dd>27</dd>
+        <dt>CPM</dt><dd>$36.73</dd>
+        <dt><span class="en">Website visits</span><span class="pt">Visitas ao site</span></dt><dd>14</dd>
+      </dl>
+      <div class="hl"><span><span class="en">1 lead</span><span class="pt">1 lead</span></span><strong>$71.44</strong></div>
+      <p class="note en">Meta typically needs around 50 conversions a week to finish learning. At this budget that isn’t reachable, so a high cost per lead is expected for now.</p>
+      <p class="note pt">A Meta costuma precisar de cerca de 50 conversões por semana para concluir o aprendizado. Com esse orçamento isso não é alcançável, então um custo por lead alto é esperado por enquanto.</p>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Comparison</span><span class="pt">Comparativos</span></span>
+    <h2><span class="en">Cost and click quality</span><span class="pt">Custo e aproveitamento</span></h2>
+  </div>
+  <div class="charts">
+    <div class="panel">
+      <div><h3><span class="en">Cost per website visit</span><span class="pt">Custo por visita ao site</span></h3><p class="sub"><span class="en">Traffic ads, in USD. Lower is better.</span><span class="pt">Anúncios de tráfego, em US$. Quanto menor, melhor.</span></p></div>
+      <div class="bars" id="chart-cost"></div>
+      <div class="axis" id="axis-cost"></div>
+      <p class="sub"><span class="en">The lead ad is left out of this chart: each visit cost $5.10.</span><span class="pt">O anúncio de leads ficou fora do gráfico: cada visita custou US$ 5,10.</span></p>
+    </div>
+    <div class="panel">
+      <div><h3><span class="en">Clicks that became visits</span><span class="pt">Cliques que viraram visita</span></h3><p class="sub"><span class="en">Landing page views ÷ link clicks, by campaign.</span><span class="pt">Visitas à página ÷ cliques no link, por campanha.</span></p></div>
+      <div class="bars" id="chart-rate"></div>
+      <div class="axis" id="axis-rate"></div>
+      <p class="sub"><span class="en">Optimizing for landing page views filters out people who click and leave before the site loads.</span><span class="pt">Otimizar para visita à página filtra quem clica e sai antes de o site carregar.</span></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Creatives</span><span class="pt">Criativos</span></span>
+    <h2><span class="en">What people saw</span><span class="pt">O que as pessoas viram</span></h2>
+    <p class="en">Five static designs and one 52-second vertical video ran across the three campaigns.</p>
+    <p class="pt">Cinco artes estáticas e um vídeo vertical de 52 segundos rodaram nas três campanhas.</p>
+  </div>
+  <div class="gallery">
+    <figure><div class="frame"><img src="assets/creative-1.jpg" alt="Outdoor Living Done Right creative: patio with fire pit and outdoor kitchen" loading="lazy" width="800" height="1200"></div><figcaption><b>Outdoor Living</b><span class="en">Fire features, kitchens, pavilions</span><span class="pt">Lareiras, cozinhas, pergolados</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-2.jpg" alt="Concrete Done Right creative: new driveway being finished" loading="lazy" width="800" height="1200"></div><figcaption><b>Concrete Done Right</b><span class="en">Driveways, patios, foundations</span><span class="pt">Garagens, pátios, fundações</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-3.jpg" alt="Built to Last creative with pool deck and crew photos, dark layout" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · A</b><span class="en">Full service list, crew photos</span><span class="pt">Lista de serviços, fotos da equipe</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-4.jpg" alt="Built to Last creative with pool deck and crew photos, split layout" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · B</b><span class="en">Same message, lighter layout</span><span class="pt">Mesma mensagem, layout mais claro</span></figcaption></figure>
+    <figure><div class="frame"><img src="assets/creative-5.jpg" alt="Built to Last creative with a finished residential driveway" loading="lazy" width="800" height="1200"></div><figcaption><b>Built to Last · C</b><span class="en">Finished driveway, clean house shot</span><span class="pt">Garagem pronta, foto da casa</span></figcaption></figure>
+    <figure><div class="frame v"><video src="assets/video.mp4" poster="assets/video-poster.jpg" controls muted playsinline preload="none"></video></div><figcaption><b>Welcome to Maxima Concrete</b><span class="en">Video · 0:52 · 9:16</span><span class="pt">Vídeo · 0:52 · 9:16</span></figcaption></figure>
+  </div>
+  <div class="creative-notes">
+    <div><b><span class="en">Consistent offer</span><span class="pt">Oferta consistente</span></b><span class="en">Every creative carries “Free Estimates” and “Financing Available”, plus the phone number and website.</span><span class="pt">Todos os criativos trazem “Free Estimates” e “Financing Available”, além do telefone e do site.</span></div>
+    <div><b><span class="en">Two angles</span><span class="pt">Dois ângulos</span></b><span class="en">Core concrete work (driveways, foundations) and outdoor living (pools, pavers, kitchens).</span><span class="pt">Concreto (garagens, fundações) e áreas externas (piscinas, pisos, cozinhas).</span></div>
+    <div><b><span class="en">Local signal</span><span class="pt">Sinal local</span></b><span class="en">“Central Ohio” appears in two designs. Naming the area helps homeowners see the ad is for them.</span><span class="pt">“Central Ohio” aparece em duas artes. Citar a região ajuda o morador a perceber que o anúncio é para ele.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Ad detail</span><span class="pt">Detalhe por anúncio</span></span>
+    <h2><span class="en">All ads</span><span class="pt">Todos os anúncios</span></h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th><span class="en">Ad</span><span class="pt">Anúncio</span></th>
+        <th><span class="en">Spent</span><span class="pt">Investimento</span></th>
+        <th><span class="en">Impressions</span><span class="pt">Impressões</span></th>
+        <th><span class="en">Reach</span><span class="pt">Alcance</span></th>
+        <th><span class="en">Frequency</span><span class="pt">Frequência</span></th>
+        <th>CPM</th>
+        <th><span class="en">Link clicks</span><span class="pt">Cliques no link</span></th>
+        <th>CTR</th>
+        <th><span class="en">Site visits</span><span class="pt">Visitas ao site</span></th>
+        <th><span class="en">Cost / visit</span><span class="pt">Custo / visita</span></th>
+      </tr></thead>
+      <tbody>
+        <tr class="group"><td colspan="10"><span class="en">Traffic · September (Sep 1 – 25)</span><span class="pt">Tráfego · Setembro (1 – 25 set)</span></td></tr>
+        <tr><td>New Traffic Ad</td><td>$35.14</td><td>4,775</td><td>3,851</td><td>1.24</td><td>$7.36</td><td>88</td><td>1.84%</td><td>88</td><td>$0.40</td></tr>
+        <tr class="best"><td>New Traffic Ad - 2<span class="best-pill"><span class="en">Top</span><span class="pt">Melhor</span></span></td><td>$38.04</td><td>5,458</td><td>3,958</td><td>1.38</td><td>$6.97</td><td>124</td><td>2.27%</td><td>118</td><td>$0.32</td></tr>
+        <tr><td>New Traffic Ad - 3</td><td>$11.94</td><td>1,688</td><td>1,267</td><td>1.33</td><td>$7.07</td><td>26</td><td>1.54%</td><td>26</td><td>$0.46</td></tr>
+        <tr><td>New Traffic Ad - 4</td><td>$9.36</td><td>1,378</td><td>1,122</td><td>1.23</td><td>$6.79</td><td>23</td><td>1.67%</td><td>25</td><td>$0.37</td></tr>
+        <tr class="group"><td colspan="10"><span class="en">Traffic · July</span><span class="pt">Tráfego · Julho</span></td></tr>
+        <tr><td>Tailored web traffic 7/21</td><td>$19.21</td><td>3,287</td><td>2,650</td><td>1.24</td><td>$5.84</td><td>92</td><td>2.80%</td><td>59</td><td>$0.33</td></tr>
+        <tr class="group"><td colspan="10">Leads</td></tr>
+        <tr><td>New Leads Ad</td><td>$71.44</td><td>1,945</td><td>929</td><td>2.09</td><td>$36.73</td><td>27</td><td>1.39%</td><td>14</td><td>$5.10</td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td>$185.13</td><td>18,531</td><td>—</td><td>—</td><td>$9.99</td><td>380</td><td>2.05%</td><td>330</td><td>$0.56</td></tr></tfoot>
+    </table>
+  </div>
+  <p class="sub"><span class="en">Reach is not added up because the same person may have seen more than one ad.</span><span class="pt">O alcance não é somado porque a mesma pessoa pode ter visto mais de um anúncio.</span></p>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Takeaways</span><span class="pt">Leitura</span></span>
+    <h2><span class="en">What the numbers show</span><span class="pt">O que os números mostram</span></h2>
+  </div>
+  <div class="findings">
+    <div class="finding">
+      <h3><span class="en">Cheap, qualified traffic</span><span class="pt">Tráfego barato e qualificado</span></h3>
+      <p class="en">The traffic campaigns brought 316 people to the website at $0.36 per visit. The September campaign, optimized for landing page views, wasted almost no clicks.</p>
+      <p class="pt">As campanhas de tráfego levaram 316 pessoas ao site a US$ 0,36 por visita. A de setembro, otimizada para visita à página, quase não desperdiçou cliques.</p>
+    </div>
+    <div class="finding">
+      <h3><span class="en">“New Traffic Ad - 2” is the early winner</span><span class="pt">“New Traffic Ad - 2” saiu na frente</span></h3>
+      <p class="en">It had the highest CTR (2.27%), the most visits (118) and the lowest cost per visit in September ($0.32).</p>
+      <p class="pt">Teve o maior CTR (2,27%), o maior volume (118 visitas) e o menor custo por visita de setembro (US$ 0,32).</p>
+    </div>
+    <div class="finding">
+      <h3><span class="en">Lead tracking is confirmed</span><span class="pt">Rastreamento de leads confirmado</span></h3>
+      <p class="en">The lead campaign recorded its first pixel Lead event. At a warm-up budget the cost per lead isn’t meaningful yet. What matters is that the event fires, so a real lead campaign can optimize for it.</p>
+      <p class="pt">A campanha de leads registrou o primeiro evento de Lead no pixel. Com orçamento de aquecimento, o custo por lead ainda não é um número significativo. O importante é que o evento dispara, e uma campanha de leads de verdade poderá otimizar para ele.</p>
+    </div>
+    <div class="finding">
+      <h3><span class="en">Audiences are small but real</span><span class="pt">Os públicos são pequenos, mas já existem</span></h3>
+      <p class="en">Website visitors, engaged users and video viewers now form a starting pool for retargeting. People who already know Maxima Concrete are the cheapest to convert.</p>
+      <p class="pt">Visitantes do site, pessoas que engajaram e quem assistiu ao vídeo já formam uma base para remarketing. Quem já conhece a Maxima Concrete é o público mais barato para converter.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow"><span class="en">Phase 2</span><span class="pt">Fase 2</span></span>
+    <h2><span class="en">Next steps</span><span class="pt">Próximos passos</span></h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div>
+      <h3><span class="en">Keep traffic running, led by the winning ad</span><span class="pt">Manter o tráfego, puxado pelo anúncio vencedor</span></h3>
+      <p class="en">All ads are paused right now. Restart the landing page view campaign so the pixel and audiences keep growing, with budget weighted toward “New Traffic Ad - 2” and new variations of it.</p>
+      <p class="pt">Hoje todos os anúncios estão pausados. Retomar a campanha de visitas à página para o pixel e os públicos continuarem crescendo, com mais verba no “New Traffic Ad - 2” e em novas variações dele.</p>
+    </div></div>
+    <div class="step"><div>
+      <h3><span class="en">Retarget warm audiences for leads</span><span class="pt">Fazer remarketing para gerar leads</span></h3>
+      <p class="en">Launch a lead campaign aimed at website visitors, video viewers and engaged users, with a budget large enough to exit the learning phase.</p>
+      <p class="pt">Lançar uma campanha de leads direcionada a visitantes do site, quem assistiu ao vídeo e quem engajou, com orçamento suficiente para sair da fase de aprendizado.</p>
+    </div></div>
+    <div class="step"><div>
+      <h3><span class="en">Measure every contact</span><span class="pt">Medir cada contato</span></h3>
+      <p class="en">Make sure form submissions and click-to-call on the website are tracked as events, so we can see how many estimate requests come from paid visits.</p>
+      <p class="pt">Garantir que envios de formulário e cliques para ligar no site sejam registrados como eventos, para saber quantos pedidos de orçamento vêm das visitas pagas.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <p class="en">Source: Meta Ads Manager exports, ad level, pulled Sep 25, 2026. Attribution: 7-day click or 1-day view. Amounts in USD.</p>
+  <p class="pt">Fonte: exportações do Gerenciador de Anúncios da Meta, nível de anúncio, geradas em 25 set 2026. Atribuição: clique em 7 dias ou visualização em 1 dia. Valores em US$.</p>
+  <p class="en">Meta did not report quality, engagement or conversion rankings for these ads because of their low impression volume.</p>
+  <p class="pt">A Meta não informou os rankings de qualidade, engajamento e conversão desses anúncios por causa do baixo volume de impressões.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var LANG_KEY='mc_meta_r01_lang';
+  var lang='en';
+  function setLang(l){
+    lang=l==='pt'?'pt':'en';
+    root.setAttribute('data-lang',lang);
+    root.setAttribute('lang',lang==='pt'?'pt-BR':'en');
+    document.getElementById('btn-en').setAttribute('aria-pressed',lang==='en');
+    document.getElementById('btn-pt').setAttribute('aria-pressed',lang==='pt');
+    try{localStorage.setItem(LANG_KEY,lang)}catch(e){}
+    document.querySelectorAll('.bar-row').forEach(function(r){r.setAttribute('aria-label',r.dataset[lang])});
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set)})});
+
+  var money={en:function(v){return '$'+v.toFixed(2)},pt:function(v){return 'US$ '+v.toFixed(2).replace('.',',')}};
+  var pct=function(v){return Math.round(v)+'%'};
+
+  function render(o){
+    var host=document.getElementById(o.id),axis=document.getElementById(o.axis),panel=host.closest('.panel');
+    var tip=document.createElement('div');tip.className='tip';tip.hidden=true;panel.appendChild(tip);
+    o.data.forEach(function(d){
+      var row=document.createElement('div');
+      row.className='bar-row'+(d.best?' best':'');row.tabIndex=0;
+      var vEn=o.money?money.en(d.value):pct(d.value), vPt=o.money?money.pt(d.value):pct(d.value);
+      row.dataset.en=d.en+': '+vEn;row.dataset.pt=d.pt+': '+vPt;
+      row.innerHTML='<span class="lbl"><span class="en"></span><span class="pt"></span></span><div class="track"><div class="fill"></div></div><span class="val"><span class="en"></span><span class="pt"></span></span>';
+      row.querySelector('.lbl .en').textContent=d.en;row.querySelector('.lbl .pt').textContent=d.pt;
+      row.querySelector('.val .en').textContent=vEn;row.querySelector('.val .pt').textContent=vPt;
+      row.querySelector('.fill').style.width=(d.value/o.max*100)+'%';
+      function show(){
+        tip.textContent='';
+        var b=document.createElement('b');b.textContent=lang==='pt'?d.pt:d.en;tip.appendChild(b);
+        tip.appendChild(document.createElement('br'));
+        tip.appendChild(document.createTextNode(lang==='pt'?d.tipPt:d.tipEn));
+        tip.hidden=false;
+        var pr=panel.getBoundingClientRect(),rr=row.getBoundingClientRect();
+        tip.style.left=Math.max(8,Math.min(rr.left-pr.left+160,pr.width-tip.offsetWidth-8))+'px';
+        tip.style.top=(rr.top-pr.top-tip.offsetHeight-6)+'px';
+      }
+      function hide(){tip.hidden=true}
+      row.addEventListener('mouseenter',show);row.addEventListener('mouseleave',hide);
+      row.addEventListener('focus',show);row.addEventListener('blur',hide);
+      host.appendChild(row);
+    });
+    axis.innerHTML='<span></span><div class="ticks">'+o.ticks.map(function(t){return '<span>'+t+'</span>'}).join('')+'</div><span></span>';
+  }
+
+  render({id:'chart-cost',axis:'axis-cost',max:0.5,money:true,ticks:['0','0.10','0.20','0.30','0.40','0.50'],data:[
+    {en:'New Traffic Ad - 2',pt:'New Traffic Ad - 2',value:0.3224,best:true,tipEn:'118 visits · $38.04 spent',tipPt:'118 visitas · US$ 38,04 investidos'},
+    {en:'Web traffic 7/21',pt:'Web traffic 7/21',value:0.3256,tipEn:'59 visits · $19.21 spent',tipPt:'59 visitas · US$ 19,21 investidos'},
+    {en:'New Traffic Ad - 4',pt:'New Traffic Ad - 4',value:0.3744,tipEn:'25 visits · $9.36 spent',tipPt:'25 visitas · US$ 9,36 investidos'},
+    {en:'New Traffic Ad',pt:'New Traffic Ad',value:0.3993,tipEn:'88 visits · $35.14 spent',tipPt:'88 visitas · US$ 35,14 investidos'},
+    {en:'New Traffic Ad - 3',pt:'New Traffic Ad - 3',value:0.4592,tipEn:'26 visits · $11.94 spent',tipPt:'26 visitas · US$ 11,94 investidos'}
+  ]});
+  render({id:'chart-rate',axis:'axis-rate',max:100,money:false,ticks:['0%','25%','50%','75%','100%'],data:[
+    {en:'Traffic · September',pt:'Tráfego · Setembro',value:257/261*100,best:true,tipEn:'261 clicks → 257 visits',tipPt:'261 cliques → 257 visitas'},
+    {en:'Traffic · July',pt:'Tráfego · Julho',value:59/92*100,tipEn:'92 clicks → 59 visits',tipPt:'92 cliques → 59 visitas'},
+    {en:'Leads',pt:'Leads',value:14/27*100,tipEn:'27 clicks → 14 visits',tipPt:'27 cliques → 14 visitas'}
+  ]});
+
+  var initial='en';
+  if(/[?&]lang=pt\b/.test(location.search)||location.hash==='#pt'){initial='pt'}
+  else{try{initial=localStorage.getItem(LANG_KEY)||'en'}catch(e){}}
+  setLang(initial);
+})();
+</script>
+</body>
+</html>
