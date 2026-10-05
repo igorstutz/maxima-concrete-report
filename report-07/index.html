@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads · Maxima Concrete · Data Report (September 1–30, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── CSS COMPARTILHADO PELOS DOIS MODELOS — não editar sem replicar no modelo A ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --g-blue: #1a73e8; --g-blue-light: #e8f0fe;
+  --g-green: #34a853; --g-green-dark: #137333; --g-green-light: #e6f4ea;
+  --g-red: #ea4335; --g-red-light: #fce8e6;
+  --g-yellow: #f9ab00; --g-yellow-light: #fef7e0; --g-yellow-dark: #7d5200;
+  --bg: #f1f3f4; --white: #fff; --text: #202124; --text2: #5f6368; --text3: #9aa0a6;
+  --border: #dadce0; --border-light: #e8eaed; --hover: #f8f9fa;
+  --font: 'Google Sans', 'Roboto', sans-serif; --font-body: 'Roboto', sans-serif;
+}
+body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; }
+[data-lang="en"] .lang-pt { display: none; }
+[data-lang="pt"] .lang-en { display: none; }
+
+.g-topbar { position: fixed; top: 0; left: 0; right: 0; height: 64px; background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; z-index: 200; }
+.g-logo { display: flex; align-items: center; gap: 4px; padding: 0 16px 0 8px; border-right: 1px solid var(--border); margin-right: 12px; }
+.g-logo-dots { display: flex; flex-wrap: wrap; width: 18px; gap: 3px; margin-right: 6px; }
+.g-logo-dot { width: 7px; height: 7px; border-radius: 50%; }
+.g-logo-wordmark { font-family: var(--font); font-size: 18px; font-weight: 400; color: var(--text2); letter-spacing: -.3px; }
+.g-logo-wordmark strong { font-weight: 500; color: var(--text); }
+.g-topbar-title { font-family: var(--font); font-size: 15px; color: var(--text); font-weight: 500; }
+.g-topbar-spacer { flex: 1; }
+.g-topbar-badge { font-size: 11px; padding: 3px 10px; border-radius: 12px; font-weight: 500; margin-right: 12px; background: var(--g-green-light); color: var(--g-green-dark); }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; font-family: var(--font); }
+.lang-toggle button { padding: 4px 12px; border: none; background: var(--white); color: var(--text2); font-size: 12px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.lang-toggle button.active { background: var(--g-blue); color: white; }
+.lang-toggle button:hover:not(.active) { background: var(--hover); }
+
+.g-main { margin-top: 64px; padding: 24px; max-width: 1280px; margin-left: auto; margin-right: auto; padding-bottom: 100px; }
+
+.phase-banner { background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%); color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+.phase-banner .phase-icon { width: 48px; height: 48px; background: rgba(255,255,255,.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.phase-banner h2 { font-family: var(--font); font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.phase-banner p { font-size: 14px; opacity: .95; line-height: 1.5; }
+
+.notes-intro { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--g-yellow); border-radius: 12px; padding: 18px 22px; margin-bottom: 24px; display: flex; gap: 16px; align-items: flex-start; }
+.notes-intro .ni-icon { font-size: 26px; flex-shrink: 0; line-height: 1.2; }
+.notes-intro h3 { font-family: var(--font); font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+.notes-intro p { font-size: 13.5px; color: var(--text2); line-height: 1.55; }
+
+.section { background: var(--white); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+.section-head { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; }
+.section-head .ico { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--g-blue-light); flex-shrink: 0; }
+.section-head h3 { font-family: var(--font); font-size: 17px; font-weight: 500; }
+.section-head .sub { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.section-body { padding: 20px 24px; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.kpi { border: 1px solid var(--border); border-radius: 12px; padding: 18px; background: var(--white); }
+.kpi .label { font-size: 12px; color: var(--text2); font-weight: 500; text-transform: uppercase; letter-spacing: .4px; }
+.kpi .val { font-family: var(--font); font-size: 28px; font-weight: 500; margin: 8px 0 2px; }
+.kpi .prev { font-size: 12px; color: var(--text3); }
+.kpi .delta { font-size: 13px; font-weight: 500; margin-top: 6px; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 10px; }
+.delta.up { background: var(--g-green-light); color: var(--g-green-dark); }
+.delta.down { background: var(--g-red-light); color: var(--g-red); }
+.delta.neutral { background: var(--hover); color: var(--text2); }
+.kpi.good { border-left: 4px solid var(--g-green); }
+.kpi.warn { border-left: 4px solid var(--g-yellow); }
+.kpi.bad { border-left: 4px solid var(--g-red); }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; padding: 10px 12px; background: var(--hover); color: var(--text2); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 1px solid var(--border); }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+tr:hover td { background: var(--hover); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tfoot td { font-weight: 700; background: var(--hover); border-top: 2px solid var(--border); }
+.pos { color: var(--g-green-dark); font-weight: 500; }
+.neg { color: var(--g-red); font-weight: 500; }
+.muted { color: var(--text3); }
+.tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 500; }
+.tag.blue { background: var(--g-blue-light); color: var(--g-blue); }
+.tag.green { background: var(--g-green-light); color: var(--g-green-dark); }
+.tag.red { background: var(--g-red-light); color: var(--g-red); }
+.tag.yellow { background: var(--g-yellow-light); color: var(--g-yellow-dark); }
+.tag.grey { background: var(--hover); color: var(--text2); }
+
+.callout { border-radius: 10px; padding: 14px 16px; font-size: 13.5px; line-height: 1.55; margin-bottom: 14px; }
+.callout.green { background: var(--g-green-light); border-left: 4px solid var(--g-green); }
+.callout.yellow { background: var(--g-yellow-light); border-left: 4px solid var(--g-yellow); }
+.callout.red { background: var(--g-red-light); border-left: 4px solid var(--g-red); }
+.callout.blue { background: var(--g-blue-light); border-left: 4px solid var(--g-blue); }
+.callout strong { font-weight: 700; }
+.callout:last-child { margin-bottom: 0; }
+
+.note-input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-family: var(--font-body); font-size: 12.5px; color: var(--text); background: #fffdf6; resize: vertical; min-height: 46px; line-height: 1.45; display: block; transition: border-color .15s, box-shadow .15s, background .15s; }
+.note-input:focus { outline: none; border-color: var(--g-blue); background: var(--white); box-shadow: 0 0 0 3px var(--g-blue-light); }
+.note-input::placeholder { color: var(--text3); font-style: italic; }
+.note-input.filled { background: var(--g-yellow-light); border-color: var(--g-yellow); }
+.section-note { margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border); }
+.section-note label { display: block; font-size: 12px; font-weight: 500; color: var(--text2); margin-bottom: 6px; font-family: var(--font); }
+.section-note label::before { content: "🗒️ "; }
+
+.approval-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 14px; z-index: 200; box-shadow: 0 -2px 8px rgba(0,0,0,.06); }
+.approval-bar .count { font-family: var(--font); font-size: 14px; font-weight: 500; }
+.approval-bar .count .notes-count { color: var(--g-yellow-dark); font-size: 18px; }
+.approval-bar .spacer { flex: 1; }
+.approval-bar button { font-family: var(--font); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); color: var(--text2); cursor: pointer; transition: all .2s; }
+.approval-bar button:hover { background: var(--hover); }
+.btn-export { background: var(--g-blue) !important; color: white !important; border-color: var(--g-blue) !important; }
+.btn-export:hover { background: #1557b0 !important; }
+
+.legend { font-size: 12px; color: var(--text2); margin-top: 12px; line-height: 1.6; }
+h4.subhead { font-family: var(--font); font-size: 14px; font-weight: 500; margin: 20px 0 10px; color: var(--text); }
+h4.subhead:first-child { margin-top: 0; }
+@media (max-width: 720px) { .g-topbar-title { display: none; } .kpi .val { font-size: 22px; } .approval-bar { flex-wrap: wrap; } .approval-bar .count { width: 100%; } }
+
+/* ── timeline das fases do site (exclusivo deste relatório) ── */
+.tl { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 4px; }
+.tl-step { border: 1px solid var(--border); border-radius: 10px; padding: 16px; background: var(--white); position: relative; }
+.tl-step .tl-when { font-family: var(--font); font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--text2); }
+.tl-step .tl-what { font-family: var(--font); font-size: 15px; font-weight: 500; margin: 6px 0 8px; line-height: 1.3; }
+.tl-step .tl-why { font-size: 12.5px; color: var(--text2); line-height: 1.5; }
+.tl-step.s1 { border-left: 4px solid var(--text3); }
+.tl-step.s2 { border-left: 4px solid var(--g-yellow); background: var(--g-yellow-light); }
+.tl-step.s3 { border-left: 4px solid var(--g-green); background: var(--g-green-light); }
+.tl-metric { font-family: var(--font); font-size: 13px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); color: var(--text); }
+.tl-metric b { font-size: 16px; }
+</style>
+</head>
+<body>
+
+<div class="g-topbar">
+  <div class="g-logo">
+    <div class="g-logo-dots">
+      <div class="g-logo-dot" style="background:#4285f4"></div>
+      <div class="g-logo-dot" style="background:#ea4335"></div>
+      <div class="g-logo-dot" style="background:#fbbc04"></div>
+      <div class="g-logo-dot" style="background:#34a853"></div>
+    </div>
+    <span class="g-logo-wordmark">Google <strong>Ads</strong></span>
+  </div>
+  <span class="g-topbar-title">Maxima Concrete · <span class="lang-en">Data Report</span><span class="lang-pt">Relatório de Dados</span></span>
+  <span class="g-topbar-spacer"></span>
+  <span class="g-topbar-badge"><span class="lang-en">Report 07 · Sep 1–30</span><span class="lang-pt">Relatório 07 · 1–30 Set</span></span>
+  <div class="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-pt" onclick="setLang('pt')">PT</button>
+  </div>
+</div>
+
+<div class="g-main">
+
+  <div class="phase-banner">
+    <div class="phase-icon">📊</div>
+    <div>
+      <h2><span class="lang-en">Data Report · September 1–30, 2026</span><span class="lang-pt">Relatório de Dados · 1–30 Set, 2026</span></h2>
+      <p class="lang-en">This is a <strong>straight data report</strong> for the full month of September — and the <strong>last one on the current campaign structure</strong>. The rebuild approved in September replaces it next, and the numbers below become the starting line it is measured against. Headline: <strong>57 leads at $96.37 per lead</strong> on $5,493.10 of spend. That is the highest cost per lead of the five months we have on record (May–September), and about half the lead pace of late August. Clicks cost roughly the same as in August; what changed is how many of them became a call or a form — <strong>6.04% of clicks, down from 11.23%</strong> in Aug 16–31. The section “What Changed in September” looks at why, and carries the one question this month where only you have the answer.</p>
+      <p class="lang-pt">Este é um <strong>relatório puramente de dados</strong> do mês inteiro de Setembro — e o <strong>último na estrutura atual de campanhas</strong>. A reestruturação aprovada em Setembro entra no lugar dela a seguir, e os números abaixo viram a linha de partida contra a qual ela será medida. Destaque: <strong>57 leads a $96.37 por lead</strong> com $5,493.10 de investimento. É o maior custo por lead dos cinco meses que temos registrados (Maio–Setembro) e cerca de metade do ritmo de leads do fim de Agosto. O clique custou praticamente o mesmo que em Agosto; o que mudou foi quantos deles viraram ligação ou formulário — <strong>6.04% dos cliques, contra 11.23%</strong> em 16–31 Ago. A seção “O Que Mudou em Setembro” olha o porquê, e traz a única pergunta deste mês que só você consegue responder.</p>
+    </div>
+  </div>
+
+  <div class="notes-intro">
+    <div class="ni-icon">🗒️</div>
+    <div>
+      <h3><span class="lang-en">Your notes — one question this month</span><span class="lang-pt">Suas notas — uma pergunta neste mês</span></h3>
+      <p class="lang-en">There is nothing to approve this time. Each section has a <strong>notes field</strong> for questions or anything you are seeing on your side. This month one note matters more than the others: <strong>roughly how many calls and form requests reached you in September, compared with August?</strong> The ad platform counted 57 against 107 in August. If your own count tells a different story, that changes how this whole report should be read. Anything you type is saved automatically and shared with us. Use <strong>“Export notes”</strong> at the bottom if you'd rather send it as a file.</p>
+      <p class="lang-pt">Não há nada para aprovar desta vez. Cada seção tem um <strong>campo de notas</strong> para dúvidas ou para o que você estiver vendo do seu lado. Neste mês uma nota importa mais que as outras: <strong>mais ou menos quantas ligações e pedidos por formulário chegaram até você em Setembro, comparado com Agosto?</strong> A plataforma de anúncios contou 57, contra 107 em Agosto. Se a sua contagem contar outra história, isso muda a forma de ler este relatório inteiro. Tudo o que você digitar é salvo automaticamente e compartilhado conosco. Use <strong>“Exportar notas”</strong> no rodapé se preferir enviar como arquivo.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🎯</div>
+      <div><h3><span class="lang-en">Period Totals — September 1–30, 2026</span><span class="lang-pt">Totais do Período — 1–30 Set, 2026</span></h3>
+      <div class="sub"><span class="lang-en">Whole account · 30 days · 5 campaigns</span><span class="lang-pt">Conta inteira · 30 dias · 5 campanhas</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <div class="kpi-grid">
+        <div class="kpi bad">
+          <div class="label"><span class="lang-en">Lead Conversions</span><span class="lang-pt">Conversões (Lead)</span></div>
+          <div class="val">57</div>
+          <div class="prev"><span class="lang-en">phone + form leads · ≈ 1.90 / day</span><span class="lang-pt">ligações + formulários · ≈ 1.90 / dia</span></div>
+        </div>
+        <div class="kpi bad">
+          <div class="label"><span class="lang-en">Cost / Lead (CPA)</span><span class="lang-pt">Custo / Lead (CPA)</span></div>
+          <div class="val">$96.37</div>
+          <div class="prev"><span class="lang-en">vs $49.57 in Aug 16–31</span><span class="lang-pt">vs $49.57 em 16–31 Ago</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Total Spend</span><span class="lang-pt">Investimento</span></div>
+          <div class="val">$5,493.10</div>
+          <div class="prev"><span class="lang-en">≈ $183.10 / day · 99.2% Ohio</span><span class="lang-pt">≈ $183.10 / dia · 99.2% Ohio</span></div>
+        </div>
+        <div class="kpi bad">
+          <div class="label"><span class="lang-en">Conv. Rate</span><span class="lang-pt">Taxa de Conv.</span></div>
+          <div class="val">6.04%</div>
+          <div class="prev"><span class="lang-en">leads ÷ clicks · was 11.23%</span><span class="lang-pt">leads ÷ cliques · era 11.23%</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Avg. CPC</span><span class="lang-pt">CPC Médio</span></div>
+          <div class="val">$5.82</div>
+          <div class="prev"><span class="lang-en">was $5.57 · 944 clicks</span><span class="lang-pt">era $5.57 · 944 cliques</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">CTR</span><span class="lang-pt">CTR</span></div>
+          <div class="val">3.81%</div>
+          <div class="prev"><span class="lang-en">24,793 impressions</span><span class="lang-pt">24,793 impressões</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></div>
+          <div class="val">944</div>
+          <div class="prev"><span class="lang-en">≈ 31.5 / day</span><span class="lang-pt">≈ 31.5 / dia</span></div>
+        </div>
+        <div class="kpi">
+          <div class="label"><span class="lang-en">Impressions</span><span class="lang-pt">Impressões</span></div>
+          <div class="val">24,793</div>
+          <div class="prev"><span class="lang-en">≈ 826 / day</span><span class="lang-pt">≈ 826 / dia</span></div>
+        </div>
+      </div>
+      <div class="callout yellow" style="margin-top:16px;">
+        <span class="lang-en"><strong>The weakest month of the five we have on record.</strong> 57 leads at $96.37 each, against $59.60 across August and $85.68 in July. The money per day went down a little ($198.28 → $183.10 against late August) and the cost per click went up a little ($5.57 → $5.82), but neither explains a cost per lead that almost doubled. The real move is the conversion rate: 11.23% of clicks became a lead in Aug 16–31, 6.04% in September. “Lead Conversions” = tracked phone-call leads + lead-form submits, the primary actions we optimize for. The secondary “all conversions” figure (399 for the month) counts lighter interactions and is <em>not</em> used as the success measure.</span><span class="lang-pt"><strong>O mês mais fraco dos cinco que temos registrados.</strong> 57 leads a $96.37 cada, contra $59.60 em Agosto inteiro e $85.68 em Julho. O dinheiro por dia caiu um pouco ($198.28 → $183.10 em relação ao fim de Agosto) e o custo por clique subiu um pouco ($5.57 → $5.82), mas nenhum dos dois explica um custo por lead que quase dobrou. O movimento real está na taxa de conversão: 11.23% dos cliques viraram lead em 16–31 Ago, 6.04% em Setembro. “Conversões (Lead)” = ligações e envios de formulário rastreados, as ações primárias que otimizamos. A métrica secundária “all conversions” (399 no mês) conta interações mais leves e <em>não</em> é usada como medida de sucesso.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the overall numbers</span><span class="lang-pt">Suas notas sobre os números gerais</span></label>
+        <textarea class="note-input" data-note="sec-metrics" data-label="Period Totals / Totais do Período"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🗓️</div>
+      <div><h3><span class="lang-en">How September Compares</span><span class="lang-pt">Como Setembro se Compara</span></h3>
+      <div class="sub"><span class="lang-en">Daily rates against both August windows · then month by month</span><span class="lang-pt">Taxas diárias contra as duas janelas de Agosto · depois mês a mês</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Metric</span><span class="lang-pt">Métrica</span></th><th class="num"><span class="lang-en">Aug 1–14</span><span class="lang-pt">1–14 Ago</span></th><th class="num"><span class="lang-en">Aug 16–31</span><span class="lang-pt">16–31 Ago</span></th><th class="num"><span class="lang-en">Sep 1–30</span><span class="lang-pt">1–30 Set</span></th><th><span class="lang-en">Aug 16–31 → Sep</span><span class="lang-pt">16–31 Ago → Set</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong><span class="lang-en">Cost per lead (CPA)</span><span class="lang-pt">Custo por lead (CPA)</span></strong></td><td class="num">$74.53</td><td class="num">$49.57</td><td class="num"><strong>$96.37</strong></td><td><span class="neg">▲ 94.4%</span></td></tr>
+          <tr><td><strong><span class="lang-en">Leads / day</span><span class="lang-pt">Leads / dia</span></strong></td><td class="num">3.07</td><td class="num">4.00</td><td class="num"><strong>1.90</strong></td><td><span class="neg">▼ 52.5%</span></td></tr>
+          <tr><td><strong><span class="lang-en">Conversion rate</span><span class="lang-pt">Taxa de conversão</span></strong></td><td class="num">7.93%</td><td class="num">11.23%</td><td class="num"><strong>6.04%</strong></td><td><span class="neg">▼ 5.19 pp</span></td></tr>
+          <tr><td><strong><span class="lang-en">Cost per click</span><span class="lang-pt">Custo por clique</span></strong></td><td class="num">$5.91</td><td class="num">$5.57</td><td class="num"><strong>$5.82</strong></td><td><span class="neg">▲ 4.5%</span></td></tr>
+          <tr><td><strong><span class="lang-en">CTR</span><span class="lang-pt">CTR</span></strong></td><td class="num">3.89%</td><td class="num">3.52%</td><td class="num"><strong>3.81%</strong></td><td><span class="pos">▲ 0.29 pp</span></td></tr>
+          <tr><td><strong><span class="lang-en">Spend / day</span><span class="lang-pt">Investimento / dia</span></strong></td><td class="num">$228.93</td><td class="num">$198.28</td><td class="num"><strong>$183.10</strong></td><td><span class="muted">▼ 7.7%</span></td></tr>
+          <tr><td><strong><span class="lang-en">Clicks / day</span><span class="lang-pt">Cliques / dia</span></strong></td><td class="num">38.7</td><td class="num">35.6</td><td class="num"><strong>31.5</strong></td><td><span class="muted">▼ 11.7%</span></td></tr>
+          <tr><td><strong><span class="lang-en">Impressions / day</span><span class="lang-pt">Impressões / dia</span></strong></td><td class="num">995</td><td class="num">1,011</td><td class="num"><strong>826</strong></td><td><span class="muted">▼ 18.3%</span></td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Read:</strong> September is below both halves of August, not only below the record second half. Against Aug 1–14 — a window that was still on the old site and on the stricter call rule — the cost per lead is 29.3% higher and leads per day 38.1% lower. Clicks per day fell 11.7% against late August, roughly in line with the lower spend; leads per day fell 52.5%. The gap between those two numbers is the conversion rate.</span><span class="lang-pt"><strong>Leitura:</strong> Setembro fica abaixo das duas metades de Agosto, não só da segunda metade recorde. Contra 1–14 Ago — uma janela ainda no site antigo e na regra de ligação mais rígida — o custo por lead está 29.3% maior e os leads por dia 38.1% menores. Os cliques por dia caíram 11.7% contra o fim de Agosto, mais ou menos em linha com o investimento menor; os leads por dia caíram 52.5%. A diferença entre esses dois números é a taxa de conversão.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">Month by month, May – September</span><span class="lang-pt">Mês a mês, Maio – Setembro</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Month</span><span class="lang-pt">Mês</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investimento</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">CPA</span><span class="lang-pt">CPA</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Conv. rate</span><span class="lang-pt">Taxa conv.</span></th><th class="num"><span class="lang-en">Leads / day</span><span class="lang-pt">Leads / dia</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="lang-en">May</span><span class="lang-pt">Maio</span></td><td class="num">$6,464.97</td><td class="num">89</td><td class="num">$72.64</td><td class="num">891</td><td class="num">9.99%</td><td class="num">2.87</td></tr>
+          <tr><td><span class="lang-en">June</span><span class="lang-pt">Junho</span></td><td class="num">$6,664.05</td><td class="num">109</td><td class="num"><strong>$61.14</strong></td><td class="num">905</td><td class="num">12.04%</td><td class="num">3.63</td></tr>
+          <tr><td><span class="lang-en">July</span><span class="lang-pt">Julho</span></td><td class="num">$6,511.76</td><td class="num">76</td><td class="num">$85.68</td><td class="num">982</td><td class="num">7.74%</td><td class="num">2.45</td></tr>
+          <tr><td><span class="lang-en">August <span class="muted">(30 of 31 days)</span></span><span class="lang-pt">Agosto <span class="muted">(30 de 31 dias)</span></span></td><td class="num">$6,377.44</td><td class="num">107</td><td class="num">$59.60</td><td class="num">1,112</td><td class="num">9.62%</td><td class="num">3.57</td></tr>
+          <tr><td><span class="lang-en"><strong>September</strong></span><span class="lang-pt"><strong>Setembro</strong></span></td><td class="num"><strong>$5,493.10</strong></td><td class="num"><strong>57</strong></td><td class="num"><span class="neg"><strong>$96.37</strong></span></td><td class="num"><strong>944</strong></td><td class="num"><strong>6.04%</strong></td><td class="num"><strong>1.90</strong></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><span class="lang-en">5 months</span><span class="lang-pt">5 meses</span></td><td class="num">$31,511.32</td><td class="num">438</td><td class="num">$71.94</td><td class="num">4,834</td><td class="num">9.06%</td><td class="num">2.88</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue">
+        <span class="lang-en"><strong>Where these month figures come from:</strong> May and June are their own monthly exports. July is the May 1 – Jul 23 export minus May and June, plus the Jul 24–31 export. August is the two August windows added together and <strong>is missing Aug 15</strong>, which fell between the exports — so it is 30 days, and its leads-per-day figure uses 30. September is a single export.</span><span class="lang-pt"><strong>De onde vêm os números mensais:</strong> Maio e Junho são exports mensais próprios. Julho é o export de 1 Mai – 23 Jul menos Maio e Junho, mais o export de 24–31 Jul. Agosto é a soma das duas janelas de Agosto e <strong>não tem o dia 15</strong>, que ficou entre os exports — são 30 dias, e o leads por dia usa 30. Setembro é um export único.</span>
+      </div>
+      <div class="callout yellow">
+        <span class="lang-en"><strong>One rule change makes September look better, not worse.</strong> Since Aug 20 a phone call counts as a lead from 25 seconds instead of 60. September is the first full month counted that way, so calls of 25–59 seconds are in its 57 and are not in May, June or July. Even with that help it has the lowest conversion rate of the five months.</span><span class="lang-pt"><strong>Uma mudança de regra faz Setembro parecer melhor, não pior.</strong> Desde 20 Ago uma ligação conta como lead a partir de 25 segundos em vez de 60. Setembro é o primeiro mês inteiro contado assim, então ligações de 25–59 segundos estão nos 57 dele e não estão em Maio, Junho ou Julho. Mesmo com essa ajuda, ele tem a menor taxa de conversão dos cinco meses.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the comparison</span><span class="lang-pt">Suas notas sobre a comparação</span></label>
+        <textarea class="note-input" data-note="sec-trend" data-label="Comparison / Comparação"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🔎</div>
+      <div><h3><span class="lang-en">What Changed in September</span><span class="lang-pt">O Que Mudou em Setembro</span></h3>
+      <div class="sub"><span class="lang-en">Conversion rate by campaign · Aug 16–31 vs September</span><span class="lang-pt">Taxa de conversão por campanha · 16–31 Ago vs Setembro</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Campaign / slice</span><span class="lang-pt">Campanha / recorte</span></th><th class="num"><span class="lang-en">Conv. rate<br><span class="muted">Aug 16–31</span></span><span class="lang-pt">Taxa conv.<br><span class="muted">16–31 Ago</span></span></th><th class="num"><span class="lang-en">Conv. rate<br><span class="muted">Sep</span></span><span class="lang-pt">Taxa conv.<br><span class="muted">Set</span></span></th><th><span class="lang-en">Change</span><span class="lang-pt">Variação</span></th><th class="num"><span class="lang-en">CPC<br><span class="muted">Aug 16–31</span></span><span class="lang-pt">CPC<br><span class="muted">16–31 Ago</span></span></th><th class="num"><span class="lang-en">CPC<br><span class="muted">Sep</span></span><span class="lang-pt">CPC<br><span class="muted">Set</span></span></th><th class="num"><span class="lang-en">CPA<br><span class="muted">Aug 16–31</span></span><span class="lang-pt">CPA<br><span class="muted">16–31 Ago</span></span></th><th class="num"><span class="lang-en">CPA<br><span class="muted">Sep</span></span><span class="lang-pt">CPA<br><span class="muted">Set</span></span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>🔐 Brand Protection</strong></td><td class="num">15.62%</td><td class="num"><strong>3.95%</strong></td><td><span class="neg">▼ 11.68 pp</span></td><td class="num">$5.44</td><td class="num">$5.22</td><td class="num">$34.83</td><td class="num">$132.19</td></tr>
+          <tr><td><strong>🚗 Concrete Driveways</strong></td><td class="num">13.08%</td><td class="num"><strong>6.88%</strong></td><td><span class="neg">▼ 6.20 pp</span></td><td class="num">$5.91</td><td class="num">$6.50</td><td class="num">$45.18</td><td class="num">$94.56</td></tr>
+          <tr><td><strong>🏡 Concrete Patios</strong></td><td class="num">11.40%</td><td class="num"><strong>5.77%</strong></td><td><span class="neg">▼ 5.63 pp</span></td><td class="num">$6.26</td><td class="num">$6.05</td><td class="num">$54.95</td><td class="num">$104.95</td></tr>
+          <tr><td><strong>🧱 Outdoor Living & Hardscape</strong></td><td class="num">9.30%</td><td class="num"><strong>4.22%</strong></td><td><span class="neg">▼ 5.07 pp</span></td><td class="num">$5.29</td><td class="num">$5.60</td><td class="num">$56.95</td><td class="num">$132.58</td></tr>
+          <tr><td><strong>🎯 Competitor Targeting</strong></td><td class="num">7.32%</td><td class="num"><strong>13.88%</strong></td><td><span class="pos">▲ 6.56 pp</span></td><td class="num">$3.68</td><td class="num">$4.22</td><td class="num">$50.24</td><td class="num">$30.41</td></tr>
+          <tr><td><strong><span class="lang-en">All searches <em>without</em> your name</span><span class="lang-pt">Todas as buscas <em>sem</em> o seu nome</span></strong></td><td class="num">10.04%</td><td class="num"><strong>5.40%</strong></td><td><span class="neg">▼ 4.64 pp</span></td><td class="num">$5.61</td><td class="num">$6.05</td><td class="num">$55.84</td><td class="num">$111.99</td></tr>
+          <tr><td><strong><span class="lang-en">All searches <em>with</em> your name</span><span class="lang-pt">Todas as buscas <em>com</em> o seu nome</span></strong></td><td class="num">17.39%</td><td class="num"><strong>8.64%</strong></td><td><span class="neg">▼ 8.75 pp</span></td><td class="num">$5.35</td><td class="num">$4.87</td><td class="num">$30.74</td><td class="num">$56.31</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><span class="lang-en">Whole account</span><span class="lang-pt">Conta inteira</span></td><td class="num">11.23%</td><td class="num">6.04%</td><td><span class="neg">▼ 5.19 pp</span></td><td class="num">$5.57</td><td class="num">$5.82</td><td class="num">$49.57</td><td class="num">$96.37</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout yellow" style="margin-top:16px;">
+        <span class="lang-en"><strong>The conversion rate fell by about half almost everywhere at once.</strong> Driveways, Patios and Outdoor Living all went from 9–13% to 4–7%. The clearest case is the line that changed least: people searching <em>maxima concrete</em> in the Brand Protection campaign — same search, same ad, same landing page as in August — converted at 15.62% in late August and 3.95% in September. Searches with your name as a whole halved too (17.39% → 8.64%), while the number of those clicks per day stayed about the same (5.75 → 6.17). The one exception is Competitor Targeting, which went the other way (7.32% → 13.87%). The cost per click barely moved anywhere. A keyword or budget change would show up in some campaigns and not others, and would not touch people who already searched for you by name. A drop this even across the account points past the click: either fewer of the people who reached the site went on to call or send a form, or some of those calls and forms happened and were not recorded. The ad platform cannot tell those two apart — your own count of September calls and requests can.</span><span class="lang-pt"><strong>A taxa de conversão caiu mais ou menos pela metade em quase tudo ao mesmo tempo.</strong> Driveways, Patios e Outdoor Living saíram de 9–13% para 4–7%. O caso mais claro é a linha que menos mudou: quem buscou <em>maxima concrete</em> na campanha Brand Protection — mesma busca, mesmo anúncio, mesma página de destino de Agosto — converteu 15.62% no fim de Agosto e 3.95% em Setembro. As buscas com o seu nome como um todo também caíram pela metade (17.39% → 8.64%), enquanto o número desses cliques por dia ficou praticamente igual (5.75 → 6.17). A única exceção é a Competitor Targeting, que foi para o outro lado (7.32% → 13.87%). O custo por clique quase não se mexeu em lugar nenhum. Uma mudança de keyword ou de orçamento apareceria em algumas campanhas e não em outras, e não afetaria quem já buscou você pelo nome. Uma queda tão uniforme na conta aponta para depois do clique: ou menos pessoas que chegaram ao site seguiram para ligar ou mandar formulário, ou parte dessas ligações e formulários aconteceu e não foi registrada. A plataforma de anúncios não consegue diferenciar uma coisa da outra — a sua contagem de ligações e pedidos de Setembro consegue.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>What we are doing on our side:</strong> before the new campaigns go live, we are checking that every call and form on the new site is being recorded — the phone-call conversion, the form conversion and the 25-second rule. The new structure will learn from these same signals, so they need to be right before it starts. One number that is consistent with the site still being used: the lighter, secondary interactions Google also tracks held steady at about 36 for every 100 clicks, the same as in late August. People keep arriving and engaging; fewer of them end up as a counted lead.</span><span class="lang-pt"><strong>O que estamos fazendo do nosso lado:</strong> antes de as campanhas novas entrarem no ar, estamos conferindo se cada ligação e cada formulário do site novo está sendo registrado — a conversão de ligação, a de formulário e a regra dos 25 segundos. A estrutura nova vai aprender com esses mesmos sinais, então eles precisam estar certos antes de ela começar. Um número que é coerente com o site seguir sendo usado: as interações secundárias, mais leves, que o Google também rastreia ficaram estáveis em cerca de 36 a cada 100 cliques, igual ao fim de Agosto. As pessoas continuam chegando e interagindo; menos delas terminam como lead contado.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>What changed in the account setup during September:</strong> the daily budgets now add up to <strong>$170</strong>, against $220 at the end of August — Patios $60 → $50, Outdoor Living $70 → $50, Driveways $55 → $50, Brand Protection $25 → $10, Competitor Targeting unchanged at $10. The month averaged $183.10 a day, above the new $170, so the cut came partway through the month (the export does not say on which day). <strong>80 keywords</strong> that were active at the end of August are no longer active (49 broad, 24 phrase, 7 exact — among them the five exact-match competitor names), leaving 185. And broad match went from 50.5% to 70.8% of the spend we can see at search-term level, after the broad keywords added on Aug 26 and 31. These are real changes, but none of them explains a drop that also hit searches for your own name.</span><span class="lang-pt"><strong>O que mudou na configuração da conta durante Setembro:</strong> os orçamentos diários agora somam <strong>$170</strong>, contra $220 no fim de Agosto — Patios $60 → $50, Outdoor Living $70 → $50, Driveways $55 → $50, Brand Protection $25 → $10, Competitor Targeting igual em $10. O mês teve média de $183.10 por dia, acima dos $170 novos, então o corte veio no meio do mês (o export não diz em que dia). <strong>80 keywords</strong> que estavam ativas no fim de Agosto não estão mais (49 broad, 24 phrase, 7 exact — entre elas os cinco nomes de concorrentes em exact), ficando 185. E o broad passou de 50.5% para 70.8% do investimento que conseguimos enxergar no nível de termo de busca, depois das keywords broad adicionadas em 26 e 31 Ago. São mudanças reais, mas nenhuma delas explica uma queda que atingiu também as buscas pelo seu próprio nome.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>How the “with / without your name” lines are built:</strong> a search counts as “with your name” when it contains <em>maxim</em> (maxima concrete, maximum concrete, concrete maxima…) — 185 clicks, $900.36 and 15.99 leads in September; 92 clicks, $491.89 and 16 leads in Aug 16–31. “Without your name” is the account total minus that. Google does not disclose every search individually, so a few low-volume name searches may sit in the “without” line — it is a close approximation, not an exact split.</span><span class="lang-pt"><strong>Como as linhas “com / sem o seu nome” foram montadas:</strong> uma busca conta como “com o seu nome” quando contém <em>maxim</em> (maxima concrete, maximum concrete, concrete maxima…) — 185 cliques, $900.36 e 15.99 leads em Setembro; 92 cliques, $491.89 e 16 leads em 16–31 Ago. “Sem o seu nome” é o total da conta menos isso. O Google não divulga todas as buscas individualmente, então algumas buscas pelo nome de baixo volume podem estar na linha “sem” — é uma aproximação boa, não uma divisão exata.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">How many calls and form requests reached you in September, roughly, compared with August?</span><span class="lang-pt">Mais ou menos quantas ligações e pedidos por formulário chegaram até você em Setembro, comparado com Agosto?</span></label>
+        <textarea class="note-input" data-note="sec-change" data-label="What changed / O que mudou"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📊</div>
+      <div><h3><span class="lang-en">Performance by Campaign</span><span class="lang-pt">Performance por Campanha</span></h3>
+      <div class="sub"><span class="lang-en">September · sorted by spend</span><span class="lang-pt">Setembro · ordenado por investimento</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Daily budget<br><span class="muted">end of Sep</span></span><span class="lang-pt">Orç. diário<br><span class="muted">fim de Set</span></span></th><th class="num"><span class="lang-en">Impr.</span><span class="lang-pt">Impr.</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">CTR</span><span class="lang-pt">CTR</span></th><th class="num"><span class="lang-en">CPC</span><span class="lang-pt">CPC</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investim.</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">CPA</span><span class="lang-pt">CPA</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>🧱 Outdoor Living & Hardscape</strong> <span class="tag yellow"><span class="lang-en">limited by budget</span><span class="lang-pt">limitada por orçamento</span></span></td><td class="num">$50.00</td><td class="num">11,120</td><td class="num">296</td><td class="num">2.66%</td><td class="num">$5.60</td><td class="num">$1,657.31</td><td class="num"><strong>12.5</strong></td><td class="num"><span class="neg">$132.58</span></td></tr>
+          <tr><td><strong>🏡 Concrete Patios</strong></td><td class="num">$50.00</td><td class="num">5,228</td><td class="num">260</td><td class="num">4.97%</td><td class="num">$6.05</td><td class="num">$1,574.26</td><td class="num"><strong>15</strong></td><td class="num"><span class="neg">$104.95</span></td></tr>
+          <tr><td><strong>🚗 Concrete Driveways</strong> <span class="tag yellow"><span class="lang-en">limited by budget</span><span class="lang-pt">limitada por orçamento</span></span></td><td class="num">$50.00</td><td class="num">6,166</td><td class="num">240</td><td class="num">3.89%</td><td class="num">$6.50</td><td class="num">$1,561.13</td><td class="num"><strong>16.51</strong></td><td class="num"><span class="pos">$94.56</span></td></tr>
+          <tr><td><strong>🔐 Brand Protection</strong> <span class="tag yellow"><span class="lang-en">limited by budget</span><span class="lang-pt">limitada por orçamento</span></span></td><td class="num">$10.00</td><td class="num">223</td><td class="num">76</td><td class="num">34.08%</td><td class="num">$5.22</td><td class="num">$396.57</td><td class="num"><strong>3</strong></td><td class="num"><span class="neg">$132.19</span></td></tr>
+          <tr><td><strong>🎯 Competitor Targeting</strong></td><td class="num">$10.00</td><td class="num">2,056</td><td class="num">72</td><td class="num">3.50%</td><td class="num">$4.22</td><td class="num">$303.83</td><td class="num"><strong>9.99</strong></td><td class="num"><span class="pos">$30.41</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td class="num">$170.00</td><td class="num">24,793</td><td class="num">944</td><td class="num">3.81%</td><td class="num">$5.82</td><td class="num">$5,493.10</td><td class="num">57</td><td class="num">$96.37</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Read:</strong> the three service campaigns spent almost the same — about $1,560–$1,660 each — and produced 12.5 to 16.5 leads each, all between $94 and $133 per lead. Driveways was the cheapest of the three ($94.56) and Outdoor Living &amp; Hardscape the most expensive ($132.58), the same order as in August. Outdoor Living, Driveways and Brand Protection all show <em>limited by budget</em> at the end of the month, which fits the lower budgets above.</span><span class="lang-pt"><strong>Leitura:</strong> as três campanhas de serviço gastaram quase o mesmo — cerca de $1,560–$1,660 cada — e geraram de 12.5 a 16.5 leads cada, todas entre $94 e $133 por lead. Driveways foi a mais barata das três ($94.56) e Outdoor Living &amp; Hardscape a mais cara ($132.58), a mesma ordem de Agosto. Outdoor Living, Driveways e Brand Protection aparecem como <em>limitadas por orçamento</em> no fim do mês, o que bate com os orçamentos menores acima.</span>
+      </div>
+      <div class="callout green">
+        <span class="lang-en"><strong>Competitor Targeting was the cheapest campaign of the month:</strong> 9.99 leads at $30.41, on $303.83. Worth knowing where they came from, because it is not what the campaign's name suggests: all 9.99 came through one generic keyword, <em>concrete companies near me</em>, and about half of the leads we can see by search term (4.99 of 7.98) were people searching <em>maxima concrete</em> or <em>maximum concrete</em>. The competitor-name keywords themselves produced no lead in September.</span><span class="lang-pt"><strong>A Competitor Targeting foi a campanha mais barata do mês:</strong> 9.99 leads a $30.41, com $303.83. Vale saber de onde eles vieram, porque não é o que o nome da campanha sugere: os 9.99 vieram todos por uma única keyword genérica, <em>concrete companies near me</em>, e cerca de metade dos leads que conseguimos ver por termo de busca (4.99 de 7.98) foram pessoas buscando <em>maxima concrete</em> ou <em>maximum concrete</em>. As keywords com nomes de concorrentes em si não geraram nenhum lead em Setembro.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>About Brand Protection:</strong> this campaign runs on Target Impression Share, not on cost per lead — its job is to keep you at the top when someone searches your name. Its budget ended the month at $10 a day, it shows <em>limited by budget</em>, and it handled only <strong>66 of the 185 clicks</strong> from searches with your name; the other 119 ($562.71, 13.99 leads) were picked up by the service campaigns through broad match. In late August it was the other way round: 61 of 92. The name searches still got answered and still produced leads — just through other campaigns.</span><span class="lang-pt"><strong>Sobre a Brand Protection:</strong> esta campanha roda em Target Impression Share, não em custo por lead — a função dela é manter você no topo quando alguém busca o seu nome. O orçamento dela terminou o mês em $10 por dia, ela aparece como <em>limitada por orçamento</em> e atendeu só <strong>66 dos 185 cliques</strong> de buscas com o seu nome; os outros 119 ($562.71, 13.99 leads) foram pegos pelas campanhas de serviço via broad match. No fim de Agosto era o contrário: 61 de 92. As buscas pelo nome continuaram sendo atendidas e gerando leads — só que por outras campanhas.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on campaign performance</span><span class="lang-pt">Suas notas sobre a performance das campanhas</span></label>
+        <textarea class="note-input" data-note="sec-campaign" data-label="Campaign Performance / Performance por Campanha"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🗂️</div>
+      <div><h3><span class="lang-en">Performance by Ad Group</span><span class="lang-pt">Performance por Grupo de Anúncios</span></h3>
+      <div class="sub"><span class="lang-en">All 14 active ad groups · sorted by leads, then spend</span><span class="lang-pt">Todos os 14 grupos ativos · ordenado por leads, depois investimento</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Ad group</span><span class="lang-pt">Grupo de anúncios</span></th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Impr.</span><span class="lang-pt">Impr.</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">CTR</span><span class="lang-pt">CTR</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investim.</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">CPA</span><span class="lang-pt">CPA</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Competitor Targeting</td><td>🎯 Competitor Targeting</td><td class="num">2,056</td><td class="num">72</td><td class="num">3.50%</td><td class="num">$303.83</td><td class="num"><strong>9.99</strong></td><td class="num"><span class="pos">$30.41</span></td></tr>
+          <tr><td>Driveway Core</td><td>🚗 Concrete Driveways</td><td class="num">2,721</td><td class="num">116</td><td class="num">4.26%</td><td class="num">$896.10</td><td class="num"><strong>8.01</strong></td><td class="num"><span class="neg">$111.87</span></td></tr>
+          <tr><td>Patio Core</td><td>🏡 Concrete Patios</td><td class="num">2,503</td><td class="num">119</td><td class="num">4.75%</td><td class="num">$707.00</td><td class="num"><strong>7</strong></td><td class="num"><span class="neg">$101.00</span></td></tr>
+          <tr><td>Patio Estimate</td><td>🏡 Concrete Patios</td><td class="num">1,906</td><td class="num">95</td><td class="num">4.98%</td><td class="num">$644.51</td><td class="num"><strong>7</strong></td><td class="num"><span class="pos">$92.07</span></td></tr>
+          <tr><td>Paver & Stone Patios / Porches</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">4,006</td><td class="num">105</td><td class="num">2.62%</td><td class="num">$641.89</td><td class="num"><strong>7</strong></td><td class="num"><span class="pos">$91.70</span></td></tr>
+          <tr><td>Stamped Driveway</td><td>🚗 Concrete Driveways</td><td class="num">2,009</td><td class="num">74</td><td class="num">3.68%</td><td class="num">$322.71</td><td class="num"><strong>5</strong></td><td class="num"><span class="pos">$64.54</span></td></tr>
+          <tr><td>Driveway Replacement</td><td>🚗 Concrete Driveways</td><td class="num">1,409</td><td class="num">48</td><td class="num">3.41%</td><td class="num">$330.18</td><td class="num"><strong>3.5</strong></td><td class="num"><span class="pos">$94.34</span></td></tr>
+          <tr><td>Brand protection</td><td>🔐 Brand Protection</td><td class="num">223</td><td class="num">76</td><td class="num">34.08%</td><td class="num">$396.57</td><td class="num"><strong>3</strong></td><td class="num"><span class="neg">$132.19</span></td></tr>
+          <tr><td>Outdoor Living Core</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">3,358</td><td class="num">92</td><td class="num">2.74%</td><td class="num">$616.48</td><td class="num"><strong>2.51</strong></td><td class="num"><span class="neg">$245.61</span></td></tr>
+          <tr><td>Paver & Brick Driveways</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">769</td><td class="num">17</td><td class="num">2.21%</td><td class="num">$61.92</td><td class="num"><strong>1.99</strong></td><td class="num"><span class="pos">$31.12</span></td></tr>
+          <tr><td>Retaining & Seating Walls</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">2,893</td><td class="num">79</td><td class="num">2.73%</td><td class="num">$318.59</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$318.59</span></td></tr>
+          <tr><td>Stamped Patio</td><td>🏡 Concrete Patios</td><td class="num">819</td><td class="num">46</td><td class="num">5.62%</td><td class="num">$222.74</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$222.74</span></td></tr>
+          <tr><td>Fire Features & Outdoor Kitchens</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">94</td><td class="num">3</td><td class="num">3.19%</td><td class="num">$18.44</td><td class="num"><strong>0</strong></td><td class="num"><span class="muted">—</span></td></tr>
+          <tr><td>Driveway Aprons & Approaches</td><td>🚗 Concrete Driveways</td><td class="num">27</td><td class="num">2</td><td class="num">7.41%</td><td class="num">$12.14</td><td class="num"><strong>0</strong></td><td class="num"><span class="muted">—</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td></td><td class="num">24,793</td><td class="num">944</td><td class="num">3.81%</td><td class="num">$5,493.10</td><td class="num">57</td><td class="num">$96.37</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Three contrasts worth seeing:</strong> <em>Outdoor Living Core</em> was the largest lead source in late August (14 leads at $35.24) and produced 2.51 in September at $245.73, on about the same money ($616.48). <em>Retaining &amp; Seating Walls</em> again shows plenty of interest and almost no leads — 2,893 impressions, 79 clicks, one lead at $318.59. On the other side, <em>Stamped Driveway</em> (5 leads at $64.48) and <em>Paver &amp; Brick Driveways</em> (1.99 at $31.09) came in well under the account average. All of these groups are rebuilt in the new structure, so we report them here as the reference point rather than proposing changes.</span><span class="lang-pt"><strong>Três contrastes que vale ver:</strong> o <em>Outdoor Living Core</em> foi a maior fonte de leads no fim de Agosto (14 leads a $35.24) e gerou 2.51 em Setembro a $245.73, com praticamente o mesmo dinheiro ($616.48). <em>Retaining &amp; Seating Walls</em> de novo mostra bastante interesse e quase nenhum lead — 2,893 impressões, 79 cliques, um lead a $318.59. Do outro lado, <em>Stamped Driveway</em> (5 leads a $64.48) e <em>Paver &amp; Brick Driveways</em> (1.99 a $31.09) ficaram bem abaixo da média da conta. Todos esses grupos são reconstruídos na estrutura nova, então os reportamos aqui como ponto de referência, não para propor mudanças.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on ad groups</span><span class="lang-pt">Suas notas sobre os grupos de anúncios</span></label>
+        <textarea class="note-input" data-note="sec-adgroups" data-label="Ad Groups / Grupos de Anúncios"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico" style="background:var(--g-green-light)">✅</div>
+      <div><h3><span class="lang-en">Keywords That Brought Leads</span><span class="lang-pt">Keywords Que Trouxeram Leads</span></h3>
+      <div class="sub"><span class="lang-en">29 keywords produced 56 of the month's 57 leads · out of 185 active keywords</span><span class="lang-pt">29 keywords geraram 56 dos 57 leads do mês · de 185 keywords ativas</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Keyword</span><span class="lang-pt">Keyword</span></th><th><span class="lang-en">Match</span><span class="lang-pt">Match</span></th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">Cost / lead</span><span class="lang-pt">Custo / lead</span></th><th class="num"><span class="lang-en">Derived spend</span><span class="lang-pt">Investim. derivado</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>concrete companies near me</td><td><span class="tag grey">Broad</span></td><td>🎯 Competitor Targeting</td><td class="num"><strong>9.99</strong></td><td class="num"><span class="pos">$27.38</span></td><td class="num">$273.53</td></tr>
+          <tr><td>stamped concrete contractors near me</td><td><span class="tag grey">Broad</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>5</strong></td><td class="num"><span class="pos">$62.62</span></td><td class="num">$313.10</td></tr>
+          <tr><td>patio quotes near me</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>5</strong></td><td class="num"><span class="neg">$102.10</span></td><td class="num">$510.50</td></tr>
+          <tr><td>driveway paving near me</td><td><span class="tag grey">Broad</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>4.01</strong></td><td class="num"><span class="neg">$105.39</span></td><td class="num">$422.61</td></tr>
+          <tr><td>paver companies near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>4</strong></td><td class="num"><span class="pos">$68.09</span></td><td class="num">$272.36</td></tr>
+          <tr><td>concrete overlay near me</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>4</strong></td><td class="num"><span class="neg">$134.26</span></td><td class="num">$537.04</td></tr>
+          <tr><td>concrete driveway columbus ohio</td><td><span class="tag grey">Broad</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>2</strong></td><td class="num"><span class="pos">$40.04</span></td><td class="num">$80.08</td></tr>
+          <tr><td>paver patio</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>2</strong></td><td class="num"><span class="pos">$92.56</span></td><td class="num">$185.12</td></tr>
+          <tr><td>[maxima concrete]</td><td><span class="tag green">Exact</span></td><td>🔐 Brand Protection</td><td class="num"><strong>2</strong></td><td class="num"><span class="neg">$157.59</span></td><td class="num">$315.18</td></tr>
+          <tr><td>retaining wall installation</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$3.37</span></td><td class="num">$3.37</td></tr>
+          <tr><td>front porch contractors near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$7.10</span></td><td class="num">$7.10</td></tr>
+          <tr><td>"driveway installation near me"</td><td><span class="tag blue">Phrase</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$10.40</span></td><td class="num">$10.40</td></tr>
+          <tr><td>concrete patio installation near me</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$11.82</span></td><td class="num">$11.82</td></tr>
+          <tr><td>[maxima concrete columbus ohio]</td><td><span class="tag green">Exact</span></td><td>🔐 Brand Protection</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$13.11</span></td><td class="num">$13.11</td></tr>
+          <tr><td>"concrete driveway companies near me"</td><td><span class="tag blue">Phrase</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$35.70</span></td><td class="num">$35.70</td></tr>
+          <tr><td>"patio installation estimate"</td><td><span class="tag blue">Phrase</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$36.78</span></td><td class="num">$36.78</td></tr>
+          <tr><td>"residential driveway contractor"</td><td><span class="tag blue">Phrase</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$39.83</span></td><td class="num">$39.83</td></tr>
+          <tr><td>driveway paving near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$50.45</span></td><td class="num">$50.45</td></tr>
+          <tr><td>concrete patio builders near me</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$50.57</span></td><td class="num">$50.57</td></tr>
+          <tr><td>"driveway concrete contractors"</td><td><span class="tag blue">Phrase</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$51.05</span></td><td class="num">$51.05</td></tr>
+          <tr><td>driveway paving near me</td><td><span class="tag grey">Broad</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$83.58</span></td><td class="num">$83.58</td></tr>
+          <tr><td>concrete patio quote</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$95.25</span></td><td class="num">$95.25</td></tr>
+          <tr><td>outdoor living columbus ohio</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$96.16</span></td><td class="num">$96.16</td></tr>
+          <tr><td>hardscape companies near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$98.20</span></td><td class="num">$98.20</td></tr>
+          <tr><td>stamped concrete contractors near me</td><td><span class="tag grey">Broad</span></td><td>🏡 Concrete Patios</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$154.75</span></td><td class="num">$154.75</td></tr>
+          <tr><td>stone driveway</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>0.99</strong></td><td class="num"><span class="pos">$2.10</span></td><td class="num">$2.08</td></tr>
+          <tr><td>residential driveway contractors near me</td><td><span class="tag grey">Broad</span></td><td>🚗 Concrete Driveways</td><td class="num"><strong>0.5</strong></td><td class="num"><span class="neg">$104.46</span></td><td class="num">$52.23</td></tr>
+          <tr><td>concrete patio installers near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>0.5</strong></td><td class="num"><span class="neg">$140.85</span></td><td class="num">$70.42</td></tr>
+          <tr><td>hardscape companies near me</td><td><span class="tag grey">Broad</span></td><td>🧱 Outdoor Living & Hardscape</td><td class="num"><strong>0.01</strong></td><td class="num"><span class="neg">$2,933.64</span></td><td class="num">$29.34</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><span class="lang-en">These 29 keywords</span><span class="lang-pt">Estas 29 keywords</span></td><td></td><td></td><td class="num">56</td><td class="num">$69.67</td><td class="num">$3,901.71</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>6 of the 29 came in under $20 per lead, and 20 under the $96.37 account average.</strong> One keyword carried the month: <em>concrete companies near me</em> in Competitor Targeting, 9.99 leads at $27.38. Behind it, <em>stamped concrete contractors near me</em> (5 at $62.62 in Driveways) and <em>patio quotes near me</em> (5 at $102.10). Broad-match keywords produced 48 of the 56 leads in this table at $70.83 per lead; phrase produced 5 at $34.75; exact 3 at $109.43 — the exact ones are your own name in Brand Protection.</span><span class="lang-pt"><strong>6 das 29 vieram abaixo de $20 por lead, e 20 abaixo da média da conta de $96.37.</strong> Uma keyword carregou o mês: <em>concrete companies near me</em> na Competitor Targeting, 9.99 leads a $27.38. Atrás dela, <em>stamped concrete contractors near me</em> (5 a $62.62 em Driveways) e <em>patio quotes near me</em> (5 a $102.10). As keywords broad geraram 48 dos 56 leads desta tabela a $70.83 por lead; phrase gerou 5 a $34.75; exact 3 a $109.43 — as exact são o seu próprio nome na Brand Protection.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>Where the “derived spend” column comes from, and the missing lead:</strong> this account's keyword export carries leads and cost-per-lead but no cost column, so the spend shown is the two multiplied — it exists only for keywords that produced a lead. It adds up to $3,901.71, or 71.0% of the month's $5,493.10; the rest is spread across keywords with clicks and no lead and cannot be broken down from this export. The table sums to 56 leads, not 57: the 57th came from a keyword that was no longer active when the report was pulled, and the export only lists active keywords.</span><span class="lang-pt"><strong>De onde vem a coluna “investimento derivado”, e o lead que falta:</strong> o export de keywords desta conta traz leads e custo por lead mas não traz custo, então o investimento mostrado é a multiplicação dos dois — só existe para keywords que geraram lead. Soma $3,901.71, ou 71.0% dos $5,493.10 do mês; o resto está espalhado em keywords com clique e sem lead e não dá para abrir a partir deste export. A tabela soma 56 leads, não 57: o 57º veio de uma keyword que já não estava ativa quando o relatório foi extraído, e o export só lista keywords ativas.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on keywords</span><span class="lang-pt">Suas notas sobre as keywords</span></label>
+        <textarea class="note-input" data-note="sec-keywords" data-label="Keywords"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">🔍</div>
+      <div><h3><span class="lang-en">What People Actually Typed</span><span class="lang-pt">O Que as Pessoas Realmente Digitaram</span></h3>
+      <div class="sub"><span class="lang-en">Real search terms · 3,757 distinct searches in the month</span><span class="lang-pt">Termos de busca reais · 3,757 buscas distintas no mês</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <h4 class="subhead"><span class="lang-en">Searches that converted — without your name</span><span class="lang-pt">Buscas que converteram — sem o seu nome</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Search term</span><span class="lang-pt">Termo de busca</span></th><th><span class="lang-en">Matched as</span><span class="lang-pt">Correspondeu como</span></th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">Cost / lead</span><span class="lang-pt">Custo / lead</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>concrete patio</td><td>Exact</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$1.55</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$1.55</span></td></tr>
+          <tr><td>stone columns driveway</td><td>Phrase (close variant)</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$2.08</td><td class="num"><strong>0.99</strong></td><td class="num"><span class="pos">$2.10</span></td></tr>
+          <tr><td>landscaping columbus ohio</td><td>Broad</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$2.12</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$2.12</span></td></tr>
+          <tr><td>ready mix concrete</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$2.39</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$2.39</span></td></tr>
+          <tr><td>retaining wall landscaping</td><td>Phrase (close variant)</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$3.37</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$3.37</span></td></tr>
+          <tr><td>2 yard concrete truck</td><td>Broad</td><td>🎯 Competitor Targeting</td><td class="num">1</td><td class="num">$5.24</td><td class="num"><strong>0.99</strong></td><td class="num"><span class="pos">$5.29</span></td></tr>
+          <tr><td>porch railing installers near me</td><td>Phrase (close variant)</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$7.10</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$7.10</span></td></tr>
+          <tr><td>poured patio cost</td><td>Broad</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$8.13</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$8.13</span></td></tr>
+          <tr><td>concrete repair near me</td><td>Broad</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$9.42</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$9.42</span></td></tr>
+          <tr><td>concrete driveway cost</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">2</td><td class="num">$10.08</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$10.08</span></td></tr>
+          <tr><td>driveway installation near me</td><td>Exact</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$10.40</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$10.40</span></td></tr>
+          <tr><td>places that pour concrete near me</td><td>Broad</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$10.41</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$10.41</span></td></tr>
+          <tr><td>concrete driveway columbus ohio</td><td>Exact</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$11.36</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$11.36</span></td></tr>
+          <tr><td>concrete quote</td><td>Broad</td><td>🎯 Competitor Targeting</td><td class="num">1</td><td class="num">$19.80</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$19.80</span></td></tr>
+          <tr><td>top cat concrete westerville ohio</td><td>Broad</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$28.80</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$28.80</span></td></tr>
+          <tr><td>concrete contractors columbus ohio</td><td>Broad</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$30.22</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$30.22</span></td></tr>
+          <tr><td>concrete columbus ohio</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$32.71</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$32.71</span></td></tr>
+          <tr><td>concrete companies near me</td><td>Exact</td><td>🎯 Competitor Targeting</td><td class="num">6</td><td class="num">$35.49</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$35.49</span></td></tr>
+          <tr><td>concrete driveway companies near me</td><td>Exact</td><td>🚗 Concrete Driveways</td><td class="num">2</td><td class="num">$35.70</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$35.70</span></td></tr>
+          <tr><td>cement driveway</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$44.55</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$44.55</span></td></tr>
+          <tr><td>small job concrete contractors near me</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$8.56</td><td class="num"><strong>0.01</strong></td><td class="num"><span class="pos">$856.00</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><span class="lang-en">These 21 searches</span><span class="lang-pt">Estas 21 buscas</span></td><td></td><td></td><td class="num">28</td><td class="num">$319.48</td><td class="num">19.99</td><td class="num">$15.98</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en">A few searches nobody would have written as a keyword brought leads again: <em>landscaping columbus ohio</em>, <em>ready mix concrete</em>, <em>porch railing installers near me</em>, <em>2 yard concrete truck</em> and <em>top cat concrete westerville ohio</em> (a competitor's name). <em>concrete repair near me</em> brought one too — consistent with what we have seen before: repair searches are a way in that your team turns into a replacement job. Google only discloses search terms above a volume threshold, so the search-term tables in this section cover <strong>35.98 of the 57 leads</strong> and <strong>$2,831.12 of the $5,493.10</strong>; the remaining 21.01 leads and $2,645.83 sit in low-volume searches Google does not report individually.</span><span class="lang-pt">Algumas buscas que ninguém teria escrito como keyword trouxeram leads de novo: <em>landscaping columbus ohio</em>, <em>ready mix concrete</em>, <em>porch railing installers near me</em>, <em>2 yard concrete truck</em> e <em>top cat concrete westerville ohio</em> (nome de um concorrente). <em>concrete repair near me</em> trouxe um também — coerente com o que já vimos antes: busca por reparo é uma porta de entrada que a sua equipe transforma em obra de substituição. O Google só divulga termos de busca acima de um limite de volume, então as tabelas de termos desta seção cobrem <strong>35.98 dos 57 leads</strong> e <strong>$2,831.12 dos $5,493.10</strong>; os outros 21.01 leads e $2,645.83 estão em buscas de baixo volume que o Google não reporta individualmente.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">Searches with your name — which campaign answered them</span><span class="lang-pt">Buscas com o seu nome — qual campanha atendeu</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">Cost / lead</span><span class="lang-pt">Custo / lead</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🔐 Brand Protection</td><td class="num">66</td><td class="num">$337.65</td><td class="num"><strong>2</strong></td><td class="num">$168.83</td></tr>
+          <tr><td>🏡 Concrete Patios</td><td class="num">56</td><td class="num">$276.79</td><td class="num"><strong>5</strong></td><td class="num">$55.36</td></tr>
+          <tr><td>🚗 Concrete Driveways</td><td class="num">41</td><td class="num">$200.91</td><td class="num"><strong>3</strong></td><td class="num">$66.97</td></tr>
+          <tr><td>🎯 Competitor Targeting</td><td class="num">15</td><td class="num">$47.77</td><td class="num"><strong>4.99</strong></td><td class="num">$9.57</td></tr>
+          <tr><td>🧱 Outdoor Living & Hardscape</td><td class="num">7</td><td class="num">$37.24</td><td class="num"><strong>1</strong></td><td class="num">$37.24</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td class="num">185</td><td class="num">$900.36</td><td class="num">15.99</td><td class="num">$56.31</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout blue">
+        <span class="lang-en">Searches for your name brought <strong>15.99 of the 35.98 leads</strong> Google shows by search term — 44%. <em>maxima concrete</em> alone appeared in seven different campaign/ad-group combinations. At $56.31 per lead they are still the cheapest leads in the account, but they cost $25.57 per lead more than in late August ($30.74), for the reason in “What Changed in September”: same number of name clicks, half as many leads.</span><span class="lang-pt">Buscas pelo seu nome trouxeram <strong>15.99 dos 35.98 leads</strong> que o Google mostra por termo de busca — 44%. Só <em>maxima concrete</em> apareceu em sete combinações diferentes de campanha/grupo. A $56.31 por lead ainda são os leads mais baratos da conta, mas custaram $25.57 a mais por lead que no fim de Agosto ($30.74), pelo motivo da seção “O Que Mudou em Setembro”: o mesmo número de cliques no nome, metade dos leads.</span>
+      </div>
+      <h4 class="subhead"><span class="lang-en">Where the money went — top 10 searches by cost, without your name</span><span class="lang-pt">Para onde foi o dinheiro — top 10 buscas por custo, sem o seu nome</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Search term</span><span class="lang-pt">Termo de busca</span></th><th><span class="lang-en">Matched as</span><span class="lang-pt">Correspondeu como</span></th><th><span class="lang-en">Campaign</span><span class="lang-pt">Campanha</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Cost</span><span class="lang-pt">Custo</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>concrete contractors columbus oh</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">2</td><td class="num">$47.34</td><td class="num">0</td></tr>
+          <tr><td>concrete pad contractors near me</td><td>Broad</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$46.15</td><td class="num">0</td></tr>
+          <tr><td>cement driveway</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$44.55</td><td class="num">1</td></tr>
+          <tr><td>concrete paving</td><td>Phrase (close variant)</td><td>🧱 Outdoor Living & Hardscape</td><td class="num">1</td><td class="num">$40.09</td><td class="num">0</td></tr>
+          <tr><td>concrete driveway companies near me</td><td>Exact</td><td>🚗 Concrete Driveways</td><td class="num">2</td><td class="num">$35.70</td><td class="num">1</td></tr>
+          <tr><td>concrete companies near me</td><td>Exact</td><td>🎯 Competitor Targeting</td><td class="num">6</td><td class="num">$35.49</td><td class="num">1</td></tr>
+          <tr><td>concrete driveway sealing near me</td><td>Phrase (close variant)</td><td>🚗 Concrete Driveways</td><td class="num">2</td><td class="num">$35.04</td><td class="num">0</td></tr>
+          <tr><td>concrete stair repair</td><td>Broad</td><td>🏡 Concrete Patios</td><td class="num">1</td><td class="num">$33.19</td><td class="num">0</td></tr>
+          <tr><td>top rated concrete driveway contractors near me</td><td>Exact (close variant)</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$32.79</td><td class="num">0</td></tr>
+          <tr><td>concrete columbus ohio</td><td>Broad</td><td>🚗 Concrete Driveways</td><td class="num">1</td><td class="num">$32.71</td><td class="num">1</td></tr>
+        </tbody>
+      </table>
+      <div class="callout yellow">
+        <span class="lang-en"><strong>Observation, not a request:</strong> spend is spread thin this month — the most expensive single search without your name cost $47.34 (<em>concrete contractors columbus oh</em>, 2 clicks, no lead), and the top 10 add up to only $383.05, 7.0% of the month. 6 of the 10 brought no lead, together $234.60. There were 3,757 distinct searches in the month. No single search is where the money leaks; the drop is in the conversion rate across the board, as described above.</span><span class="lang-pt"><strong>Observação, não um pedido:</strong> o investimento está bem pulverizado neste mês — a busca sem o seu nome mais cara custou $47.34 (<em>concrete contractors columbus oh</em>, 2 cliques, sem lead), e as top 10 somam só $383.05, 7.0% do mês. 6 das 10 não trouxeram lead, somando $234.60. Foram 3,757 buscas distintas no mês. Nenhuma busca isolada é onde o dinheiro vaza; a queda está na taxa de conversão como um todo, como descrito acima.</span>
+      </div>
+      <div class="callout yellow">
+        <span class="lang-en"><strong>A note on the “Matched as” column:</strong> in these tables it describes how close the person's search came to one of our keywords — it is not the keyword's own setting. A search can show as “Exact” here while the keyword behind it is Phrase or Broad. The match types in the keyword table above are the actual configuration.</span><span class="lang-pt"><strong>Uma observação sobre a coluna “Correspondeu como”:</strong> nestas tabelas ela descreve o quão próxima a busca da pessoa chegou de uma das nossas keywords — não é a configuração da keyword. Uma busca pode aparecer como “Exact” aqui enquanto a keyword por trás é Phrase ou Broad. Os match types na tabela de keywords acima são a configuração real.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on search terms</span><span class="lang-pt">Suas notas sobre os termos de busca</span></label>
+        <textarea class="note-input" data-note="sec-terms" data-label="Search Terms / Termos de Busca"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📍</div>
+      <div><h3><span class="lang-en">Where the Leads Came From</span><span class="lang-pt">De Onde Vieram os Leads</span></h3>
+      <div class="sub"><span class="lang-en">44 locations received impressions · 99.2% of spend inside Ohio</span><span class="lang-pt">44 localidades receberam impressões · 99.2% do investimento dentro de Ohio</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <h4 class="subhead"><span class="lang-en">Locations that produced leads</span><span class="lang-pt">Localidades que geraram leads</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Location</span><span class="lang-pt">Localidade</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investim.</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">CPA</span><span class="lang-pt">CPA</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Delaware County, Ohio, United States</td><td class="num">231</td><td class="num">$1,212.84</td><td class="num"><strong>17</strong></td><td class="num"><span class="pos">$71.34</span></td></tr>
+          <tr><td>Columbus, Ohio, United States</td><td class="num">259</td><td class="num">$1,501.52</td><td class="num"><strong>11.99</strong></td><td class="num"><span class="neg">$125.23</span></td></tr>
+          <tr><td>Columbus OH, Ohio, United States</td><td class="num">123</td><td class="num">$666.47</td><td class="num"><strong>7</strong></td><td class="num"><span class="pos">$95.21</span></td></tr>
+          <tr><td>Lewis Center, Ohio, United States</td><td class="num">33</td><td class="num">$262.51</td><td class="num"><strong>3</strong></td><td class="num"><span class="pos">$87.50</span></td></tr>
+          <tr><td>Dublin, Ohio, United States</td><td class="num">36</td><td class="num">$286.82</td><td class="num"><strong>3</strong></td><td class="num"><span class="pos">$95.61</span></td></tr>
+          <tr><td>43061, Ohio, United States</td><td class="num">3</td><td class="num">$6.88</td><td class="num"><strong>2</strong></td><td class="num"><span class="pos">$3.44</span></td></tr>
+          <tr><td>Upper Arlington, Ohio, United States</td><td class="num">23</td><td class="num">$137.72</td><td class="num"><strong>2</strong></td><td class="num"><span class="pos">$68.86</span></td></tr>
+          <tr><td>Gahanna, Ohio, United States</td><td class="num">26</td><td class="num">$168.57</td><td class="num"><strong>2</strong></td><td class="num"><span class="pos">$84.28</span></td></tr>
+          <tr><td>Westerville, Ohio, United States</td><td class="num">28</td><td class="num">$224.05</td><td class="num"><strong>2</strong></td><td class="num"><span class="neg">$112.02</span></td></tr>
+          <tr><td>Galena, Ohio, United States</td><td class="num">10</td><td class="num">$50.71</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$50.71</span></td></tr>
+          <tr><td>Grove City, Ohio, United States</td><td class="num">9</td><td class="num">$59.51</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$59.51</span></td></tr>
+          <tr><td>Powell, Ohio, United States</td><td class="num">21</td><td class="num">$67.81</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$67.81</span></td></tr>
+          <tr><td>Sunbury, Ohio, United States</td><td class="num">12</td><td class="num">$76.39</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$76.39</span></td></tr>
+          <tr><td>Worthington, Ohio, United States</td><td class="num">9</td><td class="num">$79.31</td><td class="num"><strong>1</strong></td><td class="num"><span class="pos">$79.31</span></td></tr>
+          <tr><td>Franklin County, Ohio, United States</td><td class="num">18</td><td class="num">$96.46</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$96.46</span></td></tr>
+          <tr><td>Marysville, Ohio, United States</td><td class="num">27</td><td class="num">$152.46</td><td class="num"><strong>1</strong></td><td class="num"><span class="neg">$152.46</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td><span class="lang-en">These 16 locations</span><span class="lang-pt">Estas 16 localidades</span></td><td class="num">868</td><td class="num">$5,050.03</td><td class="num">57</td><td class="num">$88.60</td></tr>
+        </tfoot>
+      </table>
+      <h4 class="subhead"><span class="lang-en">Biggest spend with no lead this month</span><span class="lang-pt">Maior investimento sem lead neste mês</span></h4>
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Location</span><span class="lang-pt">Localidade</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investim.</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>New Albany, Ohio, United States</td><td class="num">13</td><td class="num">$83.32</td></tr>
+          <tr><td>Reynoldsburg, Ohio, United States</td><td class="num">10</td><td class="num">$61.80</td></tr>
+          <tr><td>Plain City, Ohio, United States</td><td class="num">9</td><td class="num">$54.54</td></tr>
+          <tr><td>Hilliard, Ohio, United States</td><td class="num">7</td><td class="num">$46.46</td></tr>
+          <tr><td>Galloway, New Jersey, United States</td><td class="num">5</td><td class="num">$46.13</td></tr>
+          <tr><td>Etna, Ohio, United States</td><td class="num">3</td><td class="num">$44.14</td></tr>
+          <tr><td>Pickerington, Ohio, United States</td><td class="num">8</td><td class="num">$20.83</td></tr>
+          <tr><td>Pataskala, Ohio, United States</td><td class="num">4</td><td class="num">$17.22</td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>Delaware County was the most efficient area again:</strong> 17 leads at $71.34, converting 7.36% of its clicks. Columbus appears on two separate lines in the export (“Columbus, Ohio” and “Columbus OH, Ohio” — two different targeting entries); added together that is 382 clicks, $2,167.99 and 18.99 leads at $114.17, converting 4.97%. Both are about half of what they converted in late August (Delaware 13.3%, Columbus 10.2%) — the same pattern as every other cut in this report. 21 locations with spend produced no lead, together $443.10 (8.1% of the month), New Albany and Reynoldsburg at the top.</span><span class="lang-pt"><strong>Delaware County foi de novo a área mais eficiente:</strong> 17 leads a $71.34, convertendo 7.36% dos cliques. Columbus aparece em duas linhas separadas no export (“Columbus, Ohio” e “Columbus OH, Ohio” — duas entradas de segmentação diferentes); somadas dão 382 cliques, $2,167.99 e 18.99 leads a $114.17, convertendo 4.97%. As duas estão em cerca de metade do que converteram no fim de Agosto (Delaware 13.3%, Columbus 10.2%) — o mesmo padrão de todos os outros recortes deste relatório. 21 localidades com investimento não geraram lead, somando $443.10 (8.1% do mês), com New Albany e Reynoldsburg no topo.</span>
+      </div>
+      <div class="callout blue">
+        <span class="lang-en"><strong>99.2% of the spend stayed in Ohio.</strong> One line outside the state: <em>Galloway, New Jersey</em> — 22 impressions, 5 clicks, $46.13, no lead. Last cycle the same line had 18 impressions and no spend. There is also a Galloway in Ohio, just west of Columbus, so this may be local searches Google placed in the wrong state; the export cannot tell us which.</span><span class="lang-pt"><strong>99.2% do investimento ficou em Ohio.</strong> Uma linha fora do estado: <em>Galloway, New Jersey</em> — 22 impressões, 5 cliques, $46.13, sem lead. No ciclo passado a mesma linha teve 18 impressões e nenhum gasto. Existe também uma Galloway em Ohio, logo a oeste de Columbus, então pode ser busca local que o Google colocou no estado errado; o export não permite saber.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on geography</span><span class="lang-pt">Suas notas sobre a geografia</span></label>
+        <textarea class="note-input" data-note="sec-geo" data-label="Geography / Geografia"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📝</div>
+      <div><h3><span class="lang-en">Ad Performance & Ad Strength</span><span class="lang-pt">Performance dos Anúncios e Força do Anúncio</span></h3>
+      <div class="sub"><span class="lang-en">15 responsive search ads live · Google's own quality rating</span><span class="lang-pt">15 anúncios responsivos ativos · avaliação de qualidade do próprio Google</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Ad group</span><span class="lang-pt">Grupo de anúncios</span></th><th><span class="lang-en">Ad strength</span><span class="lang-pt">Força do anúncio</span></th><th class="num"><span class="lang-en">Impr.</span><span class="lang-pt">Impr.</span></th><th class="num"><span class="lang-en">Clicks</span><span class="lang-pt">Cliques</span></th><th class="num"><span class="lang-en">CTR</span><span class="lang-pt">CTR</span></th><th class="num"><span class="lang-en">Spend</span><span class="lang-pt">Investim.</span></th><th class="num"><span class="lang-en">Leads</span><span class="lang-pt">Leads</span></th><th class="num"><span class="lang-en">CPA</span><span class="lang-pt">CPA</span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Driveway Core</td><td><span class="tag green">Excellent</span></td><td class="num">2,721</td><td class="num">116</td><td class="num">4.26%</td><td class="num">$896.10</td><td class="num"><strong>8.01</strong></td><td class="num">$111.87</td></tr>
+          <tr><td>Patio Core</td><td><span class="tag green">Good</span></td><td class="num">2,503</td><td class="num">119</td><td class="num">4.75%</td><td class="num">$707.00</td><td class="num"><strong>7</strong></td><td class="num">$101.00</td></tr>
+          <tr><td>Patio Estimate</td><td><span class="tag green">Excellent</span></td><td class="num">1,906</td><td class="num">95</td><td class="num">4.98%</td><td class="num">$644.51</td><td class="num"><strong>7</strong></td><td class="num">$92.07</td></tr>
+          <tr><td>Paver & Stone Patios / Porches</td><td><span class="tag green">Excellent</span></td><td class="num">4,006</td><td class="num">105</td><td class="num">2.62%</td><td class="num">$641.89</td><td class="num"><strong>7</strong></td><td class="num">$91.70</td></tr>
+          <tr><td>Brand protection</td><td><span class="tag yellow">Average</span></td><td class="num">223</td><td class="num">76</td><td class="num">34.08%</td><td class="num">$396.57</td><td class="num"><strong>3</strong></td><td class="num">$132.19</td></tr>
+          <tr><td>Outdoor Living Core <span class="muted">(Maxima Concrete Outdoor Li)</span></td><td><span class="tag yellow">Average</span></td><td class="num">1,651</td><td class="num">49</td><td class="num">2.97%</td><td class="num">$330.28</td><td class="num"><strong>0.51</strong></td><td class="num">$647.61</td></tr>
+          <tr><td>Driveway Replacement</td><td><span class="tag yellow">Average</span></td><td class="num">1,409</td><td class="num">48</td><td class="num">3.41%</td><td class="num">$330.18</td><td class="num"><strong>3.5</strong></td><td class="num">$94.34</td></tr>
+          <tr><td>Stamped Driveway</td><td><span class="tag green">Good</span></td><td class="num">2,009</td><td class="num">74</td><td class="num">3.68%</td><td class="num">$322.71</td><td class="num"><strong>5</strong></td><td class="num">$64.54</td></tr>
+          <tr><td>Retaining & Seating Walls</td><td><span class="tag green">Excellent</span></td><td class="num">2,893</td><td class="num">79</td><td class="num">2.73%</td><td class="num">$318.59</td><td class="num"><strong>1</strong></td><td class="num">$318.59</td></tr>
+          <tr><td>Competitor Targeting</td><td><span class="tag yellow">Average</span></td><td class="num">2,056</td><td class="num">72</td><td class="num">3.50%</td><td class="num">$303.83</td><td class="num"><strong>9.99</strong></td><td class="num">$30.41</td></tr>
+          <tr><td>Outdoor Living Core <span class="muted">(Maxima Concrete)</span></td><td><span class="tag green">Good</span></td><td class="num">1,707</td><td class="num">43</td><td class="num">2.52%</td><td class="num">$286.19</td><td class="num"><strong>2</strong></td><td class="num">$143.09</td></tr>
+          <tr><td>Stamped Patio</td><td><span class="tag green">Excellent</span></td><td class="num">819</td><td class="num">46</td><td class="num">5.62%</td><td class="num">$222.74</td><td class="num"><strong>1</strong></td><td class="num">$222.74</td></tr>
+          <tr><td>Paver & Brick Driveways</td><td><span class="tag green">Excellent</span></td><td class="num">769</td><td class="num">17</td><td class="num">2.21%</td><td class="num">$61.92</td><td class="num"><strong>1.99</strong></td><td class="num">$31.12</td></tr>
+          <tr><td>Fire Features & Outdoor Kitchens</td><td><span class="tag green">Excellent</span></td><td class="num">94</td><td class="num">3</td><td class="num">3.19%</td><td class="num">$18.44</td><td class="num"><strong>0</strong></td><td class="num"><span class="muted">—</span></td></tr>
+          <tr><td>Driveway Aprons & Approaches</td><td><span class="tag green">Excellent</span></td><td class="num">27</td><td class="num">2</td><td class="num">7.41%</td><td class="num">$12.14</td><td class="num"><strong>0</strong></td><td class="num"><span class="muted">—</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td>Total</td><td></td><td class="num">24,793</td><td class="num">944</td><td class="num">3.81%</td><td class="num">$5,493.10</td><td class="num">57</td><td class="num">$96.37</td></tr>
+        </tfoot>
+      </table>
+      <div class="callout yellow" style="margin-top:16px;">
+        <span class="lang-en"><strong>Google's rating and the actual result disagree again.</strong> The 4 ads Google rates “Average” delivered 17 leads at <strong>$80.05</strong> each. The 3 rated “Good” delivered 14 at $93.99, and the 8 rated “Excellent” delivered 26 at <strong>$108.32</strong> — the most expensive group. Same picture as late August. Ad strength measures how fully an ad uses Google's recommended formats, not how well it sells; we read it as a checklist, never as a verdict.</span><span class="lang-pt"><strong>A nota do Google e o resultado real discordam de novo.</strong> Os 4 anúncios que o Google classifica como “Average” entregaram 17 leads a <strong>$80.05</strong> cada. Os 3 “Good” entregaram 14 a $93.99, e os 8 “Excellent” entregaram 26 a <strong>$108.32</strong> — o grupo mais caro. Mesmo quadro do fim de Agosto. Ad strength mede o quanto o anúncio usa os formatos recomendados pelo Google, não o quanto ele vende; lemos isso como checklist, nunca como veredito.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the ads</span><span class="lang-pt">Suas notas sobre os anúncios</span></label>
+        <textarea class="note-input" data-note="sec-ads" data-label="Ads / Anúncios"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="ico">📐</div>
+      <div><h3><span class="lang-en">The Starting Line for the New Structure</span><span class="lang-pt">A Linha de Partida da Estrutura Nova</span></h3>
+      <div class="sub"><span class="lang-en">What the rebuilt account will be measured against</span><span class="lang-pt">Contra o que a conta reconstruída será medida</span></div></div>
+    </div>
+    <div class="section-body" style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr><th><span class="lang-en">Metric</span><span class="lang-pt">Métrica</span></th><th class="num"><span class="lang-en">September</span><span class="lang-pt">Setembro</span></th><th class="num"><span class="lang-en">August <span class="muted">(30 days)</span></span><span class="lang-pt">Agosto <span class="muted">(30 dias)</span></span></th><th class="num"><span class="lang-en">May – Sep <span class="muted">(152 days)</span></span><span class="lang-pt">Mai – Set <span class="muted">(152 dias)</span></span></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong><span class="lang-en">Cost per lead (CPA)</span><span class="lang-pt">Custo por lead (CPA)</span></strong></td><td class="num"><strong>$96.37</strong></td><td class="num">$59.60</td><td class="num">$71.94</td></tr>
+          <tr><td><strong><span class="lang-en">Conversion rate</span><span class="lang-pt">Taxa de conversão</span></strong></td><td class="num"><strong>6.04%</strong></td><td class="num">9.62%</td><td class="num">9.06%</td></tr>
+          <tr><td><strong><span class="lang-en">Leads / day</span><span class="lang-pt">Leads / dia</span></strong></td><td class="num"><strong>1.90</strong></td><td class="num">3.57</td><td class="num">2.88</td></tr>
+          <tr><td><strong><span class="lang-en">Cost per click</span><span class="lang-pt">Custo por clique</span></strong></td><td class="num"><strong>$5.82</strong></td><td class="num">$5.74</td><td class="num">$6.52</td></tr>
+          <tr><td><strong><span class="lang-en">Spend / day</span><span class="lang-pt">Investimento / dia</span></strong></td><td class="num"><strong>$183.10</strong></td><td class="num">$212.58</td><td class="num">$207.31</td></tr>
+        </tbody>
+      </table>
+      <div class="callout blue" style="margin-top:16px;">
+        <span class="lang-en"><strong>How we will compare the new structure against this:</strong> by cost per lead, conversion rate and leads per day — never by monthly totals, because the new structure starts at a different budget. We will hold it against all three columns, not only September: September alone is a low bar, and the five-month figure is the fairer reference. Two things will be stated next to every comparison: the 25-second call rule applies to all of the new data but only to part of the old, and the new campaigns go live in the autumn, when demand for outdoor concrete work usually shifts.</span><span class="lang-pt"><strong>Como vamos comparar a estrutura nova com isto:</strong> por custo por lead, taxa de conversão e leads por dia — nunca por total mensal, porque a estrutura nova começa com outro orçamento. Vamos compará-la com as três colunas, não só com Setembro: Setembro sozinho é uma régua baixa, e o número dos cinco meses é a referência mais justa. Duas coisas vão estar escritas ao lado de toda comparação: a regra de 25 segundos para ligação vale para todos os dados novos mas só para parte dos antigos, e as campanhas novas entram no ar no outono, quando a procura por obra de concreto externo costuma mudar.</span>
+      </div>
+      <div class="section-note">
+        <label><span class="lang-en">Your notes on the baseline</span><span class="lang-pt">Suas notas sobre a linha de base</span></label>
+        <textarea class="note-input" data-note="sec-baseline" data-label="Baseline / Linha de base"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="lang-en"><strong>Data source:</strong> Google Ads — September 1–30, 2026.</span><span class="lang-pt"><strong>Fonte de dados:</strong> Google Ads — 1 a 30 de Setembro de 2026.</span>
+  </div>
+
+</div>
+
+<div class="approval-bar">
+  <span class="count"><span class="notes-count" id="notes-count">0</span><span class="lang-en"> notes written</span><span class="lang-pt"> notas escritas</span></span>
+  <span class="spacer"></span>
+  <button class="btn-export" onclick="exportNotes()">📦 <span class="lang-en">Export notes</span><span class="lang-pt">Exportar notas</span></button>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────────────────
+   SÓ EDITAR: REPORT_ID, CACHE_KEY, o cabeçalho do arquivo em exportNotes()
+   e o nome do arquivo (a.download). O resto é infraestrutura — não mexer.
+   ───────────────────────────────────────────────────────────────────────────── */
+const PLACEHOLDERS = {
+  en: 'A question, a comment, or what you’re seeing on your side…',
+  pt: 'Uma dúvida, um comentário, ou o que você está vendo do seu lado…'
+};
+
+/* ===== Shared storage (Google Apps Script backend) ===== */
+const API_URL   = 'https://script.google.com/macros/s/AKfycbyRmxBUAAXn5Qnlf1fk2kDoPJwo9Zf0XW9FvR8E0ccVy0fExvZGzSU-i3CW-xIE99W6/exec';
+const REPORT_ID = 'concrete09';                 /* ← ÚNICO por relatório: pools08, concrete05, … */
+const REMOTE    = /^https:\/\//.test(API_URL);
+const LANG_KEY  = 'maxima-lang';
+const CACHE_KEY = 'maxima-cache-concrete09';    /* ← mesmo sufixo do REPORT_ID */
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('.note-input').forEach(n => n.setAttribute('placeholder', PLACEHOLDERS[lang] || PLACEHOLDERS.en));
+  localStorage.setItem(LANG_KEY, lang);
+}
+
+const notes = document.querySelectorAll('.note-input');
+const notesCountEl = document.getElementById('notes-count');
+
+/* sync status pill in the bottom bar */
+const syncEl = document.createElement('span');
+syncEl.id = 'sync-status';
+syncEl.style.cssText = 'font-size:12px; margin-left:10px; white-space:nowrap; font-weight:500;';
+if (notesCountEl && notesCountEl.parentNode) notesCountEl.parentNode.appendChild(syncEl);
+function setSync(text, color) { syncEl.textContent = text; syncEl.style.color = color || 'var(--text3)'; }
+setSync(REMOTE ? '☁ shared' : '', REMOTE ? 'var(--g-green-dark)' : 'var(--text3)');
+
+const noteTimers = {};
+notes.forEach(n => n.addEventListener('input', () => {
+  n.classList.toggle('filled', n.value.trim().length > 0);
+  updateCount();
+  clearTimeout(noteTimers[n.dataset.note]);
+  noteTimers[n.dataset.note] = setTimeout(() => remoteSave('note', n.dataset.note, n.value), 700);
+}));
+
+function updateCount() {
+  notesCountEl.textContent = Array.from(notes).filter(n => n.value.trim().length > 0).length;
+}
+
+function exportNotes() {
+  const comments = [];
+  notes.forEach(n => {
+    const val = n.value.trim();
+    if (!val) return;
+    comments.push({ label: n.dataset.label || n.dataset.note, note: val });
+  });
+  if (!comments.length) {
+    alert('No notes written yet.\nNenhuma nota escrita ainda.');
+    return;
+  }
+  let t = 'MAXIMA CONCRETE — OWNER NOTES (Report 07 — September 1-30, 2026)\n';
+  t += '='.repeat(72) + '\n\n';
+  comments.forEach(c => { t += '• ' + c.label + '\n      ' + c.note + '\n\n'; });
+  t += '='.repeat(72) + '\n' + comments.length + ' notes.\n';
+  const blob = new Blob([t], { type: 'text/plain' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'maxima_concrete_notes_report07.txt'; a.click();   /* ex.: maxima_pools_notes_report08 */
+}
+
+/* ---- shared + local storage ---- */
+function cacheGet() { try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}'); } catch (e) { return {}; } }
+function cachePut(kind, key, value) { const c = cacheGet(); c.notes = c.notes || {}; c.notes[key] = value; localStorage.setItem(CACHE_KEY, JSON.stringify(c)); }
+function applyState(d) {
+  if (!d || !d.notes) return;
+  notes.forEach(n => { const v = d.notes[n.dataset.note]; if (v != null) { n.value = v; n.classList.toggle('filled', String(v).trim().length > 0); } });
+  updateCount();
+}
+async function loadAll() {
+  applyState(cacheGet());
+  if (!REMOTE) return;
+  try {
+    setSync('☁ syncing…');
+    const r = await fetch(API_URL + '?report=' + encodeURIComponent(REPORT_ID), { method: 'GET' });
+    const d = await r.json();
+    applyState(d);
+    localStorage.setItem(CACHE_KEY, JSON.stringify(d));
+    setSync('☁ shared', 'var(--g-green-dark)');
+  } catch (e) { setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'); }
+}
+function remoteSave(kind, key, value) {
+  cachePut(kind, key, value);
+  if (!REMOTE) return;
+  fetch(API_URL, { method: 'POST', body: JSON.stringify({ report: REPORT_ID, kind: kind, key: key, value: value }) })
+    .then(() => setSync('☁ saved', 'var(--g-green-dark)'))
+    .catch(() => setSync('⚠ offline — saved on this device', 'var(--g-yellow-dark)'));
+}
+/* re-fetch when the tab regains focus, so you see others' updates */
+document.addEventListener('visibilitychange', () => { if (!document.hidden) loadAll(); });
+
+setLang(localStorage.getItem(LANG_KEY) || 'en');
+loadAll();
+</script>
+</body>
+</html>
